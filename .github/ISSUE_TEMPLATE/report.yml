@@ -1,0 +1,45 @@
+name: Report a listing or card problem
+description: Tell us about a wrong variant, JP card, non-PSA 10, raw card, fake, or a wrong price anchor on OPChase.
+title: "[Report] "
+labels: ["report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep OPChase accurate. The fields below are prefilled when you click **⚑ Report** on the site.
+  - type: input
+    id: listing
+    attributes:
+      label: Listing URL
+      description: The eBay listing (leave empty for a card-level report).
+      placeholder: https://www.ebay.com/itm/...
+  - type: input
+    id: item_id
+    attributes:
+      label: eBay item id
+  - type: input
+    id: card_id
+    attributes:
+      label: Card id
+      placeholder: e.g. OP05-119-MANGA
+  - type: input
+    id: variant
+    attributes:
+      label: Variant
+  - type: checkboxes
+    id: problem
+    attributes:
+      label: What is wrong?
+      options:
+        - label: Wrong variant
+        - label: JP (not EN)
+        - label: Not PSA 10
+        - label: Not a slab (raw / other grader)
+        - label: Fake or suspicious
+        - label: Price anchor wrong
+        - label: Other
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What did you see? A photo detail, the cert number on the listing, a comparable sale link, etc.

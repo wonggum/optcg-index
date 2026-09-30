@@ -1,4 +1,8 @@
 *
+!.github/
+!.github/ISSUE_TEMPLATE/
 !index.html
 !.nojekyll
+!.github/ISSUE_TEMPLATE/report.yml
+!.github/ISSUE_TEMPLATE/config.yml
 !.gitignore
