@@ -571,8 +571,8 @@ html.gx-lock{overflow:hidden}
    One endless carousel per tier (every card). Cards with a live eBay listing: eBay photo inside the eBay block + attribution.
    Cards without one: an OPChase "card plate" (pure typography + CSS gradient, no image of any kind). */
 .car.tg{--slide:720px;--tc:#f0b429;box-shadow:inset 0 2px 0 var(--tc)}
-.tg-grail{--tc:#f0b429}.tg-premium{--tc:#aab6c6}.tg-core{--tc:#cf8f52}
-[data-theme="light"] .tg-premium{--tc:#7b8798}[data-theme="light"] .tg-core{--tc:#a8692c}[data-theme="light"] .tg-grail{--tc:#c99412}
+.car.tg-grail{--tc:#f0b429}.car.tg-premium{--tc:#b4bfcd}.car.tg-core{--tc:#cf8f52}
+[data-theme="light"] .car.tg-premium{--tc:#7b8798}[data-theme="light"] .car.tg-core{--tc:#a8692c}[data-theme="light"] .car.tg-grail{--tc:#c99412}
 .tg-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 12px 0 2px;vertical-align:2px;background:var(--tc);box-shadow:0 0 0 4px color-mix(in srgb,var(--tc) 20%,transparent)}
 .tg .car-h p.sm{margin:var(--sp-1) 0 0}
 .tg .car-vp{margin-top:var(--sp-4)}
