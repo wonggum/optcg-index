@@ -744,3 +744,16 @@ a.trki:hover .trkc{text-decoration:underline;text-underline-offset:3px}
 tr.trk td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 td .dbtn-sm{margin-top:6px}
 .encl{display:flex;flex-wrap:wrap;align-items:center;gap:6px var(--sp-2);margin:var(--sp-3) 0 var(--sp-2)}
+
+/* ---------- 17. carousel photo placeholder + light plate contrast (2026-10-01, iPhone "blank slide" report) ---------- */
+/* until a hero photo has pixels the frame shows the card name and "Loading photo…" (slow cellular); on error "Photo unavailable" */
+.th.t-hero::before{content:attr(data-cap) "\A" "Loading photo…";white-space:pre-line;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
+  font-size:15px;font-weight:650;line-height:1.5;color:var(--muted);pointer-events:none;z-index:0}
+.th.t-hero img{position:relative;z-index:1}
+.th.t-hero.img-ok::before{content:none}
+.th.t-hero.img-err::before{content:attr(data-cap) "\A" "Photo unavailable · tap View on eBay";z-index:2}
+.th.t-hero.img-err img{visibility:hidden}
+/* light-theme plates: a stronger tier tint so a plate never reads as an empty box */
+:root:not([data-theme="dark"]) .plate{background:radial-gradient(95% 55% at 12% 0%,hsl(var(--h) 85% 72% / .7),transparent 70%),radial-gradient(70% 55% at 105% 100%,hsl(calc(var(--h) + 35) 80% 74% / .6),transparent 70%),
+    repeating-linear-gradient(135deg,hsl(var(--h) 50% 40% / .07) 0 1px,transparent 1px 12px),linear-gradient(165deg,hsl(var(--h) 60% 92%),hsl(var(--h) 38% 84%) 85%);border-color:hsl(var(--h) 35% 68%)}
+:root:not([data-theme="dark"]) .pl-wm{color:hsl(var(--h) 55% 35% / .13)}

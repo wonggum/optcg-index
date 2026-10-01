@@ -138,11 +138,29 @@
   }
   document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('button[data-gal]'); if (b && b.dataset.imgs) { e.preventDefault(); open(b); } });
 
+  /* photo load state (2026-10-01): a photo button shows its "Loading photo" placeholder until the image has pixels;
+     on error it retries once at s-l500, then shows "Photo unavailable" (never a blank box) */
+  function imgState(im) {
+    var b = im.closest('.th'); if (!b) return;
+    function ok() { if (im.naturalWidth) { b.classList.add('img-ok'); b.classList.remove('img-err'); } }
+    im.addEventListener('load', ok);
+    im.addEventListener('error', function () {
+      if (!im.dataset.retry) { im.dataset.retry = '1'; im.removeAttribute('srcset'); im.src = sz(im.src, 500); return; }
+      b.classList.add('img-err');
+    });
+    if (im.complete && im.naturalWidth) ok(); else if (im.complete && im.loading !== 'lazy' && (im.currentSrc || im.src)) im.dispatchEvent(new Event('error'));   // broke before this script ran
+  }
+  [].forEach.call(document.querySelectorAll('.th img'), imgState);
+  function wake(im) {   // lazy -> eager, and re-set srcset so every engine (incl. older Safari) re-runs image selection and starts the fetch
+    if (im.loading !== 'lazy') return;
+    im.loading = 'eager'; var ss = im.getAttribute('srcset'); if (ss) { im.removeAttribute('srcset'); im.setAttribute('srcset', ss); }
+  }
+
   /* ------------------------------------------------------------------ carousels (home: one endless gallery per tier) */
   // <section class="car" data-delay="5000" data-phase="0"> .car-track > .hs slides; optional .car-dots / .car-count / .car-pp / .car-prev / .car-next.
   // Autoplay only while the row is on screen; images of slides near the current one are loaded early (all others stay lazy).
   window.OPC_CAR = [];
-  var NEAR = 2;
+  var NEAR = 3;
   [].forEach.call(document.querySelectorAll('.car'), function (root) {
     var track = root.querySelector('.car-track'), slides = [].slice.call(track.children), dots = root.querySelector('.car-dots'), cnt = root.querySelector('.car-count'), pp = root.querySelector('.car-pp');
     var N = slides.length; if (!N) return;
@@ -155,7 +173,7 @@
         c.classList.add('hs-clone'); c.classList.remove('is-cur'); c.setAttribute('aria-hidden', 'true'); ['role', 'aria-roledescription', 'aria-label', 'data-i', 'data-id', 'id'].forEach(function (a) { c.removeAttribute(a); });
         [].forEach.call(c.querySelectorAll('[data-gal]'), function (b) { b.removeAttribute('data-gal'); });
         [].forEach.call(c.querySelectorAll('a,button,[tabindex]'), function (x) { x.tabIndex = -1; });
-        [].forEach.call(c.querySelectorAll('img'), function (im) { im.loading = 'lazy'; im.removeAttribute('fetchpriority'); });
+        [].forEach.call(c.querySelectorAll('img'), function (im) { im.loading = 'lazy'; im.removeAttribute('fetchpriority'); var b = im.closest('.th'); if (b) b.classList.remove('img-ok', 'img-err'); imgState(im); });
       });
       track.insertBefore(cl, slides[0]); track.appendChild(cf);
     }
@@ -168,7 +186,7 @@
     function realOf(s) { return s === cl ? N - 1 : s === cf ? 0 : slides.indexOf(s); }
     function preload(i) {   // real slide i sits at all[i + 1] when clones exist
       var k = cl ? i + 1 : i;
-      for (var j = k - NEAR; j <= k + NEAR; j++) { var s = all[j]; if (s) [].forEach.call(s.querySelectorAll('img[loading="lazy"]'), function (im) { im.loading = 'eager'; }); }
+      for (var j = k - NEAR; j <= k + NEAR; j++) { var s = all[j]; if (s) [].forEach.call(s.querySelectorAll('img[loading="lazy"]'), wake); }
     }
     function mark(i) {
       cur = i;
@@ -185,7 +203,7 @@
     function go(i, instant) {
       if (N > 1 && (i >= N || i < 0) && !RM && !instant) {   // wrap: glide onto the clone, then jump to the real slide
         var tgt = i >= N ? cf : cl, r = i >= N ? 0 : N - 1;
-        [].forEach.call(tgt.querySelectorAll('img[loading="lazy"]'), function (im) { im.loading = 'eager'; });
+        [].forEach.call(tgt.querySelectorAll('img[loading="lazy"]'), wake);
         tgt.classList.add('is-cur'); mark(r); slides[r].classList.remove('is-cur'); pend = r;
         track.scrollTo({ left: cx(tgt), behavior: 'smooth' });
         clearTimeout(jt); jt = setTimeout(function () { if (pend !== null) { var q = pend; pend = null; jump(q); } }, 900);
