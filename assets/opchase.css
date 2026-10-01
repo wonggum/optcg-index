@@ -427,7 +427,7 @@ section.tier>h3{font-size:var(--fs-20);margin-top:var(--sp-6)}
   #fn{margin-left:0}
 }
 
-/* ---------- 10. photo gallery (gallery v1, 2026-10-01): thumbnails, home hero carousel, fullscreen lightbox ----------
+/* ---------- 12. photo gallery (gallery v1, 2026-10-01): thumbnails, home hero carousel, fullscreen lightbox ----------
    Every photo is an eBay listing photo hotlinked from i.ebayimg.com and stays inside its eBay listing block with a
    "Photo: eBay listing by <seller> · View on eBay" credit; the OPChase Index box sits outside that block (License 8.1(b)(2)). */
 .t-lst,.ph.t-lst{width:96px;height:128px}
