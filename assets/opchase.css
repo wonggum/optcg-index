@@ -269,7 +269,7 @@ td.opx{vertical-align:middle}
 select,#sort{height:40px;border-radius:var(--r-md);border:1px solid var(--border-strong);background:var(--surface);color:var(--text);padding:0 32px 0 var(--sp-3);font:400 var(--fs-14)/1 var(--font);max-width:100%;cursor:pointer;-webkit-appearance:none;appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23888' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .tools .flt{margin:0}
-#sort{flex:0 1 250px;text-overflow:ellipsis}
+#sort{flex:0 1 240px;min-width:0;width:240px;text-overflow:ellipsis}
 #q{flex-basis:420px}
 #qn:not(:empty){margin-top:var(--sp-2)}
 .toc ol{margin:var(--sp-2) 0 0;padding-left:var(--sp-6);columns:2;column-gap:var(--sp-8)}
