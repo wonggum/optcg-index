@@ -19,7 +19,7 @@
   --maxw:1160px;--measure:70ch;--header-h:57px;
   --ease:cubic-bezier(.2,.7,.3,1);
 }
-/* dark (default brand theme) */
+/* dark (only when the visitor picks it with the theme button; 2026-10-01) */
 :root,[data-theme="dark"]{
   color-scheme:dark;
   --bg:#0b0d11;--surface:#12151a;--surface-2:#181c22;--surface-3:#1f242b;
@@ -32,8 +32,8 @@
   --shadow:0 1px 0 rgba(255,255,255,.02) inset;--shadow-pop:0 8px 28px rgba(0,0,0,.55);
   --chart:#f0b429;--header-bg:rgba(11,13,17,.82);--img-bg:#07080a;--tip-bg:#05060a;--tip-text:#e8eaed;--focus:#f2bf45;
 }
-/* light (Notion-style). Duplicated below for no-JS visitors whose OS prefers light. */
-[data-theme="light"]{
+/* light = DEFAULT theme (2026-10-01): applies whenever data-theme is not "dark" (incl. no-JS); OS dark preference is not followed */
+:root:not([data-theme="dark"]){
   color-scheme:light;
   --bg:#fbfbfa;--surface:#ffffff;--surface-2:#f6f6f4;--surface-3:#efefec;
   --border:#e8e7e4;--border-strong:#d5d4cf;
@@ -45,18 +45,7 @@
   --shadow:0 1px 2px rgba(15,15,15,.04);--shadow-pop:0 10px 30px rgba(15,15,15,.14);
   --chart:#b07a00;--header-bg:rgba(255,255,255,.86);--img-bg:#f1f1ee;--tip-bg:#1f1e1b;--tip-text:#ffffff;--focus:#b07a00;
 }
-@media (prefers-color-scheme:light){:root:not([data-theme]){
-  color-scheme:light;
-  --bg:#fbfbfa;--surface:#ffffff;--surface-2:#f6f6f4;--surface-3:#efefec;
-  --border:#e8e7e4;--border-strong:#d5d4cf;
-  --text:#1f1e1b;--text-2:#45433e;--muted:#67655f;
-  --accent:#f0b429;--accent-strong:#e2a515;--accent-text:#8a5a00;--accent-bg:rgba(240,180,41,.09);--accent-bg-2:rgba(240,180,41,.18);--accent-border:rgba(190,135,10,.5);--on-accent:#1d1605;
-  --up:#1a7f37;--dn:#c42b2b;--warn:#8a5a00;--warn-bg:#fff8e5;--warn-border:#f0d48a;
-  --ok:#1a7f37;--ok-bg:#eaf6ee;--ok-border:#a9d9b8;
-  --zebra:#fafaf8;--hover:#f3f3f0;
-  --shadow:0 1px 2px rgba(15,15,15,.04);--shadow-pop:0 10px 30px rgba(15,15,15,.14);
-  --chart:#b07a00;--header-bg:rgba(255,255,255,.86);--img-bg:#f1f1ee;--tip-bg:#1f1e1b;--tip-text:#ffffff;--focus:#b07a00;
-}}
+
 
 /* ---------- 3. Base & typography ---------- */
 *,*::before,*::after{box-sizing:border-box}
@@ -105,7 +94,7 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-6) var(--sp-12)}
 .hw{max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-6);min-height:56px;display:flex;align-items:center;gap:var(--sp-6)}
 .logo{font-weight:700;font-size:var(--fs-18);letter-spacing:-.03em;color:var(--text);white-space:nowrap}
 .logo:hover{text-decoration:none}.logo span{color:var(--accent)}
-[data-theme="light"] .logo span{color:#b07a00}
+:root:not([data-theme="dark"]) .logo span{color:#b07a00}
 .site-nav{display:flex;gap:2px;margin-left:auto;align-items:center}
 .site-nav a{padding:6px 10px;border-radius:var(--r-sm);color:var(--text-2);font-size:var(--fs-14);font-weight:500;white-space:nowrap;transition:background .15s var(--ease),color .15s}
 .site-nav a:hover{background:var(--hover);color:var(--text);text-decoration:none}
@@ -115,8 +104,8 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-6) var(--sp-12)}
 .ibtn{padding:0;width:32px}
 .ibtn:hover,.zhb:hover{background:var(--hover);border-color:var(--border-strong);color:var(--text)}
 .ibtn svg{width:16px;height:16px}
-.ibtn .i-moon,[data-theme="light"] .ibtn .i-sun{display:none}
-[data-theme="light"] .ibtn .i-moon{display:block}
+.ibtn .i-moon,:root:not([data-theme="dark"]) .ibtn .i-sun{display:none}
+:root:not([data-theme="dark"]) .ibtn .i-moon{display:block}
 .site-f{border-top:1px solid var(--border);margin-top:var(--sp-8)}
 .fw{max-width:var(--maxw);margin:0 auto;padding:var(--sp-8) var(--sp-6) var(--sp-12);color:var(--muted);font-size:var(--fs-14);line-height:1.6;display:grid;grid-template-columns:200px 1fr;gap:var(--sp-6)}
 .fw p{margin:0 0 var(--sp-2);max-width:80ch}
@@ -580,7 +569,7 @@ html.gx-lock{overflow:hidden}
    Cards without one: an OPChase "card plate" (pure typography + CSS gradient, no image of any kind). */
 .car.tg{--slide:720px;--tc:#f0b429;box-shadow:inset 0 2px 0 var(--tc)}
 .car.tg-grail{--tc:#f0b429}.car.tg-premium{--tc:#b4bfcd}.car.tg-core{--tc:#cf8f52}
-[data-theme="light"] .car.tg-premium{--tc:#7b8798}[data-theme="light"] .car.tg-core{--tc:#a8692c}[data-theme="light"] .car.tg-grail{--tc:#c99412}
+:root:not([data-theme="dark"]) .car.tg-premium{--tc:#7b8798}:root:not([data-theme="dark"]) .car.tg-core{--tc:#a8692c}:root:not([data-theme="dark"]) .car.tg-grail{--tc:#c99412}
 .tg-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 12px 0 2px;vertical-align:2px;background:var(--tc);box-shadow:0 0 0 4px color-mix(in srgb,var(--tc) 20%,transparent)}
 .tg .car-h p.sm{margin:var(--sp-1) 0 0}
 .tg .car-vp{margin-top:var(--sp-4)}
@@ -657,3 +646,57 @@ html.gx-lock{overflow:hidden}
 }
 @media (prefers-reduced-motion:reduce){.plate{transition:none}}
 @media print{.site-h,.hact,.gx,.car-arr,.car-ctl,.car-dots{display:none}body{background:#fff;color:#000}}
+
+/* ---------- 14. light-default polish + card-page discoverability (2026-10-01) ---------- */
+/* card plate on the light (default) theme: pale tinted paper, dark ink (AA contrast on every hue) */
+:root:not([data-theme="dark"]) .pt-grail{--tc:#8a5d00}:root:not([data-theme="dark"]) .pt-premium{--tc:#4f5a6a}:root:not([data-theme="dark"]) .pt-core{--tc:#87491a}
+:root:not([data-theme="dark"]) .plate{color:#1f1e1b!important;
+  background:radial-gradient(95% 55% at 12% 0%,hsl(var(--h) 85% 78% / .55),transparent 70%),radial-gradient(70% 55% at 105% 100%,hsl(calc(var(--h) + 35) 80% 80% / .5),transparent 70%),
+    repeating-linear-gradient(135deg,hsl(var(--h) 50% 40% / .05) 0 1px,transparent 1px 12px),linear-gradient(165deg,hsl(var(--h) 60% 96%),hsl(var(--h) 35% 90%) 85%);
+  border:1px solid hsl(var(--h) 35% 78%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 1px 2px rgba(15,15,15,.06)}
+:root:not([data-theme="dark"]) .plate:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 0 0 1px hsl(var(--h) 45% 55% / .55)}
+:root:not([data-theme="dark"]) .plate::after{background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 45%,transparent 60%)}
+:root:not([data-theme="dark"]) .pl-in{border-color:hsl(var(--h) 35% 45% / .22)}
+:root:not([data-theme="dark"]) .pl-mark{color:#1f1e1b}
+:root:not([data-theme="dark"]) .pl-wm{color:hsl(var(--h) 55% 35% / .08)}
+:root:not([data-theme="dark"]) .pl-name{color:hsl(var(--h) 45% 16%);text-shadow:0 2px 22px hsl(var(--h) 80% 70% / .45)}
+:root:not([data-theme="dark"]) .pl-code{color:hsl(var(--h) 30% 28%)}
+:root:not([data-theme="dark"]) .pl-var{color:#1f1e1b}
+:root:not([data-theme="dark"]) .pl-set,:root:not([data-theme="dark"]) .pl-bot{color:hsl(var(--h) 15% 32%)}
+:root:not([data-theme="dark"]) .pl-bot{border-top-color:hsl(var(--h) 30% 40% / .18)}
+:root:not([data-theme="dark"]) .tg .hs-eb,:root:not([data-theme="dark"]) .hs-ob{background:var(--surface);box-shadow:0 1px 2px rgba(15,15,15,.04),0 8px 24px rgba(15,15,15,.07)}
+:root:not([data-theme="dark"]) .hs:not(.is-cur) .hs-eb,:root:not([data-theme="dark"]) .hs:not(.is-cur) .hs-ob{box-shadow:none}
+
+/* card name = clear on-site link (all slides, gaps strip, tables) */
+a.cn{text-decoration:none;text-underline-offset:3px;text-decoration-thickness:1.5px}
+a.cn::after{content:"\00a0›";color:var(--accent-text);font-weight:700;display:inline-block;transition:transform .15s}
+a.cn:hover,a.cn:focus-visible{color:var(--accent-text)!important;text-decoration:underline}
+a.cn:hover::after{transform:translateX(2px)}
+.gp-b a.cn:hover{color:var(--accent-text)!important;text-decoration:underline}
+/* brand CTA to the card page: outlined gold (eBay pill stays neutral grey) */
+.dbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 16px;border-radius:var(--r-pill);border:1.5px solid var(--accent-border);background:var(--accent-bg);color:var(--accent-text)!important;font-size:var(--fs-14);font-weight:650;white-space:nowrap;text-decoration:none!important;transition:background .15s,border-color .15s}
+.dbtn:hover{background:var(--accent-bg-2);border-color:var(--accent)}
+.dbtn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.dbtn-lg{height:44px;padding:0 22px;font-size:var(--fs-16)}
+.dbtn-sm{height:28px;padding:0 10px;font-size:var(--fs-12)}
+/* OPChase Index strip = link to the card page */
+a.opx-a{display:block;color:inherit!important;text-decoration:none!important;border-radius:inherit}
+a.t5x.opx-a,a.opx-s{transition:border-color .15s,background .15s}
+a.t5x.opx-a:hover,a.opx-s:hover{border-color:var(--accent)!important;background:var(--accent-bg-2)}
+a.opx-a .opxi::after{content:"\00a0›";color:var(--accent-text);font-weight:700}
+td.opx a.opx-a:hover .opxi{text-decoration:underline;text-underline-offset:3px}
+.hs-x .dbtn{flex:none}
+.gp-x{flex-wrap:wrap}
+.gp-x .dbtn-sm{margin-left:auto}
+/* tables: the whole card cell opens the card page; small "Details" link */
+td.cncell{position:relative}
+td.cncell a.cn::before{content:"";position:absolute;inset:0}
+td.cncell:hover{background:var(--hover)}
+.dlk{position:relative;z-index:1;display:inline-block;margin-top:2px;font-size:var(--fs-12);font-weight:600;color:var(--accent-text)!important;text-decoration:none!important}
+.dlk:hover{text-decoration:underline!important}
+@media (max-width:760px){
+  .hs-x .dbtn{align-self:stretch;height:44px;font-size:var(--fs-16)}
+  .hs-x .t5s{align-self:center}
+  .gp-x .dbtn-sm{margin-left:0;flex:1 0 100%}
+}
+@media (max-width:760px){.hs-media .plate{text-align:left}.hs-body .dbtn-lg{align-self:stretch}}
