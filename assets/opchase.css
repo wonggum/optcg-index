@@ -700,3 +700,29 @@ td.cncell:hover{background:var(--hover)}
   .gp-x .dbtn-sm{margin-left:0;flex:1 0 100%}
 }
 @media (max-width:760px){.hs-media .plate{text-align:left}.hs-body .dbtn-lg{align-self:stretch}}
+
+/* ---------- 15. merged OPChase panel (2026-10-01 08:30): index + inline status + BIN line + CTA in ONE link, outside the eBay block ---------- */
+.opp{display:flex;align-items:center;gap:var(--sp-3);width:100%;padding:10px 14px;border:1px solid var(--accent-border);border-radius:14px;background:var(--accent-bg);color:var(--text)!important;text-decoration:none!important;text-align:left;transition:background .15s,border-color .15s}
+.opp:hover{background:var(--accent-bg-2);border-color:var(--accent)}
+.opp:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.opp-l{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.opp-t{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}
+.opp .opxi{font-size:var(--fs-16);white-space:nowrap}
+.opp .opxd{margin:0;white-space:normal}
+.opp .pill.mini{height:18px;padding:0 6px;font-size:11px;cursor:help}
+.opp-auto{position:relative;font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:help}
+.opp-auto[data-tip]:hover::after{content:var(--tip);position:absolute;z-index:20;left:0;top:calc(100% + 6px);width:260px;white-space:normal;text-transform:none;letter-spacing:0;font-weight:500;font-size:var(--fs-12);line-height:1.45;background:var(--tip-bg);color:var(--tip-text);padding:8px 10px;border-radius:var(--r-md);box-shadow:var(--shadow-pop)}
+.opp-c{flex:none;font-size:var(--fs-14);font-weight:650;color:var(--accent-text);white-space:nowrap}
+.opp:hover .opp-c{text-decoration:underline;text-underline-offset:3px}
+.hs-x2{display:block!important;margin:var(--sp-3) var(--sp-1) 0}
+.gp-x2 .opp{flex-wrap:wrap;padding:8px 10px;gap:4px var(--sp-2)}
+.gp-x2 .opp .opxi{font-size:var(--fs-14)}
+.gp-x2 .opp-l{flex:1 0 100%}
+.gp-x2 .opp-c{flex:1 0 100%;font-size:var(--fs-12);padding-top:6px;border-top:1px solid color-mix(in srgb,var(--accent-border) 60%,transparent);text-align:center}
+.gp-x2 .opxd{white-space:nowrap}
+@media (max-width:760px){
+  .hs-x2{margin:var(--sp-2) 0 0}
+  .hs-x2 .opp{text-align:left}
+  .opp-auto[data-tip]:hover::after{width:min(260px,70vw)}
+}
+@media (max-width:760px){.hs-x2 .opp{flex-wrap:wrap;row-gap:8px;padding:10px 14px 9px}.hs-x2 .opp-l{flex:1 0 100%}.hs-x2 .opp-c{flex:1 0 100%;padding-top:8px;border-top:1px solid color-mix(in srgb,var(--accent-border) 60%,transparent);text-align:center}}
