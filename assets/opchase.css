@@ -822,3 +822,25 @@ td .dbtn-sm{margin-top:6px}
 @media (max-width:760px){.glabels,.g-grid{grid-template-columns:1fr}.guide>p,.guide li{font-size:16px}.g-dek{font-size:16.5px}}
 .guide>p.sm{font-size:var(--fs-12);line-height:1.5;color:var(--muted)}
 @media (min-width:1100px){.guide .tw{width:1000px;margin-left:50%;transform:translateX(-50%)}}
+/* ===== 21 · eBay search link + plate-slide eBay buttons (2026-10-01 PM, "eBay links for every card") =====
+   .ebtn-sr = neutral secondary pill ("Search PSA 10 on eBay"): same grey family as .ebtn, outline + magnifier, never gold */
+.ebs{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:var(--sp-3)}
+.ebtn-sr{background:var(--surface);border-color:var(--border-strong);color:var(--text-2)!important;font-weight:500}
+.ebtn-sr::before{content:"";width:14px;height:14px;flex:none;background:currentColor;opacity:.75;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10.5 3a7.5 7.5 0 0 1 5.96 12.05l4.5 4.5-1.41 1.41-4.5-4.5A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10.5 3a7.5 7.5 0 0 1 5.96 12.05l4.5 4.5-1.41 1.41-4.5-4.5A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z'/%3E%3C/svg%3E") center/contain no-repeat}
+.ebtn-sr:hover{background:var(--surface-2);color:var(--text)!important}
+.ebtn-sr.ebtn-sm::before{width:12px;height:12px}
+.ebs .ebp-n{margin-top:2px;max-width:42ch}
+.hs-body>.ebs{margin-top:var(--sp-5);align-items:stretch}
+.hs-body>.ebs .ebtn{width:100%}
+.hs-ebs{margin-top:var(--sp-4);display:flex;flex-direction:column;gap:6px}
+.hs-ebs>.ebp{margin-top:0;flex-direction:column;align-items:stretch}
+.hs-ebs>.ebp .ebtn{width:100%}
+.cimg>.ebs{align-items:center;text-align:center}
+.cimg>.ebs .ebp-n{text-align:center}
+.cimg .ebp+.ebn-b+.ebs,.cimg .ebn-b+.ebs{margin-top:var(--sp-2)}
+/* encyclopedia printings table: one small search pill per printing */
+td .ebtn-sr{margin-top:6px}
+.trkp .ebs{margin-top:var(--sp-2)}
+@media (max-width:760px){.ebs{align-items:stretch}.ebs .ebtn{width:100%}.ebs .ebp-n{max-width:none;text-align:center}.hs-body>.ebs{margin-top:var(--sp-4)}td .ebtn-sr{width:auto;max-width:100%;white-space:normal;text-align:left;line-height:1.3;padding-top:6px;padding-bottom:6px}}
