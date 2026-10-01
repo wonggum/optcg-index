@@ -786,3 +786,4 @@ td .dbtn-sm{margin-top:6px}
 .t-main~.ebp-n,.t-main~* .ebp-n{text-align:center}
 .hs-attr~.ebp-n{text-align:center}
 @media (max-width:760px){.hs-body>.ebp{margin-top:var(--sp-4)}.hs-body .ebp-n{text-align:center}}
+@media (max-width:760px){.ebp .ebp-i{width:100%}}
