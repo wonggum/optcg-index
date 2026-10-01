@@ -726,3 +726,21 @@ td.cncell:hover{background:var(--hover)}
   .opp-auto[data-tip]:hover::after{width:min(260px,70vw)}
 }
 @media (max-width:760px){.hs-x2 .opp{flex-wrap:wrap;row-gap:8px;padding:10px 14px 9px}.hs-x2 .opp-l{flex:1 0 100%}.hs-x2 .opp-c{flex:1 0 100%;padding-top:8px;border-top:1px solid color-mix(in srgb,var(--accent-border) 60%,transparent);text-align:center}}
+
+/* ---------- 16. encyclopedia rollout (2026-10-01): tracked-on-OPChase callout, open questions, tracked rows ---------- */
+.trkp{border-color:var(--accent-border)}
+.trkl{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:var(--sp-2);margin-top:var(--sp-3)}
+a.trki{display:grid;grid-template-columns:1fr auto;gap:2px var(--sp-2);padding:10px 14px;border:1px solid var(--accent-border);border-radius:12px;background:var(--accent-bg);color:var(--text)!important;text-decoration:none!important;transition:background .15s,border-color .15s}
+a.trki:hover{background:var(--accent-bg-2);border-color:var(--accent)}
+a.trki:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.trkv{font-weight:650;font-size:var(--fs-14)}
+.trks{font-size:var(--fs-12);color:var(--muted);text-align:right}
+.trkp2{font-weight:700;font-variant-numeric:tabular-nums}
+.trkc{font-size:var(--fs-12);font-weight:650;color:var(--accent-text);text-align:right;align-self:end}
+a.trki:hover .trkc{text-decoration:underline;text-underline-offset:3px}
+.oq{border-left:3px solid var(--warn,#c98a00)}
+.oq ul{margin:var(--sp-2) 0 0;padding-left:var(--sp-5)}
+.oq li{margin:0 0 var(--sp-2);font-size:var(--fs-14)}
+tr.trk td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+td .dbtn-sm{margin-top:6px}
+.encl{display:flex;flex-wrap:wrap;align-items:center;gap:6px var(--sp-2);margin:var(--sp-3) 0 var(--sp-2)}
