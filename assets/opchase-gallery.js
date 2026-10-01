@@ -1,4 +1,4 @@
-/* OPChase gallery (design system v2, 2026-10-01): hero carousel (home "Biggest gaps") + fullscreen photo lightbox (all pages with listing photos).
+/* OPChase gallery (design system v2, 2026-10-01): hero carousel (home featured strip) + fullscreen photo lightbox (all pages with listing photos).
    Triggers: <button data-gal="<group>" data-imgs="url1|url2" data-href="<listing>" data-by="<seller>" data-cap="<card>" data-sub="<variant · price>">.
    The lightbox steps through every visible trigger of the same group (left/right) and through one listing's photos (up/down, thumbnails).
    Photos are eBay listing photos hotlinked from i.ebayimg.com (never rehosted); every slide shows "Photo: eBay listing by <seller> · View on eBay". */
