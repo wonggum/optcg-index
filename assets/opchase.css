@@ -757,3 +757,23 @@ td .dbtn-sm{margin-top:6px}
 :root:not([data-theme="dark"]) .plate{background:radial-gradient(95% 55% at 12% 0%,hsl(var(--h) 85% 72% / .7),transparent 70%),radial-gradient(70% 55% at 105% 100%,hsl(calc(var(--h) + 35) 80% 74% / .6),transparent 70%),
     repeating-linear-gradient(135deg,hsl(var(--h) 50% 40% / .07) 0 1px,transparent 1px 12px),linear-gradient(165deg,hsl(var(--h) 60% 92%),hsl(var(--h) 38% 84%) 85%);border-color:hsl(var(--h) 35% 68%)}
 :root:not([data-theme="dark"]) .pl-wm{color:hsl(var(--h) 55% 35% / .13)}
+
+/* ---------- 18. eBay block buttons: Buy Now + Bid (2026-10-01) ---------- */
+.ebp{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin-top:var(--sp-2)}
+.ebp-i{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ebp-also{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.ebtn-bn{border-color:var(--text-2);color:var(--text)!important;font-weight:650}
+.ebtn-au{font-weight:500;color:var(--text-2)!important}
+.ebtn-sm{height:30px;padding:0 11px;font-size:var(--fs-12)}
+.gp-b .ebp{margin-top:6px}.gp-b .ebp-also{font-size:10px}
+.t-main~.ebp,.hs-attr~.ebp{justify-content:center}
+@media (max-width:760px){
+  .ebp{flex-direction:column;align-items:stretch}
+  .ebp .ebtn{width:100%}
+  .hs-body .ebp{align-self:stretch}
+}
+/* slide: the button row spans the whole eBay block (photo + text columns) so two buttons sit side by side on desktop */
+.hs-eb>.ebp{grid-column:1/-1;margin-top:0;padding-top:var(--sp-3);border-top:1px solid var(--border);justify-content:center;gap:12px}
+.hs-eb>.ebp .ebtn{min-width:220px}
+@media (max-width:760px){.hs-eb>.ebp{padding-top:var(--sp-2)}.hs-eb>.ebp .ebtn{min-width:0}}
+@media (max-width:760px){.hs-eb>.ebp .ebp-also{text-align:center}}
