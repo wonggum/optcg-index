@@ -138,34 +138,44 @@
   }
   document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('button[data-gal]'); if (b && b.dataset.imgs) { e.preventDefault(); open(b); } });
 
-  /* ------------------------------------------------------------------ hero carousel */
+  /* ------------------------------------------------------------------ carousels (home: one endless gallery per tier) */
+  // <section class="car" data-delay="5000" data-phase="0"> .car-track > .hs slides; optional .car-dots / .car-count / .car-pp / .car-prev / .car-next.
+  // Autoplay only while the row is on screen; images of slides near the current one are loaded early (all others stay lazy).
   window.OPC_CAR = [];
+  var NEAR = 2;
   [].forEach.call(document.querySelectorAll('.car'), function (root) {
-    var track = root.querySelector('.car-track'), slides = [].slice.call(track.children), dots = root.querySelector('.car-dots'), pp = root.querySelector('.car-pp');
+    var track = root.querySelector('.car-track'), slides = [].slice.call(track.children), dots = root.querySelector('.car-dots'), cnt = root.querySelector('.car-count'), pp = root.querySelector('.car-pp');
     var N = slides.length; if (!N) return;
-    var cur = 0, timer = null, hover = false, focus = false, touchUntil = 0, held = false, user = false, raf = 0, pend = null, jt = 0, DELAY = 5000;
-    // decorative clones of the last/first slide so the first and last slides also show a peeking neighbour (endless loop)
+    var DELAY = +root.dataset.delay || 5000, PHASE = +root.dataset.phase || 0;
+    var cur = 0, hover = false, focus = false, touchUntil = 0, held = false, user = false, onscreen = false, raf = 0, pend = null, jt = 0, st = 0;
     var cl = null, cf = null;
-    if (N > 1) {
+    if (N > 1) {   // decorative clones of the last/first slide: the first and last slides also get a peeking neighbour (endless loop)
       cl = slides[N - 1].cloneNode(true); cf = slides[0].cloneNode(true);
       [cl, cf].forEach(function (c) {
-        c.classList.add('hs-clone'); c.classList.remove('is-cur'); c.setAttribute('aria-hidden', 'true'); ['role', 'aria-roledescription', 'aria-label', 'data-i', 'data-id'].forEach(function (a) { c.removeAttribute(a); });
+        c.classList.add('hs-clone'); c.classList.remove('is-cur'); c.setAttribute('aria-hidden', 'true'); ['role', 'aria-roledescription', 'aria-label', 'data-i', 'data-id', 'id'].forEach(function (a) { c.removeAttribute(a); });
         [].forEach.call(c.querySelectorAll('[data-gal]'), function (b) { b.removeAttribute('data-gal'); });
         [].forEach.call(c.querySelectorAll('a,button,[tabindex]'), function (x) { x.tabIndex = -1; });
         [].forEach.call(c.querySelectorAll('img'), function (im) { im.loading = 'lazy'; im.removeAttribute('fetchpriority'); });
       });
       track.insertBefore(cl, slides[0]); track.appendChild(cf);
     }
-    slides.forEach(function (s, i) {
+    var all = [].slice.call(track.children);
+    if (dots) slides.forEach(function (s, i) {
       var b = el('button', 'car-dot'); b.type = 'button'; b.setAttribute('aria-label', 'Show slide ' + (i + 1) + ' of ' + N);
       b.onclick = function () { user = true; sync(); go(i); }; dots.appendChild(b);
     });
     function cx(s) { return s.offsetLeft + s.offsetWidth / 2 - track.clientWidth / 2; }
     function realOf(s) { return s === cl ? N - 1 : s === cf ? 0 : slides.indexOf(s); }
+    function preload(i) {   // real slide i sits at all[i + 1] when clones exist
+      var k = cl ? i + 1 : i;
+      for (var j = k - NEAR; j <= k + NEAR; j++) { var s = all[j]; if (s) [].forEach.call(s.querySelectorAll('img[loading="lazy"]'), function (im) { im.loading = 'eager'; }); }
+    }
     function mark(i) {
       cur = i;
       slides.forEach(function (s, j) { s.classList.toggle('is-cur', j === i); s.setAttribute('aria-hidden', j === i ? 'false' : 'true'); [].forEach.call(s.querySelectorAll('a,button,[tabindex]'), function (x) { x.tabIndex = j === i ? 0 : -1; }); });
-      [].forEach.call(dots.children, function (d, j) { d.setAttribute('aria-current', j === i ? 'true' : 'false'); });
+      if (dots) [].forEach.call(dots.children, function (d, j) { d.setAttribute('aria-current', j === i ? 'true' : 'false'); });
+      if (cnt) cnt.textContent = (i + 1) + ' / ' + N;
+      if (onscreen || user) preload(i);
     }
     function jump(i) {   // instant, invisible re-position from a clone onto the real slide
       track.classList.add('jump'); if (cl) cl.classList.remove('is-cur'); if (cf) cf.classList.remove('is-cur');
@@ -175,6 +185,7 @@
     function go(i, instant) {
       if (N > 1 && (i >= N || i < 0) && !RM && !instant) {   // wrap: glide onto the clone, then jump to the real slide
         var tgt = i >= N ? cf : cl, r = i >= N ? 0 : N - 1;
+        [].forEach.call(tgt.querySelectorAll('img[loading="lazy"]'), function (im) { im.loading = 'eager'; });
         tgt.classList.add('is-cur'); mark(r); slides[r].classList.remove('is-cur'); pend = r;
         track.scrollTo({ left: cx(tgt), behavior: 'smooth' });
         clearTimeout(jt); jt = setTimeout(function () { if (pend !== null) { var q = pend; pend = null; jump(q); } }, 900);
@@ -183,25 +194,23 @@
       i = (i + N) % N; pend = null;
       track.scrollTo({ left: cx(slides[i]), behavior: (RM || instant) ? 'auto' : 'smooth' }); mark(i);
     }
-    function paused() { return held || hover || focus || Date.now() < touchUntil || document.hidden || pp.getAttribute('aria-pressed') === 'true'; }
-    function sync() { var auto = !RM && pp.getAttribute('aria-pressed') !== 'true'; track.setAttribute('aria-live', auto && !user ? 'off' : 'polite'); }
-    function tickc() { if (!paused()) go(cur + 1); }
-    function nearest() { var all = [].slice.call(track.children), best = null, bd = 1e9; all.forEach(function (s) { var d = Math.abs(cx(s) - track.scrollLeft); if (d < bd) { bd = d; best = s; } }); return best; }
+    function paused() { return !onscreen || held || hover || focus || Date.now() < touchUntil || document.hidden || (pp && pp.getAttribute('aria-pressed') === 'true'); }
+    function sync() { var auto = !RM && !(pp && pp.getAttribute('aria-pressed') === 'true'); track.setAttribute('aria-live', auto && !user ? 'off' : 'polite'); }
+    function nearest() { var best = null, bd = 1e9; all.forEach(function (s) { var d = Math.abs(cx(s) - track.scrollLeft); if (d < bd) { bd = d; best = s; } }); return best; }
     function settle() {   // after any scroll (swipe, wheel, smooth scroll) ends: leave clones, update the current slide
       if (pend !== null) { var q = pend; pend = null; clearTimeout(jt); jump(q); return; }
       var s = nearest(); if (!s) return;
       if (s === cl || s === cf) { jump(realOf(s)); return; }
       var r = realOf(s); if (r !== cur) mark(r);
     }
-    var st = 0;
     track.addEventListener('scroll', function () {
       cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { if (pend === null) { var s = nearest(); var r = s ? realOf(s) : cur; if (r !== cur && s !== cl && s !== cf) mark(r); } });
       clearTimeout(st); st = setTimeout(settle, 160);   // fallback for browsers without 'scrollend'
     }, { passive: true });
     track.addEventListener('scrollend', function () { clearTimeout(st); settle(); });
     function nav(k) { user = true; sync(); go(cur + k); }
-    root.querySelector('.car-prev').onclick = function () { nav(-1); };
-    root.querySelector('.car-next').onclick = function () { nav(1); };
+    var pv = root.querySelector('.car-prev'), nx = root.querySelector('.car-next');
+    if (pv) pv.onclick = function () { nav(-1); }; if (nx) nx.onclick = function () { nav(1); };
     root.addEventListener('mouseenter', function () { hover = true; }); root.addEventListener('mouseleave', function () { hover = false; });
     root.addEventListener('focusin', function () { focus = true; }); root.addEventListener('focusout', function (e) { if (!root.contains(e.relatedTarget)) focus = false; });
     root.addEventListener('touchstart', function () { touchUntil = Date.now() + 12000; user = true; sync(); }, { passive: true });
@@ -216,10 +225,16 @@
       e.preventDefault(); e.stopPropagation(); user = true; sync();
       if (s === cl) go(cur === 0 ? -1 : N - 1); else if (s === cf) go(cur === N - 1 ? N : 0); else go(slides.indexOf(s));
     }, true);
-    pp.onclick = function () { var p = pp.getAttribute('aria-pressed') !== 'true'; pp.setAttribute('aria-pressed', p ? 'true' : 'false'); pp.setAttribute('aria-label', p ? 'Play slideshow' : 'Pause slideshow'); sync(); };
-    if (RM) pp.hidden = true;
+    if (pp) {
+      pp.onclick = function () { var p = pp.getAttribute('aria-pressed') !== 'true'; pp.setAttribute('aria-pressed', p ? 'true' : 'false'); pp.setAttribute('aria-label', p ? 'Play slideshow' : 'Pause slideshow'); sync(); };
+      if (RM) pp.hidden = true;
+    }
     window.addEventListener('resize', function () { jump(cur); });
-    jump(0); sync(); if (!RM) timer = setInterval(tickc, DELAY);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { onscreen = e.isIntersecting; if (onscreen) preload(cur); }); }, { rootMargin: '200px 0px', threshold: 0.01 }).observe(root);
+    else onscreen = true;
+    jump(0); sync();
+    // staggered timing: each row starts its 5 s cycle at its own phase so the rows never move in lockstep
+    if (!RM && N > 1) setTimeout(function () { setInterval(function () { if (!paused()) go(cur + 1); }, DELAY); }, PHASE);
     window.OPC_CAR.push({ hold: function (h) { held = h; } });
   });
 })();
