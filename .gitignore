@@ -10,6 +10,8 @@
 !sets/*/
 !card/
 !card/*/
+!characters/
+!characters/*/
 !index.html
 !.nojekyll
 !sitemap.xml
