@@ -778,3 +778,11 @@ td .dbtn-sm{margin-top:6px}
 @media (max-width:760px){.hs-eb>.ebp{padding-top:var(--sp-2)}.hs-eb>.ebp .ebtn{min-width:0}}
 @media (max-width:760px){.hs-eb>.ebp .ebp-also{text-align:center}}
 .ebn-b{margin-top:var(--sp-2);text-align:center}
+/* 2026-10-01 11:00: buttons carry the prices; no separate price block on listing slides / strip */
+.hs-body>.ebp{margin-top:var(--sp-5);flex-direction:column;align-items:stretch;gap:8px}
+.hs-body>.ebp .ebtn{width:100%;min-width:0}
+.ebp-n{margin:6px 0 0;font-size:var(--fs-12);color:var(--muted)}
+.gp-b .ebp{margin-top:auto;padding-top:6px;gap:6px}.gp-b .ebp-n{font-size:11px;margin-top:4px}
+.t-main~.ebp-n,.t-main~* .ebp-n{text-align:center}
+.hs-attr~.ebp-n{text-align:center}
+@media (max-width:760px){.hs-body>.ebp{margin-top:var(--sp-4)}.hs-body .ebp-n{text-align:center}}
