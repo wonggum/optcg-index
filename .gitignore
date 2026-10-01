@@ -12,6 +12,8 @@
 !card/*/
 !characters/
 !characters/*/
+!guides/
+!guides/*/
 !index.html
 !.nojekyll
 !sitemap.xml
@@ -3056,6 +3058,8 @@
 !characters/uta/index.html
 !characters/vinsmoke-reiju/index.html
 !characters/yamato/index.html
+!guides/one-piece-tcg-rarities-manga-alt-art-sp-red-manga/index.html
+!guides/op05-119-manga-luffy-psa-label-guide/index.html
 !sets/eb01/index.html
 !sets/eb02/index.html
 !sets/eb03/index.html
@@ -3122,4 +3126,5 @@
 !sets/st35/index.html
 !sets/st36/index.html
 !characters/index.html
+!guides/index.html
 !.gitignore
