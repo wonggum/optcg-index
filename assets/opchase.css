@@ -489,6 +489,7 @@ section.tier>h3{font-size:var(--fs-20);margin-top:var(--sp-6)}
 .hs-price{margin:var(--sp-5) 0 var(--sp-5);padding-top:var(--sp-4);border-top:1px solid var(--border)}
 .hs-price>b{display:block;font-size:36px;line-height:1.1;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .hs-kind{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:var(--sp-2);font-size:var(--fs-14);color:var(--text-2)}
+.mi{white-space:nowrap}.ms{color:var(--muted)}
 .hk{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:var(--r-sm);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--border-strong);color:var(--text)}
 .hk.au{border-color:var(--info-border,var(--border-strong))}
 .ebtn-lg{height:44px;padding:0 22px;font-size:var(--fs-16);font-weight:600;align-self:flex-start}
@@ -638,6 +639,14 @@ html.gx-lock{overflow:hidden}
   .car.tg{--slide:78vw}
   .tg .hs-eb,.hs-ob{grid-template-columns:1fr;gap:var(--sp-3);padding:var(--sp-3);border-radius:14px}
   .tg .hs-name{font-size:24px}
+  /* info stacked below the image: centre the whole block (desktop side-by-side stays left-aligned) */
+  .hs-media,.hs-attr{text-align:center}
+  .hs-body{align-items:center;text-align:center}
+  .hs-src{align-self:center}
+  .hs-price{align-self:stretch}
+  .hs-kind{justify-content:center}
+  .hs-x{flex-direction:column;align-items:center;text-align:center;gap:var(--sp-2)}
+  .hs-x .t5x{align-self:stretch;text-align:center}
   .pl-name{font-size:42px}.pl-name.pl-long{font-size:33px}
   .pl-wm{font-size:130px}
   .pl-bot{font-size:9.5px;letter-spacing:.09em}
