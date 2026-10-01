@@ -788,3 +788,7 @@ td .dbtn-sm{margin-top:6px}
 @media (max-width:760px){.hs-body>.ebp{margin-top:var(--sp-4)}.hs-body .ebp-n{text-align:center}}
 @media (max-width:760px){.ebp .ebp-i{width:100%}}
 @media (max-width:760px){.ebp{width:100%;align-self:stretch}}
+
+/* ---------- 19. neutral data notes on card pages (2026-10-01) ---------- */
+.dns{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--sp-2)}
+.dn{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--border-strong);border-radius:999px;font-size:var(--fs-12);font-weight:550;color:var(--text-2);background:var(--surface)}
