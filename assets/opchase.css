@@ -791,7 +791,7 @@ td .dbtn-sm{margin-top:6px}
 
 /* ---------- 19. neutral data notes on card pages (2026-10-01) ---------- */
 .dns{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--sp-2)}
-.dn{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--border-strong);border-radius:999px;font-size:var(--fs-12);font-weight:550;color:var(--text-2);background:var(--surface)}
+.dnt{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--border-strong);border-radius:999px;font-size:var(--fs-12);font-weight:550;color:var(--text-2);background:var(--surface)}
 
 /* ---------- 20. Guides (2026-10-01): /guides/ hub + articles ---------- */
 .guide{max-width:760px;margin:0 auto;padding:0 var(--sp-4) var(--sp-8)}
