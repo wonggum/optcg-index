@@ -2,6 +2,7 @@
 !.github/
 !.github/ISSUE_TEMPLATE/
 !assets/
+!assets/fonts/
 !cards/
 !cards/*/
 !privacy/
@@ -15,8 +16,10 @@
 !robots.txt
 !privacy/index.html
 !assets/opchase.css
+!assets/opchase-ui.js
+!assets/fonts/InterVariable.woff2
+!assets/fonts/Inter-LICENSE.txt
 !assets/opchase-card.js
-!assets/opchase-db.css
 !assets/opchase-db.js
 !sets/index.html
 !.github/ISSUE_TEMPLATE/report.yml
