@@ -1061,3 +1061,44 @@ td.lk .rep{opacity:.75}
 table.stk td[data-l="Character"]{display:table-cell}
 @media (max-width:760px){table.stk td[data-l="Character"]{display:block}}
 .panel.slim{border-top:0;padding-top:var(--sp-2);margin-top:var(--sp-4)}
+
+/* ===== 24 · v2 mobile shortening (2026-10-02 16:45): folded listing tables, capped slide height ===== */
+details.tbl{margin:var(--sp-3) 0 0;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+details.tbl>summary{list-style:none}details.tbl>summary::-webkit-details-marker{display:none}
+.tbs{display:flex;align-items:center;gap:var(--sp-3);min-height:52px;padding:var(--sp-2) var(--sp-4);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.tbs:hover{background:var(--hover);border-radius:12px}
+.tbs-t{font-size:var(--fs-16);font-weight:700}
+.tbs-n{font-size:var(--fs-14);color:var(--muted)}
+.tbs-o,.tbs-c{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text)}
+.tbs-o::after{content:" ▾"}.tbs-c::after{content:" ▴"}
+.tbs-c{display:none}details[open]>.tbs .tbs-c{display:inline}details[open]>.tbs .tbs-o{display:none}
+details.tbl[open]>.tbs{border-bottom:1px solid var(--border);border-radius:12px 12px 0 0}
+details.tbl>.tw{border:0;border-radius:0 0 12px 12px}
+details.tbl>.note{margin:var(--sp-3) var(--sp-4) var(--sp-4)}
+details.tbl.hid{display:none}
+section.tier details.cl{margin-top:var(--sp-3)}
+@media (max-width:760px){
+  details.tbl>.tw{padding:var(--sp-3) var(--sp-3) var(--sp-1)}
+  .tbs{min-height:48px;padding:var(--sp-2) var(--sp-3)}
+  .tbs-n{font-size:13px}
+  /* slideshow: shorter slides (square photo capped, tighter text) */
+  .car.tg .t-hero,.car.tg .ph.t-hero{aspect-ratio:1/1;max-height:min(300px,62vw);width:auto;margin:0 auto}
+  .car.tg .t-hero img{object-fit:contain}
+  .car.tg .hs-media .plate{aspect-ratio:auto;height:min(300px,62vw);max-width:min(240px,50vw);margin:0 auto}
+  .car.tg .pl-wm{font-size:96px}.car.tg .pl-name{font-size:30px}.car.tg .pl-name.pl-long{font-size:24px}
+  .car.tg .hs-eb,.car.tg .hs-ob{gap:var(--sp-2);padding:var(--sp-3)}
+  .tg .hs-name{font-size:21px}
+  .hs-var{font-size:var(--fs-14)!important}
+  .hs-set{display:none}
+  .hs-body>.ebp{margin-top:var(--sp-2)}
+  .ebtn-lg{height:40px;font-size:var(--fs-14)}
+  .car.tg+.car.tg{margin-top:var(--sp-5)}
+  .car.tg{padding-top:var(--sp-4)}
+  .hs-price{margin:var(--sp-2) 0}
+  .car-arr{top:min(150px,31vw)}
+  /* other mobile trims */
+  .sec-band{padding:var(--sp-6) 0 var(--sp-5)}
+  .panel,section.tier,.toc,.sec{padding-top:var(--sp-6);margin-top:var(--sp-6)}
+  #index svg{max-height:180px}
+  .fine{font-size:11.5px}
+}
