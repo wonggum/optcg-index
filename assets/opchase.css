@@ -1160,3 +1160,31 @@ section.tier details.cl{margin-top:var(--sp-3)}
   .car.tgp .t-tile,.car.tgp .ph.t-tile,.car.tgp .tile-well{aspect-ratio:5/4}
 }
 @media (max-width:760px){.car.tgp .car-track{align-items:flex-start}.car.tgp .tile-b .ebp{margin-top:var(--sp-3)}}
+
+/* 27 · tier header plaque (2026-10-03): centered, tier-coloured frame; counter + arrows on their own row beneath */
+.car.tg-grail{--tt:#8f6a07}.car.tg-premium{--tt:#4f5b6d}.car.tg-core{--tt:#87501c}
+:root[data-theme="dark"] .car.tg-grail{--tt:#f0c24b}:root[data-theme="dark"] .car.tg-premium{--tt:#c7d0dc}:root[data-theme="dark"] .car.tg-core{--tt:#e0a46a}
+.car.tgp .car-h.tgh{display:flex;flex-direction:column;align-items:center;gap:var(--sp-3);text-align:center}
+.tgh-plq{position:relative;min-width:min(420px,100%);padding:18px 40px 16px;border:1.5px solid var(--tc);border-radius:16px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--tc) 9%,var(--surface)) 0,var(--surface) 100%);
+  box-shadow:0 1px 2px rgba(15,15,15,.04),0 6px 20px color-mix(in srgb,var(--tc) 14%,transparent)}
+.tgh-plq::before,.tgh-plq::after{content:"";position:absolute;inset:4px;border:1px solid color-mix(in srgb,var(--tc) 35%,transparent);border-radius:12px;pointer-events:none}
+.tgh-plq::after{display:none}
+.car.tgp .tgh h2{margin:0;font-size:30px;font-weight:750;letter-spacing:-.02em;line-height:1.15;color:var(--tt);display:inline-flex;align-items:center;justify-content:center}
+.car.tgp .tgh .tg-dot{width:10px;height:10px;margin:0 12px 0 0;background:var(--tc);box-shadow:0 0 0 4px color-mix(in srgb,var(--tc) 22%,transparent)}
+.tgh-rng{margin:4px 0 0;font-size:17px;font-weight:650;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.car.tgp .tgh p.sm{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.car.tgp .tgh p.sm a{color:var(--tt);font-weight:600}
+.car.tgp .tgh .car-ctl{display:flex;align-items:center;justify-content:center;gap:var(--sp-3);position:static;padding:0}
+.car.tgp .tgh .car-count{min-width:84px;text-align:center;margin:0;font-size:13px;font-weight:600;color:var(--text-2)}
+.car.tgp .tgh .car-arr{width:40px;height:40px}
+.car.tgp .tgh .car-arr:hover{border-color:var(--tc)}
+.car.tg+.car.tg{margin-top:var(--sp-10, 56px)}
+@media (max-width:760px){
+  .tgh-plq{min-width:0;width:100%;padding:16px 18px 14px}
+  .car.tgp .tgh h2{font-size:26px;padding-right:0}
+  .tgh-rng{font-size:16px}
+  .car.tgp .car-h.tgh{flex-direction:column;align-items:center}
+  .car.tgp .tgh .car-arr{width:40px;height:40px}
+  .car.tg+.car.tg{margin-top:var(--sp-8)}
+}
