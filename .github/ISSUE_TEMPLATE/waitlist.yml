@@ -12,7 +12,7 @@ body:
     id: features
     attributes:
       label: Which feature matters most to you? (optional)
-      description: "Planned: full PSA 10 sales history and charts, collection valuation, weekly OPChase 100 market reports, your own price levels on the OPChase Index (notifications pending eBay policy review)."
+      description: "Planned: full PSA 10 sales history and charts, collection valuation, weekly OPChase 100 market reports. (OPChase Index price alerts are free for everyone, not part of Pro.)"
       placeholder: "- Full PSA 10 sales history and charts"
   - type: textarea
     id: notes

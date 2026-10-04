@@ -8,6 +8,7 @@
 !privacy/
 !terms/
 !pro/
+!alerts/
 !sets/
 !sets/*/
 !card/
@@ -23,6 +24,8 @@
 !privacy/index.html
 !terms/index.html
 !pro/index.html
+!alerts/index.html
+!alerts/cards.json
 !assets/opchase.css
 !assets/opchase-ui.js
 !assets/opchase-gallery.js
