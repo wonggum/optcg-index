@@ -98,7 +98,8 @@
     }
   }
   // EPN (2026-10-03): links arrive already tagged by the page (customid=<page>_photo); the lightbox link gets "_gx" so clicks from it are counted separately
-  function gxHref(h) { return /[?&]campid=/.test(h) ? h.replace(/([?&]customid=)([A-Za-z0-9_]+)/, function (m, k, v) { return k + (/_gx$/.test(v) ? v : v + '_gx'); }) : h; }
+  // 2026-10-04: customid = <page>_<slot>__<cardkey>; "_gx" goes on the slot (before "__") so the card key stays decodable
+  function gxHref(h) { return /[?&]campid=/.test(h) ? h.replace(/([?&]customid=)([A-Za-z0-9_]+)/, function (m, k, v) { var p = v.split('__'); if (!/_gx$/.test(p[0])) p[0] += '_gx'; return k + p.join('__'); }) : h; }
   function data(b) { return { imgs: (b.dataset.imgs || '').split('|').filter(Boolean), href: b.dataset.href || '', by: b.dataset.by || '', cap: b.dataset.cap || '', sub: b.dataset.sub || '' }; }
   function render() {
     var d = items[ii], u = d.imgs[pi], im = G.querySelector('.gx-img');
