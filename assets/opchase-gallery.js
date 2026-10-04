@@ -177,6 +177,8 @@
       var k = per(), a = first(), b = Math.min(N, a + k);
       if (a + k >= N) { a = Math.max(0, N - k); b = N; }   // last page (scroll clamps at the end)
       if (cnt) cnt.textContent = (k === 1 ? (a + 1) : (a + 1) + '\u2013' + b) + ' / ' + N;
+      // 1-per-page (mobile): fit the row to the visible tile so a short tile doesn't leave an empty band inside the tier frame
+      track.style.height = k === 1 ? (items[Math.min(N - 1, first())].offsetHeight + 12) + 'px' : '';
       var multi = N > k; if (pv) pv.hidden = !multi; if (nx) nx.hidden = !multi;
       if (onscreen) wakeFrom(a, k);
     }

@@ -1188,3 +1188,20 @@ section.tier details.cl{margin-top:var(--sp-3)}
   .car.tgp .tgh .car-arr{width:40px;height:40px}
   .car.tg+.car.tg{margin-top:var(--sp-8)}
 }
+
+/* 28 · whole tier block framed (2026-10-03): one tier-coloured frame around header + pager + cards; header plaque loses its own box */
+.car.tg.tgp{border:1.5px solid var(--tc);border-radius:16px;padding:28px 28px 24px;margin:var(--sp-8) 0 0;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--tc) 8%,var(--surface)) 0,var(--surface) 220px);box-shadow:none;overflow:hidden}
+.car.tg.tgp+.car.tg.tgp{margin-top:var(--sp-10);border-top:1.5px solid var(--tc)}
+.car.tgp .tgh-plq{border:0;background:none;box-shadow:none;padding:0;min-width:0}
+.car.tgp .tgh-plq::before,.car.tgp .tgh-plq::after{display:none}
+.car.tgp .car-h.tgh{gap:var(--sp-4)}
+.car.tgp .car-vp{margin-top:var(--sp-5)}
+.car.tgp .tgh .car-arr{background:var(--surface)}
+@media (max-width:1099px){.car.tg.tgp{padding:24px 20px 20px}}
+@media (max-width:760px){
+  .car.tg.tgp{padding:20px 14px 16px;margin:var(--sp-6) 0 0;border-left:1.5px solid var(--tc);border-right:1.5px solid var(--tc);border-radius:14px}
+  .car.tg.tgp+.car.tg.tgp{margin-top:var(--sp-8)}
+  .car.tgp .car-vp{margin-top:var(--sp-4)}
+}
+@media (max-width:760px){.car.tgp .car-track{transition:height .2s ease}}
