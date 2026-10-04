@@ -1268,3 +1268,14 @@ section.tier details.cl{margin-top:var(--sp-3)}
 .lt .tile-x .opp-l>:not(.opp-t){display:none}   /* listing check status shows once, in the eBay block (.lt-s) */
 .lt .ebp .ebtn{display:block;text-align:center}
 @media (max-width:760px){.lt .ebp .ebtn{padding:8px 6px}}
+
+/* §29 (2026-10-04) advisor step 1: index update-schedule line, printing-history block on /card/ pages without an OPChase price */
+.idx-sched{margin-top:2px;font-size:.84rem}
+.idx-sched2{margin:0 0 var(--sp-3);font-size:.9rem;color:var(--text-2,inherit)}
+.hist>p{max-width:78ch;line-height:1.6}
+.hist .tw{margin-top:var(--sp-3)}
+table.hist-t{font-size:.86rem}
+table.hist-t td,table.hist-t th{white-space:nowrap;vertical-align:middle}
+table.hist-t td[data-l="Product"]{white-space:normal;min-width:180px}
+table.hist-t td[data-l="eBay"] .ebtn{margin:0}
+@media (max-width:760px){table.hist-t{font-size:.8rem}table.hist-t td[data-l="Product"]{min-width:150px}}
