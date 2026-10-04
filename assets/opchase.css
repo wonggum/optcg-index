@@ -1118,3 +1118,45 @@ section.tier details.cl{margin-top:var(--sp-3)}
 @media (max-width:900px){.idx-g{grid-template-columns:1fr;gap:var(--sp-5)}}
 @media (max-width:760px){.sec.idx-top{margin-top:var(--sp-2);padding-top:var(--sp-6)}.idx-top+.qlinks{margin-top:var(--sp-6)}}
 @media (max-width:760px){.idx-k .kpi .v.v2{font-size:20px;white-space:nowrap}}
+
+/* 26 · Browse by tier = paged tile grid (2026-10-03): 3 tiles per page on desktop, 2 on tablet, 1 on mobile (swipe).
+   Vertical tiles (photo on top, then name+ID, variant, set, eBay buttons, credit; OPChase panel separate below). No peeks, no fades, no autoplay. */
+.car.tgp{overflow:visible}
+.car.tgp .car-vp{margin:var(--sp-4) 0 0}
+.car.tgp .car-vp::before,.car.tgp .car-vp::after{display:none}
+.car.tgp .car-track{display:flex;gap:20px;padding:2px 0 var(--sp-2);scroll-snap-type:x mandatory;scroll-padding:0;overflow-x:auto;overflow-y:hidden}
+.car.tgp .tgi{flex:0 0 calc((100% - 40px) / 3);min-width:0;scroll-snap-align:start;scroll-snap-stop:normal;opacity:1;transform:none;text-align:left}
+.car.tgp .car-ctl{position:static;align-items:center;gap:var(--sp-2);padding-top:0}
+.car.tgp .car-arr{position:static;width:38px;height:38px;transform:none;box-shadow:none}
+.car.tgp .car-arr:hover{transform:none}
+.car.tgp .car-arr svg{width:18px;height:18px}
+.car.tgp .car-arr[hidden]{display:none}
+.car.tgp .car-count{min-width:72px;opacity:1;margin-right:var(--sp-1)}
+.car.tgp .tile-eb{background:var(--surface)}
+.car.tgp .tile-n{font-size:17px;margin:4px 0 2px}
+.car.tgp .tile-n a{color:inherit;text-decoration:none}
+.car.tgp .tile-n a:hover{text-decoration:underline}
+.car.tgp .tile-s{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.car.tgp .tile-none{margin:var(--sp-3) 0 0;font-size:13px;font-weight:600;color:var(--text-2)}
+.car.tgp .tile-b>.ebs,.car.tgp .tile-b>.ebtn-sr,.car.tgp .tile-b>a.ebtn{margin-top:var(--sp-2)}
+.car.tgp .tile-b .ebp{margin-top:auto}
+.car.tgp .tile-b .tile-none+.ebp{margin-top:var(--sp-2)}
+.car.tgp .tile-x{margin-top:var(--sp-2)}
+.car.tgp .tile-x .opp{display:flex;align-items:center;justify-content:space-between}
+.car.tgp .tile-well{aspect-ratio:1/1;background:var(--img-bg);display:flex;align-items:center;justify-content:center;padding:14px}
+.car.tgp .tile-well .plate{height:100%;width:auto;max-width:100%;aspect-ratio:3/4;margin:0}
+.car.tgp .tile-well .pl-wm{font-size:72px}.car.tgp .tile-well .pl-name{font-size:22px}.car.tgp .tile-well .pl-name.pl-long{font-size:18px}
+.car.tgp .tile-x .opp-c{display:inline;font-size:12px;white-space:nowrap}
+.car.tgp .tile-x .opp .opxi::after{content:none}
+@media (max-width:1099px){.car.tgp .tgi{flex-basis:calc((100% - 20px) / 2)}}
+@media (max-width:760px){
+  .car.tgp .car-track{gap:12px}
+  .car.tgp .tgi{flex:0 0 100%}
+  .car.tgp .car-h{flex-direction:row;align-items:flex-start}
+  .car.tgp .car-ctl{position:static}
+  .car.tgp .car-h h2{padding-right:0}
+  .car.tgp .car-arr{width:34px;height:34px}
+  .car.tgp .car-count{min-width:0}
+  .car.tgp .t-tile,.car.tgp .ph.t-tile,.car.tgp .tile-well{aspect-ratio:5/4}
+}
+@media (max-width:760px){.car.tgp .car-track{align-items:flex-start}.car.tgp .tile-b .ebp{margin-top:var(--sp-3)}}

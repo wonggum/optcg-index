@@ -163,7 +163,45 @@
   // Autoplay only while the row is on screen; images of slides near the current one are loaded early (all others stay lazy).
   window.OPC_CAR = [];
   var NEAR = 3;
+  /* paged tier grid (2026-10-03): .car.tgp shows 3 tiles per page on desktop, 2 on tablet, 1 on mobile (CSS decides the tile width);
+     arrows page by the visible count and wrap at the ends, native swipe/scroll-snap, counter shows the visible range "1–3 / 17". No autoplay. */
+  function pager(root) {
+    var track = root.querySelector('.car-track'), items = [].slice.call(track.children), cnt = root.querySelector('.car-count');
+    var N = items.length; if (!N) return;
+    var pv = root.querySelector('.car-prev'), nx = root.querySelector('.car-next'), raf = 0, onscreen = false, tgt = 0, busy = 0;
+    function step() { var g = parseFloat(getComputedStyle(track).columnGap) || 0; return items[0].getBoundingClientRect().width + g; }
+    function per() { return Math.max(1, Math.min(N, Math.round((track.clientWidth + (parseFloat(getComputedStyle(track).columnGap) || 0)) / step()))); }
+    function first() { return Math.max(0, Math.min(N - 1, Math.round(track.scrollLeft / step()))); }
+    function wakeFrom(a, k) { for (var j = Math.max(0, a - k); j < Math.min(N, a + 2 * k); j++) [].forEach.call(items[j].querySelectorAll('img[loading="lazy"]'), wake); }
+    function upd() {
+      var k = per(), a = first(), b = Math.min(N, a + k);
+      if (a + k >= N) { a = Math.max(0, N - k); b = N; }   // last page (scroll clamps at the end)
+      if (cnt) cnt.textContent = (k === 1 ? (a + 1) : (a + 1) + '\u2013' + b) + ' / ' + N;
+      var multi = N > k; if (pv) pv.hidden = !multi; if (nx) nx.hidden = !multi;
+      if (onscreen) wakeFrom(a, k);
+    }
+    function to(i) { tgt = Math.max(0, Math.min(i, N - per())); busy = Date.now() + 1000; track.scrollTo({ left: Math.max(0, i) * step(), behavior: RM ? 'auto' : 'smooth' }); }
+    function nav(d) {
+      var k = per(), a = Date.now() < busy ? tgt : first(), atEnd = a >= N - k;
+      if (d > 0) to(atEnd ? 0 : a + k); else to(a <= 0 ? N - k : a - k);
+      wakeFrom(d > 0 ? (atEnd ? 0 : a + k) : Math.max(0, a - k), k);
+    }
+    if (pv) pv.onclick = function () { nav(-1); }; if (nx) nx.onclick = function () { nav(1); };
+    track.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); }, { passive: true });
+    track.addEventListener('scrollend', function () { busy = 0; });
+    ['touchstart', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { busy = 0; }, { passive: true }); });
+    root.addEventListener('keydown', function (e) {
+      if (e.target.closest('input,select,textarea') || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+      e.preventDefault(); nav(e.key === 'ArrowRight' ? 1 : -1);
+    });
+    window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { onscreen = e.isIntersecting; if (onscreen) upd(); }); }, { rootMargin: '300px 0px', threshold: 0.01 }).observe(root);
+    else onscreen = true;
+    upd();
+    window.OPC_CAR.push({ hold: function () {} });
+  }
   [].forEach.call(document.querySelectorAll('.car'), function (root) {
+    if (root.classList.contains('tgp')) { pager(root); return; }
     var track = root.querySelector('.car-track'), slides = [].slice.call(track.children), dots = root.querySelector('.car-dots'), cnt = root.querySelector('.car-count'), pp = root.querySelector('.car-pp');
     var N = slides.length; if (!N) return;
     var DELAY = +root.dataset.delay || 5000, PHASE = +root.dataset.phase || 0;
