@@ -1,21 +1,21 @@
 name: OPChase Pro waitlist
-description: Join the OPChase Pro waitlist (planned, about $5/month). This issue is public, so please do not post your email address.
+description: Join the OPChase Pro waitlist (not launched yet; planned about $5/month or $40/year). This issue is public, so please do not post your email address.
 title: "[Waitlist] OPChase Pro"
 labels: ["waitlist"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in **OPChase Pro**. The index and the deals stay free forever.
+        Thanks for your interest in **OPChase Pro**. Pro is not launched yet and nothing is charged. The index, card pages and live eBay listings stay free.
         We'll reply on this issue (GitHub notifies you) when Pro opens. **Please don't post your email here, since issues are public.**
   - type: textarea
     id: features
     attributes:
       label: Which feature matters most to you? (optional)
-      description: "Options: instant personal price alerts (Discord / email), full sales history + 1-year charts, collection tracking, auction max-bid guidance."
-      placeholder: "- Instant personal price alerts (Discord / email)"
+      description: "Planned: full PSA 10 sales history and charts, collection valuation, weekly OPChase 100 market reports, your own price levels on the OPChase Index (notifications pending eBay policy review)."
+      placeholder: "- Full PSA 10 sales history and charts"
   - type: textarea
     id: notes
     attributes:
       label: Anything else? (optional)
-      description: Cards you'd want alerts for, a fair price, other features.
+      description: Cards you follow, a fair price for Pro, other features.

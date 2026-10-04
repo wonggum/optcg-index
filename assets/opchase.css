@@ -1279,3 +1279,16 @@ table.hist-t td,table.hist-t th{white-space:nowrap;vertical-align:middle}
 table.hist-t td[data-l="Product"]{white-space:normal;min-width:180px}
 table.hist-t td[data-l="eBay"] .ebtn{margin:0}
 @media (max-width:760px){table.hist-t{font-size:.8rem}table.hist-t td[data-l="Product"]{min-width:150px}}
+
+/* §31 (2026-10-04) /pro/ page: feature grid + planned pricing (OPChase Pro, not launched) */
+.pro-page h1 .pro-tag{font-size:var(--fs-12);vertical-align:middle}
+.pro-fg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-3);margin-top:var(--sp-3)}
+.pro-f{border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp-4);background:var(--surface)}
+.pro-f h3{margin:0 0 4px;font-size:var(--fs-16)}
+.pro-f p{margin:0}
+.pro-plans{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin:var(--sp-3) 0}
+.pro-plan{flex:1 1 180px;border:1px solid var(--accent-border);border-radius:var(--r-md);padding:var(--sp-4);background:var(--accent-bg)}
+.pro-plan .l{font-size:var(--fs-12);text-transform:uppercase;letter-spacing:.04em;color:var(--text-2,inherit)}
+.pro-plan .v{font-size:1.6rem;font-weight:700}
+.pro-plan .v .sm{font-size:var(--fs-14,.9rem);font-weight:400;margin-left:2px}
+@media (max-width:760px){.pro-fg{grid-template-columns:1fr}}
