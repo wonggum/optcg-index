@@ -97,6 +97,8 @@
       if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
     }
   }
+  // EPN (2026-10-03): links arrive already tagged by the page (customid=<page>_photo); the lightbox link gets "_gx" so clicks from it are counted separately
+  function gxHref(h) { return /[?&]campid=/.test(h) ? h.replace(/([?&]customid=)([A-Za-z0-9_]+)/, function (m, k, v) { return k + (/_gx$/.test(v) ? v : v + '_gx'); }) : h; }
   function data(b) { return { imgs: (b.dataset.imgs || '').split('|').filter(Boolean), href: b.dataset.href || '', by: b.dataset.by || '', cap: b.dataset.cap || '', sub: b.dataset.sub || '' }; }
   function render() {
     var d = items[ii], u = d.imgs[pi], im = G.querySelector('.gx-img');
@@ -107,7 +109,7 @@
     if (im.complete && im.naturalWidth) G.classList.remove('is-loading');
     G.querySelector('.gx-t').textContent = d.cap; G.querySelector('.gx-s').textContent = d.sub;
     G.querySelector('.gx-n').textContent = (items.length > 1 ? 'Listing ' + (ii + 1) + ' / ' + items.length : '') + (d.imgs.length > 1 ? (items.length > 1 ? ' · ' : '') + 'Photo ' + (pi + 1) + ' / ' + d.imgs.length : '');
-    G.querySelector('.gx-attr').innerHTML = 'Photo: eBay listing' + (d.by ? ' by <b>' + esc(d.by) + '</b>' : '') + ' · <a href="' + esc(d.href) + '" target="_blank" rel="nofollow noopener">View on eBay &#x2197;</a>';
+    G.querySelector('.gx-attr').innerHTML = 'Photo: eBay listing' + (d.by ? ' by <b>' + esc(d.by) + '</b>' : '') + ' · <a href="' + esc(gxHref(d.href)) + '" target="_blank" rel="sponsored noopener">View on eBay &#x2197;</a>';
     var th = G.querySelector('.gx-th'); th.innerHTML = '';
     if (d.imgs.length > 1) d.imgs.forEach(function (x, j) {
       var b = el('button', 'gx-tb' + (j === pi ? ' on' : ''), '<img src="' + esc(sz(x, 140)) + '" alt="" referrerpolicy="no-referrer" loading="lazy">');

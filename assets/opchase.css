@@ -113,6 +113,7 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-6) var(--sp-12)}
 .fw .logo{font-size:var(--fs-16)}
 .flinks{display:flex;flex-wrap:wrap;gap:var(--sp-1) var(--sp-4)}
 .flinks .rep{margin:0;font-size:inherit;color:var(--text-2)!important}
+.fw .faff{font-size:var(--fs-12,12px);color:var(--muted)}.fw .faff a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}   /* EPN disclosure (2026-10-03) */
 /* breadcrumbs */
 .bc{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);margin:var(--sp-6) 0 0;font-size:var(--fs-14);color:var(--muted)}
 .bc a{color:var(--text-2)}.bc a:hover{color:var(--text)}
