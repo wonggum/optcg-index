@@ -1269,7 +1269,7 @@ section.tier details.cl{margin-top:var(--sp-3)}
 .lt .ebp .ebtn{display:block;text-align:center}
 @media (max-width:760px){.lt .ebp .ebtn{padding:8px 6px}}
 
-/* §29 (2026-10-04) advisor step 1: index update-schedule line, printing-history block on /card/ pages without an OPChase price */
+/* §30 (2026-10-04) advisor step 1: index update-schedule line, printing-history block on /card/ pages without an OPChase price */
 .idx-sched{margin-top:2px;font-size:.84rem}
 .idx-sched2{margin:0 0 var(--sp-3);font-size:.9rem;color:var(--text-2,inherit)}
 .hist>p{max-width:78ch;line-height:1.6}
