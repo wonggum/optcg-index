@@ -1405,3 +1405,54 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .tgh-1 h2{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;column-gap:10px;row-gap:2px;margin:0}
 .tgh-1 h2 .tgh-rng{font-size:.55em;font-weight:600;color:var(--muted);letter-spacing:0;margin:0}
 .tgh-1 h2 .tg-dot{align-self:center}
+/* §42 compact tier tiles (2026-10-04 23:18): a 2x3 page fits 1440x900 / 1280x800 below the tabs.
+   Tablet/desktop: horizontal tile (slab-cropped photo left, text right), Buy Now + Bid side by side, OPChase Index as a tinted strip inside the tile. */
+.tgm .tile-v{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tgm .tile-v .tile-s{display:inline;font-size:inherit;color:inherit;white-space:nowrap}
+.tgm .tile-n,.tgm .tile-n .cn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;min-width:0}
+.tgm .car-h.tgh{padding-top:var(--sp-3);padding-bottom:0;margin:0}
+.tgm .tl{margin-top:var(--sp-3)}
+.tgm .tlp{margin-top:var(--sp-3)}
+.tgm .lcar-h{margin-bottom:var(--sp-2)}
+@media (min-width:1100px){
+  .tgm .tl{position:relative}
+  .tgm .tl-tabs{margin:0;max-width:480px}
+  .tgm .tlp{margin-top:var(--sp-3)}
+  .tgm .lcar-h{position:absolute;top:0;right:0;height:42px;margin:0}
+}
+@media (min-width:761px){
+  .tgm .lcar .car-track.lgrid{row-gap:12px;column-gap:14px}
+  .tgm .lcar .car-track.lgrid{grid-auto-columns:calc((100cqw - 28px) / 3)}
+  .tgm .lt{gap:0;border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;padding:0}
+  .tgm .lt>.tile-eb{display:grid;grid-template-columns:42% minmax(0,1fr);grid-auto-rows:auto;column-gap:10px;row-gap:3px;padding:8px 10px 8px 8px;border:0;border-radius:0;background:transparent;box-shadow:none;align-content:start;flex:1 1 auto}
+  .tgm .lt .tile-b{display:contents}
+  .tgm .lt .t-tile,.tgm .lt .tile-well{grid-column:1;grid-row:1 / span 7;order:0;height:184px;width:100%;margin:0;padding:0;border-radius:8px;background:var(--surface-2);overflow:hidden}
+  .tgm .lt .t-tile img{width:100%;height:100%;object-fit:cover;object-position:center;padding:0;aspect-ratio:auto}
+  .tgm .lt .tile-well .plate{height:100%;width:100%;min-height:0;aspect-ratio:auto;font-size:9px}
+  .tgm .lt .tile-n{grid-column:2;order:1;font-size:15px;margin:2px 0 0}
+  .tgm .lt .tile-v{grid-column:2;order:2;font-size:12px;color:var(--muted)}
+  .tgm .lt .lt-ttl{grid-column:2;order:3;font-size:11.5px;margin:0;-webkit-line-clamp:2}
+  .tgm .lt .lt-f{grid-column:2;order:4;margin:0;font-size:11.5px}
+  .tgm .lt .lt-s{grid-column:2;order:5;margin:0;font-size:11.5px;min-height:0}
+  .tgm .lt .tile-none{grid-column:2;order:5;margin:4px 0 0;font-size:12px}
+  .tgm .lt .tile-attr{grid-column:2;order:6;margin:2px 0 0;padding:0;font-size:10.5px;line-height:1.3;text-align:left;align-self:end}
+  .tgm .lt .ebp,.tgm .lt .ebs{grid-column:1 / -1;order:10;display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;margin:6px 0 0;padding:0;align-items:stretch;width:auto}
+  .tgm .lt .ebp-i{flex:1 1 0;min-width:0}
+  .tgm .lt .ebtn{height:32px;min-height:0;width:100%;padding:0 6px;font-size:12.5px;line-height:32px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:center}
+  .tgm .lt .ebp-also,.tgm .lt .ebp-n{display:none}
+  .tgm .lt>.tile-x{margin:0;padding:0;border-top:1px solid var(--accent-border);background:var(--accent-bg)}
+  .tgm .lt>.tile-x .opp{border:0;border-radius:0;background:transparent;padding:6px 10px;gap:8px;min-height:0}
+  .tgm .lt>.tile-x .opp:hover{background:var(--accent-bg-2)}
+  .tgm .lt>.tile-x .opxi{font-size:13.5px}
+  .tgm .lt>.tile-x .opp-c{font-size:12.5px}
+  .tgm .lt>.tile-x .opxd{display:none}
+}
+@media (min-width:761px) and (max-width:1099px){.tgm .lcar .car-track.lgrid{grid-auto-columns:calc((100cqw - 14px) / 2)}}
+@media (max-width:760px){
+  .tgm .lt{gap:0;border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;align-self:start;height:auto}
+  .tgm .lt>.tile-eb{border:0;border-radius:0;box-shadow:none;background:transparent}
+  .tgm .lt .tile-b .ebp{margin-top:8px}
+  .tgm .lt>.tile-x{margin:0;border-top:1px solid var(--accent-border);background:var(--accent-bg)}
+  .tgm .lt>.tile-x .opp{border:0;border-radius:0;background:transparent;padding:8px 12px}
+  .tgm .lt .ebp{flex-direction:row;flex-wrap:nowrap;gap:8px}.tgm .lt .ebp-i{flex:1 1 0;min-width:0;width:auto}
+}
