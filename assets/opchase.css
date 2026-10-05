@@ -1460,3 +1460,10 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .dbs-bd{flex:none;font-size:var(--fs-12);font-weight:650;color:var(--accent-text);text-decoration:none;white-space:nowrap;padding:2px 0}
 .dbs-bd:hover{text-decoration:underline;text-underline-offset:2px}
 .kvt .bd-link{margin-left:8px;vertical-align:middle}
+
+/* §44b Bandai version position hint (2026-10-05) */
+.bd-hint{display:inline;font-size:var(--fs-12);font-weight:500;color:var(--muted);margin-left:4px}
+.bd-print{margin-top:6px;line-height:1.35}
+.bd-print .bd-link{font-size:var(--fs-12)}
+.bd-print .bd-hint{display:block;margin:4px 0 0;margin-left:0}
+
