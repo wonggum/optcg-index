@@ -29,6 +29,8 @@
 !assets/opchase.css
 !assets/opchase-ui.js
 !assets/opchase-gallery.js
+!assets/opchase-search.js
+!assets/db-search.json
 !assets/fonts/InterVariable.woff2
 !assets/fonts/Inter-LICENSE.txt
 !assets/opchase-card.js
