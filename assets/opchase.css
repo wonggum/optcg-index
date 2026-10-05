@@ -1357,3 +1357,7 @@ svg .ln.bc{stroke-dasharray:5 4;opacity:.55}
 svg .bct,svg .endt{font-size:10px;fill:var(--muted)}
 svg .endt{font-weight:700;fill:var(--text);font-size:12px}
 svg circle.end{fill:var(--accent,#a8740d)}
+/* §37 tier carousel autoplay pause/play (2026-10-04) */
+.car.tgp .tgh .car-pp{width:32px;height:32px;opacity:.85}
+.car.tgp .car-pp svg{width:13px;height:13px;fill:currentColor;stroke:none}
+.car.tgp .car-pp[hidden]{display:none}

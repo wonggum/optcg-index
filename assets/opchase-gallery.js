@@ -165,7 +165,9 @@
   window.OPC_CAR = [];
   var NEAR = 3;
   /* paged tier grid (2026-10-03): .car.tgp shows 3 tiles per page on desktop, 2 on tablet, 1 on mobile (CSS decides the tile width);
-     arrows page by the visible count and wrap at the ends, native swipe/scroll-snap, counter shows the visible range "1–3 / 17". No autoplay. */
+     arrows page by the visible count and wrap at the ends, native swipe/scroll-snap, counter shows the visible range "1–3 / 17".
+     Autoplay (2026-10-04): one page every data-delay ms (staggered by data-phase), wraps; pauses on hover/focus/touch/off-screen/hidden tab/reduced motion,
+     resumes ~8s after interaction; .car-pp toggles a sticky user pause. */
   function pager(root) {
     var track = root.querySelector('.car-track'), items = [].slice.call(track.children), cnt = root.querySelector('.car-count');
     var N = items.length; if (!N) return;
@@ -189,19 +191,38 @@
       if (d > 0) to(atEnd ? 0 : a + k); else to(a <= 0 ? N - k : a - k);
       wakeFrom(d > 0 ? (atEnd ? 0 : a + k) : Math.max(0, a - k), k);
     }
-    if (pv) pv.onclick = function () { nav(-1); }; if (nx) nx.onclick = function () { nav(1); };
+    var pp = root.querySelector('.car-pp'), DELAY = +root.dataset.delay || 5000, PHASE = +root.dataset.phase || 0;
+    var hover = false, focus = false, held = false, stopped = RM, idleUntil = 0, timer = 0;
+    function poke() { idleUntil = Date.now() + 8000; arm(); }
+    function canRun() { return !stopped && !held && !hover && !focus && onscreen && !document.hidden && N > per() && Date.now() >= idleUntil; }
+    function arm(ph) {
+      clearTimeout(timer); if (stopped || N <= 1) return;
+      var wait = Math.max(DELAY + (ph || 0), idleUntil - Date.now());
+      timer = setTimeout(function () { if (canRun()) nav(1); arm(); }, wait);
+    }
+    function syncPP() { if (!pp) return; pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = N <= per(); }
+    if (pp) pp.onclick = function () { stopped = !stopped; idleUntil = 0; syncPP(); arm(); };
+    root.addEventListener('mouseenter', function () { hover = true; });
+    root.addEventListener('mouseleave', function () { hover = false; poke(); });
+    root.addEventListener('focusin', function (e) { if (e.target !== pp) focus = true; });
+    root.addEventListener('focusout', function () { focus = false; poke(); });
+    track.addEventListener('touchstart', poke, { passive: true });
+    track.addEventListener('pointerdown', poke, { passive: true });
+    track.addEventListener('wheel', poke, { passive: true });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) arm(); });
+    if (pv) pv.onclick = function () { nav(-1); poke(); }; if (nx) nx.onclick = function () { nav(1); poke(); };
     track.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); }, { passive: true });
     track.addEventListener('scrollend', function () { busy = 0; });
     ['touchstart', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { busy = 0; }, { passive: true }); });
     root.addEventListener('keydown', function (e) {
       if (e.target.closest('input,select,textarea') || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
-      e.preventDefault(); nav(e.key === 'ArrowRight' ? 1 : -1);
+      e.preventDefault(); nav(e.key === 'ArrowRight' ? 1 : -1); poke();
     });
-    window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); });
+    window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { upd(); syncPP(); }); });
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { onscreen = e.isIntersecting; if (onscreen) upd(); }); }, { rootMargin: '300px 0px', threshold: 0.01 }).observe(root);
     else onscreen = true;
-    upd();
-    window.OPC_CAR.push({ hold: function () {} });
+    upd(); syncPP(); arm(PHASE);
+    window.OPC_CAR.push({ hold: function (h) { held = h; if (!h) poke(); } });
   }
   [].forEach.call(document.querySelectorAll('.car'), function (root) {
     if (root.classList.contains('tgp')) { pager(root); return; }
@@ -271,7 +292,26 @@
     track.addEventListener('scrollend', function () { clearTimeout(st); settle(); });
     function nav(k) { user = true; sync(); go(cur + k); }
     var pv = root.querySelector('.car-prev'), nx = root.querySelector('.car-next');
-    if (pv) pv.onclick = function () { nav(-1); }; if (nx) nx.onclick = function () { nav(1); };
+    var pp = root.querySelector('.car-pp'), DELAY = +root.dataset.delay || 5000, PHASE = +root.dataset.phase || 0;
+    var hover = false, focus = false, held = false, stopped = RM, idleUntil = 0, timer = 0;
+    function poke() { idleUntil = Date.now() + 8000; arm(); }
+    function canRun() { return !stopped && !held && !hover && !focus && onscreen && !document.hidden && N > per() && Date.now() >= idleUntil; }
+    function arm(ph) {
+      clearTimeout(timer); if (stopped || N <= 1) return;
+      var wait = Math.max(DELAY + (ph || 0), idleUntil - Date.now());
+      timer = setTimeout(function () { if (canRun()) nav(1); arm(); }, wait);
+    }
+    function syncPP() { if (!pp) return; pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = N <= per(); }
+    if (pp) pp.onclick = function () { stopped = !stopped; idleUntil = 0; syncPP(); arm(); };
+    root.addEventListener('mouseenter', function () { hover = true; });
+    root.addEventListener('mouseleave', function () { hover = false; poke(); });
+    root.addEventListener('focusin', function (e) { if (e.target !== pp) focus = true; });
+    root.addEventListener('focusout', function () { focus = false; poke(); });
+    track.addEventListener('touchstart', poke, { passive: true });
+    track.addEventListener('pointerdown', poke, { passive: true });
+    track.addEventListener('wheel', poke, { passive: true });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) arm(); });
+    if (pv) pv.onclick = function () { nav(-1); poke(); }; if (nx) nx.onclick = function () { nav(1); poke(); };
     root.addEventListener('mouseenter', function () { hover = true; }); root.addEventListener('mouseleave', function () { hover = false; });
     root.addEventListener('focusin', function () { focus = true; }); root.addEventListener('focusout', function (e) { if (!root.contains(e.relatedTarget)) focus = false; });
     root.addEventListener('touchstart', function () { touchUntil = Date.now() + 12000; user = true; sync(); }, { passive: true });
