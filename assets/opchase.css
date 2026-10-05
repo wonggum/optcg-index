@@ -1454,3 +1454,9 @@ svg circle.end{fill:var(--accent,#a8740d)}
   .tgm .lt .ebp{flex-direction:row;flex-wrap:nowrap;gap:8px}.tgm .lt .ebp-i{flex:1 1 0;min-width:0;width:auto}
 }
 
+/* §44 Bandai official card-list CTA (2026-10-05): link only, no Bandai images */
+.bd-row{margin:var(--sp-3) 0 var(--sp-2)}
+.bd-link{gap:4px}
+.dbs-bd{flex:none;font-size:var(--fs-12);font-weight:650;color:var(--accent-text);text-decoration:none;white-space:nowrap;padding:2px 0}
+.dbs-bd:hover{text-decoration:underline;text-underline-offset:2px}
+.kvt .bd-link{margin-left:8px;vertical-align:middle}

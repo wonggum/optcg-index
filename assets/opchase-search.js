@@ -54,8 +54,10 @@
     var set = DATA.sets[r.s] ? ' title="' + esc(DATA.sets[r.s]) + '"' : '';
     var badge = r.val != null ? (r.oc ? '<a class="dbs-ix" href="' + root + esc(r.oc) + '" title="OPChase Index (our estimate from recent same-spec PSA 10 sales)">OPChase Index' + (r.val ? ' ' + money(r.val) : '') + '</a>'
       : '<span class="dbs-ix">OPChase Index</span>') : '';
+    // 2026-10-05: Bandai official card-list search link (only when the number is in our official scrape; freewords search URL)
+    var bd = (DATA.bd && DATA.bd[r.num]) ? ('<a class="dbs-bd" href="https://en.onepiece-cardgame.com/cardlist/?freewords=' + encodeURIComponent(r.num) + '" rel="noopener noreferrer" target="_blank" title="Official Bandai English card list">Bandai ↗</a>') : '';
     return '<li class="dbs-r' + (r.val != null ? ' ix' : '') + '"><a class="dbs-a" href="' + root + 'card/' + esc(r.num.toLowerCase()) + '/"><b class="dbs-id">' + esc(r.num) + '</b> <span class="dbs-n">' + esc(r.name) + '</span>'
-      + '<span class="dbs-m">' + esc(r.v) + (r.r ? ' · ' + esc(r.r) : '') + (r.s ? ' · <span' + set + '>' + esc(r.s) + '</span>' : '') + '</span></a>' + badge + '</li>';
+      + '<span class="dbs-m">' + esc(r.v) + (r.r ? ' · ' + esc(r.r) : '') + (r.s ? ' · <span' + set + '>' + esc(r.s) + '</span>' : '') + '</span></a>' + badge + bd + '</li>';
   }
   function init(box) {
     var inp = document.getElementById(box.dataset.input); if (!inp) return;
