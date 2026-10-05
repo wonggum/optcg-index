@@ -1,6 +1,7 @@
 *
 !.github/
 !.github/ISSUE_TEMPLATE/
+!.github/workflows/
 !assets/
 !assets/fonts/
 !cards/
@@ -3138,3 +3139,4 @@
 !characters/index.html
 !guides/index.html
 !.gitignore
+!.github/workflows/deploy-pages.yml
