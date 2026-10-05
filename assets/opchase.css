@@ -1377,3 +1377,10 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .lcar .lgrid>.lt[style*="none"]{display:none!important}
 @media (max-width:1099px){.lcar .lgrid>.lt{flex-basis:calc((100% - 20px) / 2)}}
 @media (max-width:760px){.lcar .car-track.lgrid{gap:10px}.lcar .lgrid>.lt{flex-basis:100%}.lcar .car-track{transition:height .2s ease}}
+/* §39 All cards carousel (default tab) + Table view link */
+.tvw{margin-top:var(--sp-3);text-align:center}
+.tvw>summary{display:inline-block;cursor:pointer;font-size:13px;color:var(--accent-text);list-style:none;padding:4px 8px}
+.tvw>summary::-webkit-details-marker{display:none}
+.tvw[open]>summary{margin-bottom:var(--sp-3)}
+.tvw>.tw{text-align:left}
+.lcar .lgrid>.tga .tile-n{font-size:16px;margin-top:4px}
