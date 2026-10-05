@@ -1512,3 +1512,8 @@ svg circle.end{fill:var(--accent,#a8740d)}
   .pcard-stats{gap:var(--sp-5)}
 }
 
+
+/* §46 Not in Index gallery tag (2026-10-05) */
+.tile-tag,.opp-out .tile-tag{display:inline-block;margin-left:.4rem;padding:.1rem .4rem;border:1px solid var(--gold,#c4a35a);border-radius:999px;font-size:.65rem;font-weight:600;letter-spacing:.02em;color:var(--gold,#c4a35a);vertical-align:middle;white-space:nowrap}
+.opp-out{border-style:dashed}
+.tile-n .tile-tag{transform:translateY(-1px)}
