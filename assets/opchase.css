@@ -1528,3 +1528,15 @@ svg circle.end{fill:var(--accent,#a8740d)}
 /* §47 single post-Core listings disclaimer (2026-10-05) */
 .tier-disc{margin:.5rem 0 0;padding:0 2px;font-size:11px;line-height:1.35;color:var(--muted);font-weight:500}
 .tier-disc .ago{color:var(--muted)}
+
+
+/* ---------- Japanese PSA 10 section (2026-10-05, display-only) ---------- */
+.car.tg-jp{--tc:#6b8cae;--tt:#3d5a73}
+:root:not([data-theme="dark"]) .car.tg-jp{--tc:#5a7a96}
+:root[data-theme="dark"] .car.tg-jp{--tc:#8fb0cc;--tt:#a8c4dc}
+.car.tg-jp .tgh-plq{border-color:color-mix(in srgb,var(--tc) 35%,var(--border))}
+.tile-tag.jp-pill,.jp-pill{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.04em;vertical-align:middle;
+  background:color-mix(in srgb,#6b8cae 18%,transparent);color:#3d5a73;border:1px solid color-mix(in srgb,#6b8cae 40%,transparent)}
+:root[data-theme="dark"] .jp-pill{background:color-mix(in srgb,#8fb0cc 22%,transparent);color:#c5d8ea;border-color:color-mix(in srgb,#8fb0cc 45%,transparent)}
+.plate.pt-jp .pl-tier{color:var(--tc)}
+.plate.pt-jp .pl-bot span:first-child{letter-spacing:.02em}
