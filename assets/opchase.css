@@ -1345,3 +1345,10 @@ a.dbs-ix:hover{background:var(--accent-bg-2)}
 #tiernote:empty{display:none}
 @media (max-width:760px){.find .db-k{grid-template-columns:repeat(2,minmax(0,1fr))}.qlinks.ql3{grid-template-columns:1fr}.qlinks.ql3 a{border-left:0;border-top:1px solid var(--border)}.qlinks.ql3 a:first-child{border-top:0}
  .tier-ctrl .flt{flex:1 1 100%}.tier-ctrl select{flex:1 1 100%}}
+/* §35 (2026-10-04 PM) index panel labels: small info tooltip, chart "different series" tag + Level-start marker */
+.kinfo{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;border:1px solid var(--border-strong);color:var(--muted);font-size:10px;font-weight:700;font-style:italic;line-height:1;cursor:help;vertical-align:1px;margin-left:3px;text-transform:none;letter-spacing:0}
+.kinfo:focus{outline:2px solid var(--focus);outline-offset:1px}
+.idx-c h3 .pro-tag{margin-left:6px;vertical-align:2px}
+.idx-c h3 .sm{display:block;margin-top:2px}
+svg .mk line{stroke:var(--muted);stroke-dasharray:3 3;stroke-width:1}
+svg .mk text{fill:var(--muted);font-size:10px}
