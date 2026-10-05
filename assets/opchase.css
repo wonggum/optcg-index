@@ -1352,3 +1352,8 @@ a.dbs-ix:hover{background:var(--accent-bg-2)}
 .idx-c h3 .sm{display:block;margin-top:2px}
 svg .mk line{stroke:var(--muted);stroke-dasharray:3 3;stroke-width:1}
 svg .mk text{fill:var(--muted);font-size:10px}
+/* §36 Level chart: dashed backcast, end label */
+svg .ln.bc{stroke-dasharray:5 4;opacity:.55}
+svg .bct,svg .endt{font-size:10px;fill:var(--muted)}
+svg .endt{font-weight:700;fill:var(--text);font-size:12px}
+svg circle.end{fill:var(--accent,#a8740d)}
