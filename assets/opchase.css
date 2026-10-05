@@ -1331,3 +1331,17 @@ a.dbs-ix:hover{background:var(--accent-bg-2)}
 .dbs-f{margin:var(--sp-3) 0 0}
 @media (min-width:900px){.dbs-l{grid-template-columns:1fr 1fr;column-gap:var(--sp-6)}.dbs-r:nth-child(2){border-top:0}}
 @media (max-width:520px){.dbs{padding:var(--sp-2) var(--sp-3)}.dbs-r{flex-wrap:wrap;gap:4px 8px}.dbs-ix{margin-left:0}}
+/* §34 (2026-10-04 PM) merged "Find a card" (Card Database stats + unified search + chips) under the index; tier controls above the tier frames */
+.find .db-k{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:var(--sp-4)}
+.find .db-k a.kpi{color:var(--text);text-decoration:none;transition:background .15s var(--ease)}
+.find .db-k a.kpi:hover{background:var(--hover)}
+.find .tools #q{font-size:var(--fs-18);min-height:50px}
+.find .chipbar{margin-top:var(--sp-4)}
+.find-links{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin:var(--sp-4) 0 0}
+#chipnote a{white-space:nowrap}
+.qlinks.ql3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tier-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2) var(--sp-3);margin:0 0 var(--sp-3)}
+.tier-ctrl select{max-width:100%}
+#tiernote:empty{display:none}
+@media (max-width:760px){.find .db-k{grid-template-columns:repeat(2,minmax(0,1fr))}.qlinks.ql3{grid-template-columns:1fr}.qlinks.ql3 a{border-left:0;border-top:1px solid var(--border)}.qlinks.ql3 a:first-child{border-top:0}
+ .tier-ctrl .flt{flex:1 1 100%}.tier-ctrl select{flex:1 1 100%}}
