@@ -1401,3 +1401,7 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .tgm .tl-tab b{white-space:nowrap}
 .tgm .tl-tab span{display:inline-block;min-width:22px;padding:1px 7px;border-radius:999px;background:var(--surface-3);color:var(--text-2);font-weight:650;font-variant-numeric:tabular-nums}
 @media (max-width:760px){.tgm .tl-tab{flex-direction:row;gap:5px;padding:8px 4px}.tgm .tl-tab span{padding:1px 5px}}
+/* §41 tier header on one line: "● Grail  $5,000+" (2026-10-04 23:05) */
+.tgh-1 h2{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;column-gap:10px;row-gap:2px;margin:0}
+.tgh-1 h2 .tgh-rng{font-size:.55em;font-weight:600;color:var(--muted);letter-spacing:0;margin:0}
+.tgh-1 h2 .tg-dot{align-self:center}
