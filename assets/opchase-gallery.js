@@ -169,14 +169,16 @@
      Autoplay (2026-10-04): one page every data-delay ms (staggered by data-phase), wraps; pauses on hover/focus/touch/off-screen/hidden tab/reduced motion,
      resumes ~8s after interaction; .car-pp toggles a sticky user pause. */
   function pager(root) {
-    var track = root.querySelector('.car-track'), items = [].slice.call(track.children), cnt = root.querySelector('.car-count');
-    var N = items.length; if (!N) return;
+    var track = root.querySelector('.car-track'), cnt = root.querySelector('.car-count'), items = [], N = 0;
+    function its() { items = [].filter.call(track.children, function (x) { return x.style.display !== 'none'; }); N = items.length; return items; }
+    its(); if (!track.children.length) return;
     var pv = root.querySelector('.car-prev'), nx = root.querySelector('.car-next'), raf = 0, onscreen = false, tgt = 0, busy = 0;
-    function step() { var g = parseFloat(getComputedStyle(track).columnGap) || 0; return items[0].getBoundingClientRect().width + g; }
+    function step() { var g = parseFloat(getComputedStyle(track).columnGap) || 0; return (items[0] ? items[0].getBoundingClientRect().width : 0) + g || 1; }
     function per() { return Math.max(1, Math.min(N, Math.round((track.clientWidth + (parseFloat(getComputedStyle(track).columnGap) || 0)) / step()))); }
     function first() { return Math.max(0, Math.min(N - 1, Math.round(track.scrollLeft / step()))); }
     function wakeFrom(a, k) { for (var j = Math.max(0, a - k); j < Math.min(N, a + 2 * k); j++) [].forEach.call(items[j].querySelectorAll('img[loading="lazy"]'), wake); }
     function upd() {
+      its(); if (!N || !track.clientWidth) { if (cnt) cnt.textContent = N ? (N === 1 ? '1' : '1\u2013' + Math.min(3, N)) + ' / ' + N : '0 / 0'; if (pv) pv.hidden = true; if (nx) nx.hidden = true; return; }
       var k = per(), a = first(), b = Math.min(N, a + k);
       if (a + k >= N) { a = Math.max(0, N - k); b = N; }   // last page (scroll clamps at the end)
       if (cnt) cnt.textContent = (k === 1 ? (a + 1) : (a + 1) + '\u2013' + b) + ' / ' + N;
@@ -187,6 +189,7 @@
     }
     function to(i) { tgt = Math.max(0, Math.min(i, N - per())); busy = Date.now() + 1000; track.scrollTo({ left: Math.max(0, i) * step(), behavior: RM ? 'auto' : 'smooth' }); }
     function nav(d) {
+      its(); if (!N) return;
       var k = per(), a = Date.now() < busy ? tgt : first(), atEnd = a >= N - k;
       if (d > 0) to(atEnd ? 0 : a + k); else to(a <= 0 ? N - k : a - k);
       wakeFrom(d > 0 ? (atEnd ? 0 : a + k) : Math.max(0, a - k), k);
@@ -194,13 +197,13 @@
     var pp = root.querySelector('.car-pp'), DELAY = +root.dataset.delay || 5000, PHASE = +root.dataset.phase || 0;
     var hover = false, focus = false, held = false, stopped = RM, idleUntil = 0, timer = 0;
     function poke() { idleUntil = Date.now() + 8000; arm(); }
-    function canRun() { return !stopped && !held && !hover && !focus && onscreen && !document.hidden && N > per() && Date.now() >= idleUntil; }
+    function canRun() { return track.clientWidth > 0 && !stopped && !held && !hover && !focus && onscreen && !document.hidden && N > per() && Date.now() >= idleUntil; }
     function arm(ph) {
       clearTimeout(timer); if (stopped || N <= 1) return;
       var wait = Math.max(DELAY + (ph || 0), idleUntil - Date.now());
       timer = setTimeout(function () { if (canRun()) nav(1); arm(); }, wait);
     }
-    function syncPP() { if (!pp) return; pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = N <= per(); }
+    function syncPP() { if (!pp) return; its(); pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = N <= per(); }
     if (pp) pp.onclick = function () { stopped = !stopped; idleUntil = 0; syncPP(); arm(); };
     root.addEventListener('mouseenter', function () { hover = true; });
     root.addEventListener('mouseleave', function () { hover = false; poke(); });
@@ -216,14 +219,18 @@
     ['touchstart', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { busy = 0; }, { passive: true }); });
     root.addEventListener('keydown', function (e) {
       if (e.target.closest('input,select,textarea') || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+      if (!root.classList.contains('lcar') && e.target.closest('.lcar')) return;   // listing carousels handle their own keys
       e.preventDefault(); nav(e.key === 'ArrowRight' ? 1 : -1); poke();
     });
     window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { upd(); syncPP(); }); });
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { onscreen = e.isIntersecting; if (onscreen) upd(); }); }, { rootMargin: '300px 0px', threshold: 0.01 }).observe(root);
     else onscreen = true;
+    if ('ResizeObserver' in window) new ResizeObserver(function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { upd(); syncPP(); }); }).observe(track);   // tab panels opening
+    document.addEventListener('opc:repage', function () { track.scrollLeft = 0; busy = 0; upd(); syncPP(); });   // Find a card filters / sort
     upd(); syncPP(); arm(PHASE);
     window.OPC_CAR.push({ hold: function (h) { held = h; if (!h) poke(); } });
   }
+  [].forEach.call(document.querySelectorAll('.lcar'), pager);   // listing tab carousels inside tier frames (2026-10-04)
   [].forEach.call(document.querySelectorAll('.car'), function (root) {
     if (root.classList.contains('tgp')) { pager(root); return; }
     var track = root.querySelector('.car-track'), slides = [].slice.call(track.children), dots = root.querySelector('.car-dots'), cnt = root.querySelector('.car-count'), pp = root.querySelector('.car-pp');
@@ -295,13 +302,13 @@
     var pp = root.querySelector('.car-pp'), DELAY = +root.dataset.delay || 5000, PHASE = +root.dataset.phase || 0;
     var hover = false, focus = false, held = false, stopped = RM, idleUntil = 0, timer = 0;
     function poke() { idleUntil = Date.now() + 8000; arm(); }
-    function canRun() { return !stopped && !held && !hover && !focus && onscreen && !document.hidden && N > per() && Date.now() >= idleUntil; }
+    function canRun() { return track.clientWidth > 0 && !stopped && !held && !hover && !focus && onscreen && !document.hidden && N > per() && Date.now() >= idleUntil; }
     function arm(ph) {
       clearTimeout(timer); if (stopped || N <= 1) return;
       var wait = Math.max(DELAY + (ph || 0), idleUntil - Date.now());
       timer = setTimeout(function () { if (canRun()) nav(1); arm(); }, wait);
     }
-    function syncPP() { if (!pp) return; pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = N <= per(); }
+    function syncPP() { if (!pp) return; its(); pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = N <= per(); }
     if (pp) pp.onclick = function () { stopped = !stopped; idleUntil = 0; syncPP(); arm(); };
     root.addEventListener('mouseenter', function () { hover = true; });
     root.addEventListener('mouseleave', function () { hover = false; poke(); });
@@ -317,6 +324,7 @@
     root.addEventListener('touchstart', function () { touchUntil = Date.now() + 12000; user = true; sync(); }, { passive: true });
     root.addEventListener('keydown', function (e) {
       if (e.target.closest('input,select,textarea') || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+      if (!root.classList.contains('lcar') && e.target.closest('.lcar')) return;   // listing carousels handle their own keys
       e.preventDefault(); nav(e.key === 'ArrowRight' ? 1 : -1);
       if (e.target.closest('.hs')) { var f = slides[cur].querySelector('.th,a'); if (f) f.focus({ preventScroll: true }); }
     });
