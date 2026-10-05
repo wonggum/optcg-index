@@ -1461,9 +1461,57 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .dbs-bd:hover{text-decoration:underline;text-underline-offset:2px}
 .kvt .bd-link{margin-left:8px;vertical-align:middle}
 
-/* §44b Bandai version position hint (2026-10-05) */
-.bd-hint{display:inline;font-size:var(--fs-12);font-weight:500;color:var(--muted);margin-left:4px}
-.bd-print{margin-top:6px;line-height:1.35}
-.bd-print .bd-link{font-size:var(--fs-12)}
-.bd-print .bd-hint{display:block;margin:4px 0 0;margin-left:0}
+/* §44b Bandai version position hint */
+.bd-hint{display:block;font-size:var(--fs-12);font-weight:550;color:var(--muted);line-height:1.35}
+
+/* §45 Printing cards + prominent Bandai CTA (2026-10-05) — Notion/Stripe compact, mobile-first */
+.plist{display:flex;flex-direction:column;gap:var(--sp-3)}
+.pcard{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);padding:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-3)}
+.pcard.trk{border-color:var(--accent-border);box-shadow:inset 3px 0 0 var(--accent)}
+.pcard-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin:0}
+.pcard-n{flex:none;width:1.5rem;height:1.5rem;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);color:var(--muted);font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.pcard-v{font-size:var(--fs-16);font-weight:700;letter-spacing:-.01em;color:var(--text)}
+.pcard-id{color:var(--muted);font-size:var(--fs-12);margin-left:auto}
+.pcard-prod{margin:0;font-size:var(--fs-13);color:var(--text-2);line-height:1.4}
+.pcard-prod a{color:var(--text);text-decoration:underline;text-decoration-color:var(--border-strong);text-underline-offset:2px}
+.pcard-prod a:hover{color:var(--accent-text);text-decoration-color:currentColor}
+.pcard-dot{color:var(--muted);margin:0 2px}
+.pcard-row{display:flex;flex-direction:column;gap:4px}
+.pcard-k{font-size:10px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pcard-body{font-size:var(--fs-14);color:var(--text);line-height:1.45}
+.pcard-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);padding-top:var(--sp-1);border-top:1px solid var(--border)}
+.pcard-stat{min-width:0}
+.pcard-sv{font-size:var(--fs-15);font-weight:650;color:var(--text);margin-top:2px;line-height:1.35}
+.pcard-sv .insuf{font-weight:600;font-size:var(--fs-13)}
+.pcard-sv .sm{font-weight:500;margin-top:2px}
+.pcard-px{font-size:var(--fs-18);font-weight:750;letter-spacing:-.02em}
+.pcard-ph{font-size:var(--fs-12);font-weight:600;color:var(--accent-text);text-decoration:none}
+.pcard-ph:hover{text-decoration:underline;text-underline-offset:2px}
+.pcard-acts{display:flex;flex-direction:column;gap:8px;padding-top:var(--sp-1);border-top:1px solid var(--border)}
+.bd-cta{display:flex;flex-direction:column;gap:6px;width:100%}
+.bd-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:44px;padding:0 16px;border-radius:var(--r-pill);border:1.5px solid var(--accent-border);background:var(--accent-bg);color:var(--accent-text)!important;font-size:var(--fs-14);font-weight:700;text-decoration:none!important;letter-spacing:-.01em;transition:background .15s,border-color .15s,box-shadow .15s;box-shadow:0 0 0 0 transparent}
+.bd-btn::before{content:"";width:16px;height:16px;flex:none;background:currentColor;opacity:.9;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z'/%3E%3C/svg%3E") center/contain no-repeat}
+.bd-btn:hover{background:var(--accent-bg-2);border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.bd-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.bd-btn-lab{flex:none}
+.bd-ext{opacity:.75;font-weight:600}
+.bd-cta .bd-hint{margin:0;text-align:center}
+.pcard-ebay{width:100%;min-height:40px;justify-content:center;background:var(--text)!important;border-color:var(--text)!important;color:var(--bg)!important;font-weight:650;border-radius:var(--r-pill)}
+.pcard-ebay:hover{background:var(--text-2)!important;border-color:var(--text-2)!important;color:var(--bg)!important}
+.pcard-ebay::before{opacity:1;background:currentColor}
+/* Desktop: side-by-side actions; hint beside button when space allows */
+@media (min-width:761px){
+  .pcard{padding:var(--sp-5)}
+  .pcard-acts{flex-direction:row;flex-wrap:wrap;align-items:stretch}
+  .bd-cta{flex:1 1 280px;flex-direction:row;align-items:center;gap:12px;width:auto;min-width:0}
+  .bd-btn{width:auto;flex:1 1 auto;min-width:220px;padding:0 20px}
+  .bd-cta .bd-hint{text-align:left;white-space:nowrap}
+  .pcard-ebay{width:auto;flex:0 1 240px;min-width:180px}
+  .plist{gap:var(--sp-4)}
+}
+@media (min-width:1100px){
+  .pcard-stats{gap:var(--sp-5)}
+}
 
