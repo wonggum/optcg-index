@@ -1,5 +1,8 @@
 # Deploy static site from main (allowlisted publish tree). cancel-in-progress:false so
 # routine listing pushes don't kill an in-flight Pages deploy (2026-10-05).
+# 2026-10-07: actions bumped to current Node 24 majors (Node 20 deprecation warning), job timeout, and ONE automatic
+# retry of deploy-pages: run 37638766009 failed in 12 s with "No artifacts named github-pages were found" although the
+# artifact had been uploaded 4 s earlier (artifact-metadata race on GitHub's side). Retry after 30 s instead of a red run.
 name: Deploy Pages
 on:
   push:
@@ -16,13 +19,22 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-22.04
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment2.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v7
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: .
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+      - name: Wait before retry (artifact metadata race)
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - id: deployment2
+        name: Retry deploy-pages
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5
