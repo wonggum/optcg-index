@@ -1426,7 +1426,7 @@ svg circle.end{fill:var(--accent,#a8740d)}
   .tgm .lt{gap:0;border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;padding:0}
   .tgm .lt>.tile-eb{display:flex;flex-direction:row;align-items:stretch;gap:10px;min-height:0;height:292px;padding:8px;border:0;border-radius:0;background:transparent;box-shadow:none;flex:1 1 auto}
   .tgm .lt .t-tile,.tgm .lt .tile-well,.tgm .lt .ph.t-tile{
-    flex:0 0 36%;width:36%;height:100%;max-height:100%;margin:0;padding:4px;box-sizing:border-box;
+    flex:0 0 34%;width:34%;height:100%;max-height:100%;margin:0;padding:4px;box-sizing:border-box;
     border:0;border-radius:8px;background:var(--img-bg,var(--surface-2));
     overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:auto}
   .tgm .lt .t-tile img{
@@ -1450,8 +1450,10 @@ svg circle.end{fill:var(--accent,#a8740d)}
   .tgm .lt .tile-attr a{color:var(--muted)!important;text-decoration:underline;text-decoration-color:var(--border-strong);text-underline-offset:2px;font-weight:500}
   .tgm .lt .tile-attr a:hover{color:var(--text-2)!important}
   .tgm .lt .tile-none{margin:5px 0 0;font-size:12px;font-weight:500;color:var(--muted)}
-  /* CTAs sit under credit — no flex auto gap */
-  .tgm .lt .ebp,.tgm .lt .ebs{display:flex;flex-direction:column;gap:6px;margin-top:10px;padding:0;width:100%}
+  /* CTAs sit under credit — beat .tile-b .ebp / .car.tgp .tile-b .ebp / .lt .tile-b .ebp {margin-top:auto} */
+  .tgm .lt .ebp,.tgm .lt .ebs,
+  .tgm .lt .tile-b .ebp,.tgm.tgp .lt .tile-b .ebp,.car.tgp.tgm .tile-b .ebp{
+    display:flex;flex-direction:column;gap:6px;margin-top:8px!important;padding-top:0!important;padding:0;width:100%}
   .tgm .lt .ebp-i{flex:none;width:100%;min-width:0}
   .tgm .lt .ebtn{
     height:30px;min-height:0;width:100%;padding:0 10px;border-radius:999px;
