@@ -1421,29 +1421,36 @@ svg circle.end{fill:var(--accent,#a8740d)}
   .tgm .lcar-h{position:absolute;top:0;right:0;height:42px;margin:0}
 }
 @media (min-width:761px){
-  /* §47b 2026-10-06: full PSA slab visible — object-fit:contain (never cover); photo well letterboxes, does not crop */
-  .tgm .lcar .car-track.lgrid{row-gap:12px;column-gap:14px;grid-auto-columns:calc((100cqw - 14px) / 2)}
+  /* §47b 2026-10-06: full PSA slab — contain (never cover); reset global 1/1 aspect; pad the well so overflow:hidden cannot chop the slab */
+  .tgm .lcar .car-track.lgrid{row-gap:10px;column-gap:12px;grid-auto-columns:calc((100cqw - 12px) / 2)}
   .tgm .lt{gap:0;border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;padding:0}
-  .tgm .lt>.tile-eb{display:flex;flex-direction:row;align-items:stretch;gap:10px;height:318px;padding:8px;border:0;border-radius:0;background:transparent;box-shadow:none;flex:1 1 auto}
-  .tgm .lt .t-tile,.tgm .lt .tile-well{flex:0 0 48%;width:48%;height:100%;margin:0;padding:0;border-radius:10px;background:var(--img-bg,var(--surface-2));overflow:hidden;display:flex;align-items:center;justify-content:center}
-  .tgm .lt .t-tile img{width:100%;height:100%;object-fit:contain;object-position:center;padding:6px;aspect-ratio:auto;background:transparent}
-  .tgm .lt .tile-well .plate{height:100%;width:auto;max-width:100%;min-height:0;aspect-ratio:3/4;font-size:10px}
-  .tgm .lt .tile-b{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:2px;padding:1px 2px 0 0}
-  .tgm .lt .tile-n{font-size:15.5px;margin:0}
-  .tgm .lt .tile-v{font-size:12px;color:var(--muted)}
-  .tgm .lt .lt-ttl{font-size:12px;margin:0;-webkit-line-clamp:2;flex:none}
-  .tgm .lt .tile-attr{margin:1px 0 0;padding:0;font-size:10.5px;line-height:1.3;text-align:left}
-  .tgm .lt .lt-f,.tgm .lt .lt-s{margin:0;font-size:11.5px;min-height:0}
-  .tgm .lt .tile-none{margin:4px 0 0;font-size:12.5px}
+  .tgm .lt>.tile-eb{display:flex;flex-direction:row;align-items:stretch;gap:10px;min-height:0;height:328px;padding:8px;border:0;border-radius:0;background:transparent;box-shadow:none;flex:1 1 auto}
+  .tgm .lt .t-tile,.tgm .lt .tile-well,.tgm .lt .ph.t-tile{
+    flex:0 0 44%;width:44%;height:100%;max-height:100%;margin:0;padding:10px;box-sizing:border-box;
+    border:0;border-radius:10px;background:var(--img-bg,var(--surface-2));
+    overflow:hidden; /* only rounds corners; padding keeps the slab inside the clip */
+    display:flex;align-items:center;justify-content:center;aspect-ratio:auto}
+  .tgm .lt .t-tile img{
+    display:block;width:100%;height:100%;max-width:100%;max-height:100%;
+    object-fit:contain!important;object-position:center;padding:0;margin:0;
+    aspect-ratio:auto;background:transparent;box-sizing:border-box}
+  .tgm .lt .tile-well .plate{height:100%;width:auto;max-width:100%;max-height:100%;min-height:0;aspect-ratio:3/4;font-size:10px}
+  .tgm .lt .tile-b{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:2px;padding:0 2px 0 0}
+  .tgm .lt .tile-n{font-size:15px;margin:0;line-height:1.25}
+  .tgm .lt .tile-v{font-size:11.5px;color:var(--muted)}
+  .tgm .lt .lt-ttl{font-size:11.5px;margin:0;-webkit-line-clamp:2;flex:none}
+  .tgm .lt .tile-attr{margin:1px 0 0;padding:0;font-size:10px;line-height:1.3;text-align:left}
+  .tgm .lt .lt-f,.tgm .lt .lt-s{margin:0;font-size:11px;min-height:0}
+  .tgm .lt .tile-none{margin:3px 0 0;font-size:12px}
   .tgm .lt .ebp,.tgm .lt .ebs{display:flex;flex-direction:column;gap:5px;margin-top:auto;padding:0;width:100%}
   .tgm .lt .ebp-i{flex:none;width:100%;min-width:0}
-  .tgm .lt .ebtn{height:30px;min-height:0;width:100%;padding:0 8px;font-size:13px;line-height:30px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:center}
+  .tgm .lt .ebtn{height:28px;min-height:0;width:100%;padding:0 8px;font-size:12.5px;line-height:28px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:center}
   .tgm .lt .ebp-also,.tgm .lt .ebp-n{display:none}
   .tgm .lt>.tile-x{margin:0;padding:0;border-top:1px solid var(--accent-border);background:var(--accent-bg)}
-  .tgm .lt>.tile-x .opp{border:0;border-radius:0;background:transparent;padding:5px 10px;gap:8px;min-height:0}
+  .tgm .lt>.tile-x .opp{border:0;border-radius:0;background:transparent;padding:4px 8px;gap:6px;min-height:0}
   .tgm .lt>.tile-x .opp:hover{background:var(--accent-bg-2)}
-  .tgm .lt>.tile-x .opxi{font-size:13.5px}
-  .tgm .lt>.tile-x .opp-c{font-size:13px}
+  .tgm .lt>.tile-x .opxi{font-size:13px}
+  .tgm .lt>.tile-x .opp-c{font-size:12.5px}
   .tgm .lt>.tile-x .opxd{display:none}
 }
 @media (min-width:761px) and (max-width:1099px){.tgm .lcar .car-track.lgrid{grid-auto-columns:calc((100cqw - 14px) / 2)}}
