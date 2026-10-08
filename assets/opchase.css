@@ -1609,3 +1609,6 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .pcard-pc{margin-top:2px;color:var(--muted)}
 .tl-sort{margin:0 0 8px;color:var(--muted)}
 @media (max-width:760px){.ebtn.ebtn-au{padding-left:8px!important;padding-right:8px!important;font-size:13px!important;letter-spacing:-.01em;white-space:normal!important;height:auto!important;min-height:36px;line-height:1.2;text-align:center}}
+/* 2026-10-07 affiliate-only pivot: the OPChase panel is a single link line ("Version guide & all listings ›"); keep it on one row on mobile */
+@media (max-width:760px){.car.tgp .lt .tile-x .opp-out{flex-wrap:nowrap!important}.car.tgp .lt .tile-x .opp-out .opp-l{flex:1 1 auto}.car.tgp .lt .tile-x .opp-out .opp-c{flex:none!important;padding-top:0!important;border-top:0!important}}
+.tile-row .ebtn.ebtn-au{white-space:normal!important;height:auto!important;min-height:40px;line-height:1.3;padding-top:6px!important;padding-bottom:6px!important;font-size:13px}
