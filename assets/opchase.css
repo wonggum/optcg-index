@@ -1599,3 +1599,12 @@ svg circle.end{fill:var(--accent,#a8740d)}
 :root[data-theme="dark"] .jp-pill{background:color-mix(in srgb,#8fb0cc 22%,transparent);color:#c5d8ea;border-color:color-mix(in srgb,#8fb0cc 45%,transparent)}
 .plate.pt-jp .pl-tier{color:var(--tc)}
 .plate.pt-jp .pl-bot span:first-child{letter-spacing:.02em}
+
+/* §51 pivot 2026-10-07: PriceCharting reference panel (separate from the eBay block), auction ordering note */
+.cmain .pcref{margin-top:var(--sp-3);padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2)}
+.cmain .pcref .v{font-size:20px}
+.cmain .pcref .sm a,.pc-cite a,.pcard-pc a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.pcref-na{font-size:15px!important;color:var(--muted)}
+.pc-cite{margin:0 0 var(--sp-2);color:var(--muted)}
+.pcard-pc{margin-top:2px;color:var(--muted)}
+.tl-sort{margin:0 0 8px;color:var(--muted)}
