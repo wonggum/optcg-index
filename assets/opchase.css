@@ -1601,10 +1601,11 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .plate.pt-jp .pl-bot span:first-child{letter-spacing:.02em}
 
 /* §51 pivot 2026-10-07: PriceCharting reference panel (separate from the eBay block), auction ordering note */
-.cmain .pcref{margin-top:var(--sp-3);padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2)}
+.cmain .pcref{margin:var(--sp-3) 0 var(--sp-4);padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2)}
 .cmain .pcref .v{font-size:20px}
 .cmain .pcref .sm a,.pc-cite a,.pcard-pc a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .pcref-na{font-size:15px!important;color:var(--muted)}
 .pc-cite{margin:0 0 var(--sp-2);color:var(--muted)}
 .pcard-pc{margin-top:2px;color:var(--muted)}
 .tl-sort{margin:0 0 8px;color:var(--muted)}
+@media (max-width:760px){.ebtn.ebtn-au{padding-left:8px!important;padding-right:8px!important;font-size:13px!important;letter-spacing:-.01em;white-space:normal!important;height:auto!important;min-height:36px;line-height:1.2;text-align:center}}
