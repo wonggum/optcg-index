@@ -164,7 +164,7 @@
   // Autoplay only while the row is on screen; images of slides near the current one are loaded early (all others stay lazy).
   window.OPC_CAR = [];
   var NEAR = 3;
-  /* paged tier grid (2026-10-03): .car.tgp shows 3 tiles per page on desktop, 2 on tablet, 1 on mobile (CSS decides the tile width);
+  /* paged tier grid (2026-10-03; 2026-10-07: tier + JP = ONE row, 4/page desktop like Newly verified): 2 on tablet, 1 on mobile (CSS decides the tile width);
      arrows page by the visible count and wrap at the ends, native swipe/scroll-snap, counter shows the visible range "1–3 / 17".
      Autoplay (2026-10-04): one page every data-delay ms (staggered by data-phase), wraps; pauses on hover/focus/touch/off-screen/hidden tab/reduced motion,
      resumes ~8s after interaction; .car-pp toggles a sticky user pause. */
@@ -179,7 +179,7 @@
     function first() { return Math.max(0, Math.min(C - 1, Math.round(track.scrollLeft / step()))); }
     function wakeFrom(a, k) { for (var j = Math.max(0, (a - k) * R); j < Math.min(N, (a + 2 * k) * R); j++) [].forEach.call(items[j].querySelectorAll('img[loading="lazy"]'), wake); }
     function upd() {
-      its(); if (!N || !track.clientWidth) { if (cnt) cnt.textContent = N ? (N === 1 ? '1' : '1\u2013' + Math.min(3 * R, N)) + ' / ' + N : '0 / 0'; if (pv) pv.hidden = true; if (nx) nx.hidden = true; return; }
+      its(); if (!N || !track.clientWidth) { if (cnt) cnt.textContent = N ? (N === 1 ? '1' : '1\u2013' + Math.min(4 * R, N)) + ' / ' + N : '0 / 0'; if (pv) pv.hidden = true; if (nx) nx.hidden = true; return; }
       var k = per(), a = first();
       if (a + k >= C) a = Math.max(0, C - k);
       var lo = a * R + 1, b = Math.min(N, (a + k) * R);   // last page (scroll clamps at the end)

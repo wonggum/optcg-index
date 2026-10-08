@@ -1612,3 +1612,21 @@ svg circle.end{fill:var(--accent,#a8740d)}
 /* 2026-10-07 affiliate-only pivot: the OPChase panel is a single link line ("Version guide & all listings ›"); keep it on one row on mobile */
 @media (max-width:760px){.car.tgp .lt .tile-x .opp-out{flex-wrap:nowrap!important}.car.tgp .lt .tile-x .opp-out .opp-l{flex:1 1 auto}.car.tgp .lt .tile-x .opp-out .opp-c{flex:none!important;padding-top:0!important;border-top:0!important}}
 .tile-row .ebtn.ebtn-au{white-space:normal!important;height:auto!important;min-height:40px;line-height:1.3;padding-top:6px!important;padding-bottom:6px!important;font-size:13px}
+
+/* §52 2026-10-07 21:40 (user feedback): Grail / Premium / Core / JP carousels = ONE row like "Newly verified listings".
+   Desktop >=1100: 4 tiles per page, same width as the Newly verified tiles (the tier frame bleeds out by its padding+border = 29px
+   where the viewport has room, so its track equals the content column and the tiles line up with the Newly verified columns;
+   1100-1270 px viewports bleed less, tiles slightly narrower). Tablet 761-1099: 2 per page in one row. Mobile: 1 per page (unchanged).
+   Replaces the §47 2x2 grid (--rows:2). Autoplay/pager unchanged (opchase-gallery.js reads --rows). */
+.tgm .lcar .car-track.lgrid{--rows:1;grid-template-rows:auto;row-gap:0}
+@media (min-width:1100px){
+  .panel.car.tgm{margin-left:calc(-1 * clamp(0px, (100vw - 1212px) / 2, 29px));margin-right:calc(-1 * clamp(0px, (100vw - 1212px) / 2, 29px))}
+  .tgm .lcar .car-track.lgrid{column-gap:var(--sp-5);grid-auto-columns:calc((100cqw - 3 * var(--sp-5)) / 4)}
+}
+@media (min-width:761px) and (max-width:1099px){
+  .tgm .lcar .car-track.lgrid{column-gap:var(--sp-5);grid-auto-columns:calc((100cqw - var(--sp-5)) / 2)}
+}
+/* §52b JP pill on the name line (smaller one-row tiles wrapped it onto its own line) */
+.tgm .lt .tile-n:has(.jp-pill){display:flex!important;align-items:center;gap:6px}
+.tgm .lt .tile-n:has(.jp-pill)>a.cn{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgm .lt .tile-n>.jp-pill{flex:none;margin-left:0;transform:none}
