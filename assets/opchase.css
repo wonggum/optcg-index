@@ -1630,3 +1630,12 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .tgm .lt .tile-n:has(.jp-pill){display:flex!important;align-items:center;gap:6px}
 .tgm .lt .tile-n:has(.jp-pill)>a.cn{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tgm .lt .tile-n>.jp-pill{flex:none;margin-left:0;transform:none}
+
+/* §53 2026-10-07 22:30 home "Ending soon" + "Lowest Buy It Now" = one-row carousels (same tile as the tier lists), and tier lists
+   hold only each card's lowest Buy It Now + soonest-ending auction (.lx tiles). */
+.lcar .lgrid>.lx .tile-n{font-size:16px;margin-top:4px}
+.hcar{position:relative}
+.hcar .lcar-h{position:static!important;height:auto!important;justify-content:flex-end;margin:0 0 var(--sp-2)!important}
+@media (max-width:760px){.hcar .lcar-h{justify-content:center}}
+.tgm .lx .tile-n:has(.jp-pill){display:flex!important;align-items:center;gap:6px}
+.lx .ebtn.ebtn-au{white-space:normal!important;height:auto!important;min-height:40px;line-height:1.3;padding-top:6px!important;padding-bottom:6px!important;font-size:13px}
