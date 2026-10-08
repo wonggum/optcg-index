@@ -1,5 +1,5 @@
 name: Report a listing or card problem
-description: Tell us about a wrong variant, JP card, non-PSA 10, raw card, fake, or a wrong price anchor on OPChase.
+description: Tell us about a wrong variant, JP card, non-PSA 10, raw card, fake, or an ended / stale listing on OPChase.
 title: "[Report] "
 labels: ["report"]
 body:
@@ -36,10 +36,10 @@ body:
         - label: Not PSA 10
         - label: Not a slab (raw / other grader)
         - label: Fake or suspicious
-        - label: Price anchor wrong
+        - label: Listing ended or price differs from eBay
         - label: Other
   - type: textarea
     id: details
     attributes:
       label: Details
-      description: What did you see? A photo detail, the cert number on the listing, a comparable sale link, etc.
+      description: What did you see? A photo detail, the cert number on the listing, etc.
