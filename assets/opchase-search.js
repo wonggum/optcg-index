@@ -20,7 +20,7 @@
       var num = c[0], cw = words(num + ' ' + c[1]);
       c[2].forEach(function (p, i) {
         var nm = p[5] || c[1], w = cw.concat(vtw[p[0]], words((p[1] || '') + ' ' + (p[2] || '')), p[5] ? words(p[5]) : []);
-        if (p[3] != null) w.push('opchase', 'verified', 'listings', 'tracked');
+        if (p[3] != null) w.push('opchase', 'checked', 'verified', 'listings', 'tracked');
         rows.push({ num: num, name: nm, v: d.vt[p[0]], r: p[1] || '', s: p[2] || '', val: p[3], oc: p[4] || '', w: ' ' + w.join(' ') + ' ', nn: num.toLowerCase().replace(/[^a-z0-9]/g, ''), nw: ' ' + words(nm).join(' ') + ' ', o: rows.length });
       });
     });
@@ -53,7 +53,7 @@
   function row(r, root) {
     var set = DATA.sets[r.s] ? ' title="' + esc(DATA.sets[r.s]) + '"' : '';
     // 2026-10-07 affiliate-only pivot: no index value; tracked printings link to their verified eBay listings
-    var badge = r.val != null ? (r.oc ? '<a class="dbs-ix" href="' + root + esc(r.oc) + '" title="Live eBay listings checked for this exact version, English, PSA 10">Verified listings</a>'
+    var badge = r.val != null ? (r.oc ? '<a class="dbs-ix" href="' + root + esc(r.oc) + '" title="Live eBay listings checked for this exact version, English, PSA 10">Checked listings</a>'
       : '<span class="dbs-ix">Tracked</span>') : '';
     // 2026-10-05: Bandai official card-list search link (only when the number is in our official scrape; freewords search URL)
     var bd = (DATA.bd && DATA.bd[r.num]) ? ('<a class="dbs-bd" href="https://en.onepiece-cardgame.com/cardlist/?freewords=' + encodeURIComponent(r.num) + '" rel="noopener noreferrer" target="_blank" title="Official Bandai English card list">Bandai ↗</a>') : '';
@@ -79,7 +79,7 @@
         if (!res.length) { box.innerHTML = '<p class="dbs-h"><b>In the Card Database</b> · no printing matches “' + esc(q) + '”. Try a card number (OP05-119) or a character name.</p>'; return; }
         var more = res.length > shown ? (href ? '<a class="dbtn dbtn-sm dbs-all" href="' + href + '">See all ' + res.length.toLocaleString() + ' in Card Database ›</a>' : '<button type="button" class="dbtn dbtn-sm dbs-more">Show more</button>') : '';
         box.innerHTML = '<p class="dbs-h"><b>In the Card Database</b> · ' + res.length.toLocaleString() + ' printing' + (res.length === 1 ? '' : 's') + ' match' + (res.length === 1 ? 'es' : '')
-          + (nix ? ' (' + nix + ' with verified listings)' : '') + (res.length > shown ? ', showing ' + shown : '') + '</p><ul class="dbs-l">' + res.slice(0, shown).map(function (r) { return row(r, root); }).join('') + '</ul>' + (more ? '<p class="dbs-f">' + more + '</p>' : '');
+          + (nix ? ' (' + nix + ' with checked listings)' : '') + (res.length > shown ? ', showing ' + shown : '') + '</p><ul class="dbs-l">' + res.slice(0, shown).map(function (r) { return row(r, root); }).join('') + '</ul>' + (more ? '<p class="dbs-f">' + more + '</p>' : '');
       }).catch(function () { box.innerHTML = '<p class="dbs-h">Card Database search is unavailable right now. <a href="' + root + 'sets/">Browse the Card Database</a>.</p>'; });
     }
     box.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('.dbs-more')) { shown += step; render(); } });
