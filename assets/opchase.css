@@ -159,7 +159,7 @@ summary .lc{display:none}details[open]>summary .lc{display:inline}details[open]>
 .pill{display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 8px;border-radius:var(--r-pill);font-size:var(--fs-12);font-weight:600;white-space:nowrap;cursor:help;position:relative;line-height:1}
 .pill.ok{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-border)}
 .pill.au2{background:var(--surface-2);color:var(--text-2);border:1px solid var(--border-strong)}
-.tC{--tip:"Checked: we opened this listing's eBay item details and they match (PSA, grade 10, card number, language, variant). The PSA cert itself is not verified."}
+.tC{--tip:"Details checked: we opened this listing's eBay item details and they match (PSA, grade 10, card number, language, variant). The PSA cert itself is not verified."}
 .tR{--tip:"Reviewed: a person looked at this listing. Still verify the PSA label and cert before buying."}
 .tA{--tip:"Auto: matched automatically from the eBay title and search data only. Verify the PSA label, cert, language and variant in the photos before buying."}
 .pill[data-tip]:focus{outline:none}
