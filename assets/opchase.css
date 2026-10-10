@@ -1650,12 +1650,21 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .ebx-empty>*:not(h2):not(.sec-h):not(.car-h):not(.stale-n){display:none!important}
 .stale-n a{color:var(--text);text-decoration:underline;text-underline-offset:3px;font-weight:600;white-space:nowrap}
 
-/* UI-09 (2026-10-09): the eBay photo credit ("Photo: eBay listing by <seller> · View on eBay") and the version line are never cut with an ellipsis */
+/* UI-09 (2026-10-09): the eBay photo credit ("Photo: eBay listing by <seller> · View on eBay") is never cut with an ellipsis; the version line keeps up to 2 lines.
+   wk7: everything else in the tile is tightened so the extra text lines do not make the tile taller (white well, 1:1 photo area, compact image/text spacing unchanged in look) */
 .tile-attr,.tgm .lt>.tile-eb>.tile-attr,.tgm .lt>.tile-eb>.hs-attr.tile-attr,.tgm .lt .tile-b>.tile-attr,.tgm .lt .tile-b>.hs-attr.tile-attr,.tgm .lt .tile-attr,.tgm .lt .hs-attr.tile-attr{
-  white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.35;padding-top:4px}
+  white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.22;padding-top:3px;padding-bottom:0}
 .tile-attr a{white-space:nowrap}
-.tile-v,.tgm .tile-v,.tgm .lt .tile-v{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip}
+.tile-v,.tgm .tile-v,.tgm .lt .tile-v{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;line-height:1.24}
 .tgm .tile-v .tile-s,.tgm .lt .tile-v .tile-s{white-space:normal}
+.tgm .lt .tile-b{gap:1px;padding-top:4px;padding-bottom:10px}
+.tgm .lt .tile-n,.tgm .lt a.tile-n{line-height:1.22}
+.tgm .lt .tile-b .ebp,.tgm.tgp .lt .tile-b .ebp,.car.tgp.tgm .tile-b .ebp,.tgm .lt .ebp{padding-top:7px}
+.tgm .lt .t-tile,.tgm .lt .tile-well,.tgm .lt .ph.t-tile{aspect-ratio:1/.97}   /* desktop: photo area 3% shorter; image padding below keeps the displayed photo the same size */
+.tgm .lt .t-tile img{padding:11px}
+.tgm .lt .tile-well{padding:11px}
+@media (max-width:760px){.tgm .lt .t-tile img{padding:14px}.tgm .lt .tile-well{padding:14px}   /* mobile photo area stays 1:1 (existing !important rule) and the photo size is unchanged */
+.tgm .lt .tile-b{padding-top:4px;padding-bottom:9px}.tgm .lt .tile-b .ebp,.tgm .lt .ebp{padding-top:6px}}
 
 /* UI-10 (2026-10-09): pre-release badge */
 .pill.pre{cursor:default;margin:0 0 var(--sp-3)}
