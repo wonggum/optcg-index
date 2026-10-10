@@ -1,6 +1,5 @@
 /* OPChase design system v2 (2026-09-30). ONE stylesheet for every page type:
-   home (build_site.py), /cards/<slug>/, /privacy/, /sets/, /sets/<set>/, /card/<number>/ (build_encyclopedia.py).
-   Source of truth: optcg_kb/index_v1/opchase/design/opchase.css -> copied to <site>/assets/opchase.css by design/chrome.py.
+   home, /cards/<slug>/, /privacy/, /sets/, /sets/<set>/, /card/<number>/.
    Sections: 1 font · 2 tokens (dark default / light) · 3 base & type · 4 layout · 5 header/footer · 6 components · 7 tables · 8 home · 9 card page · 10 database · 11 mobile */
 
 /* ---------- 1. Font (self-hosted Inter variable, Latin subset; SIL OFL, see assets/fonts/Inter-LICENSE.txt) ---------- */
@@ -746,7 +745,7 @@ tr.trk td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 td .dbtn-sm{margin-top:6px}
 .encl{display:flex;flex-wrap:wrap;align-items:center;gap:6px var(--sp-2);margin:var(--sp-3) 0 var(--sp-2)}
 
-/* ---------- 17. carousel photo placeholder + light plate contrast (2026-10-01, iPhone "blank slide" report) ---------- */
+/* ---------- 17. carousel photo placeholder + light plate contrast (2026-10-01, blank-slide fix) ---------- */
 /* until a hero photo has pixels the frame shows the card name and "Loading photo…" (slow cellular); on error "Photo unavailable" */
 .th.t-hero::before{content:attr(data-cap) "\A" "Loading photo…";white-space:pre-line;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
   font-size:15px;font-weight:650;line-height:1.5;color:var(--muted);pointer-events:none;z-index:0}
@@ -858,7 +857,7 @@ td .ebtn-sr{margin-top:6px}
 @media (max-width:760px){.chl-g{grid-template-columns:1fr}.chl-i{max-width:420px;margin:0 auto;width:100%;text-align:center}.chl .ebn-b{text-align:center}}
 
 /* =====================================================================================================================
-   23 · Alt-style redesign (2026-10-02, user: "sections not distinct, too much text, benchmark alt.xyz").
+   23 · Alt-style redesign (2026-10-02): flat sections, less text.
    Flat sections separated by hairlines + generous space (no boxes inside boxes), big section titles with a "view all"
    link on the right, one consistent photo-tile grid, muted secondary text, gold only for OPChase links, uppercase small nav.
    Overrides earlier sections; compliance items kept (photo credit, OPChase panel separate from the eBay block, freshness).
@@ -1269,7 +1268,7 @@ section.tier details.cl{margin-top:var(--sp-3)}
 .lt .ebp .ebtn{display:block;text-align:center}
 @media (max-width:760px){.lt .ebp .ebtn{padding:8px 6px}}
 
-/* §30 (2026-10-04) advisor step 1: index update-schedule line, printing-history block on /card/ pages without an OPChase price */
+/* §30 (2026-10-04) index update-schedule line, printing-history block on /card/ pages without an OPChase price */
 .idx-sched{margin-top:2px;font-size:.84rem}
 .idx-sched2{margin:0 0 var(--sp-3);font-size:.9rem;color:var(--text-2,inherit)}
 .hist>p{max-width:78ch;line-height:1.6}
@@ -1613,7 +1612,7 @@ svg circle.end{fill:var(--accent,#a8740d)}
 @media (max-width:760px){.car.tgp .lt .tile-x .opp-out{flex-wrap:nowrap!important}.car.tgp .lt .tile-x .opp-out .opp-l{flex:1 1 auto}.car.tgp .lt .tile-x .opp-out .opp-c{flex:none!important;padding-top:0!important;border-top:0!important}}
 .tile-row .ebtn.ebtn-au{white-space:normal!important;height:auto!important;min-height:40px;line-height:1.3;padding-top:6px!important;padding-bottom:6px!important;font-size:13px}
 
-/* §52 2026-10-07 21:40 (user feedback): Grail / Premium / Core / JP carousels = ONE row like "Newly verified listings".
+/* §52 2026-10-07 21:40: Grail / Premium / Core / JP carousels = ONE row like "Newly verified listings".
    Desktop >=1100: 4 tiles per page, same width as the Newly verified tiles (the tier frame bleeds out by its padding+border = 29px
    where the viewport has room, so its track equals the content column and the tiles line up with the Newly verified columns;
    1100-1270 px viewports bleed less, tiles slightly narrower). Tablet 761-1099: 2 per page in one row. Mobile: 1 per page (unchanged).

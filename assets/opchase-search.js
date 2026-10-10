@@ -1,4 +1,4 @@
-/* OPChase Card Database search (2026-10-04 PM). Lazy-loads assets/db-search.json (built by build_encyclopedia.py) on first focus/typing.
+/* OPChase Card Database search (2026-10-04 PM). Lazy-loads assets/db-search.json on first focus/typing.
    Markup: <div class="dbs" data-input="q" data-root="" data-limit="12" data-all="sets/?q=" data-url="0|1"></div>
    Matches card number (OP05-119, op05119, 119), character / card name, variant keywords (manga, sp, wanted, winner, alt art, aa, pre-release...),
    rarity and set code. Tracked printings (with verified listings) first. Text only, no images. */

@@ -1,4 +1,4 @@
-/* OPChase shared UI (all pages): light/dark theme toggle (light default; dark only when chosen, saved in localStorage opc-theme). The initial theme is set before paint by the inline <head> snippet (design/chrome.py THEME_INIT). */
+/* OPChase shared UI (all pages): light/dark theme toggle (light default; dark only when chosen, saved in localStorage opc-theme). The initial theme is set before paint by an inline <head> snippet. */
 (function(){
   var root=document.documentElement,KEY='opc-theme';
   function stored(){try{var t=localStorage.getItem(KEY);return t==='light'||t==='dark'?t:null}catch(e){return null}}
@@ -7,8 +7,8 @@
   apply(stored()||'light');   // light is the default; dark only after an explicit toggle (2026-10-01)
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.js-theme');if(!b)return;var t=root.getAttribute('data-theme')==='light'?'dark':'light';try{localStorage.setItem(KEY,t)}catch(_){}apply(t)});
 })();
-/* Outbound eBay click events (2026-10-04). No-op unless the page has <meta name="opc-click-events" content="on"> (set only when a GoatCounter
-   code is configured in site_config.json) AND GoatCounter's count.js has loaded. Event name: ebay/<page>/<slot>/<card>, decoded from the EPN
+/* Outbound eBay click events (2026-10-04). No-op unless the page has <meta name="opc-click-events" content="on"> (set only when GoatCounter
+   is configured) AND GoatCounter's count.js has loaded. Event name: ebay/<page>/<slot>/<card>, decoded from the EPN
    customid <page>_<slot>__<cardkey> (cardkey: "x" = "-", "y" = "_", "z" = "."). No cookies, no personal data; nothing else is sent. */
 (function(){
   var m=document.querySelector('meta[name="opc-click-events"]');if(!m||m.getAttribute('content')!=='on')return;
