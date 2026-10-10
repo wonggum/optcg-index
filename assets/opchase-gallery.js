@@ -203,7 +203,7 @@
     function arm(ph) {
       clearTimeout(timer); if (stopped || N <= 1) return;
       var wait = Math.max(DELAY + (ph || 0), idleUntil - Date.now());
-      timer = setTimeout(function () { if (canRun()) nav(1); arm(); }, wait);
+      timer = setTimeout(function () { if (canRun()) { if (cnt) cnt.removeAttribute('aria-live'); nav(1); } arm(); }, wait);   // auto-paging is not announced
     }
     function syncPP() { if (!pp) return; its(); pp.setAttribute('aria-pressed', stopped ? 'true' : 'false'); pp.setAttribute('aria-label', (stopped ? 'Play' : 'Pause') + ' auto-scroll'); pp.hidden = C <= per(); }
     if (pp) pp.onclick = function () { stopped = !stopped; idleUntil = 0; syncPP(); arm(); };
@@ -215,7 +215,8 @@
     track.addEventListener('pointerdown', poke, { passive: true });
     track.addEventListener('wheel', poke, { passive: true });
     document.addEventListener('visibilitychange', function () { if (!document.hidden) arm(); });
-    if (pv) pv.onclick = function () { nav(-1); poke(); }; if (nx) nx.onclick = function () { nav(1); poke(); };
+    function say() { if (cnt) cnt.setAttribute('aria-live', 'polite'); }   // announced only after the user pages
+    if (pv) pv.onclick = function () { say(); nav(-1); poke(); }; if (nx) nx.onclick = function () { say(); nav(1); poke(); };
     track.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); }, { passive: true });
     track.addEventListener('scrollend', function () { busy = 0; });
     ['touchstart', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { busy = 0; }, { passive: true }); });
