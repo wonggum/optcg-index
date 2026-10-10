@@ -1644,3 +1644,18 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .paidl b{color:var(--text)}
 .fw .paidl{margin:var(--sp-2,8px) 0 4px}
 .stale-n{font-size:var(--fs-14,14px);color:var(--text);border:1px solid var(--muted);border-radius:6px;padding:8px 12px;margin:var(--sp-2,8px) 0}
+
+/* UI-01 (2026-10-09): once the 6 h rule has removed every listing of a block and no eBay link is left in it, the block shows only its heading and the
+   "hidden / last updated" note (the Paid links label, paging controls, tabs, counts and fine print belong to listings that are no longer there) */
+.ebx-empty>*:not(h2):not(.sec-h):not(.car-h):not(.stale-n){display:none!important}
+.stale-n a{color:var(--text);text-decoration:underline;text-underline-offset:3px;font-weight:600;white-space:nowrap}
+
+/* UI-09 (2026-10-09): the eBay photo credit ("Photo: eBay listing by <seller> · View on eBay") and the version line are never cut with an ellipsis */
+.tile-attr,.tgm .lt>.tile-eb>.tile-attr,.tgm .lt>.tile-eb>.hs-attr.tile-attr,.tgm .lt .tile-b>.tile-attr,.tgm .lt .tile-b>.hs-attr.tile-attr,.tgm .lt .tile-attr,.tgm .lt .hs-attr.tile-attr{
+  white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.35;padding-top:4px}
+.tile-attr a{white-space:nowrap}
+.tile-v,.tgm .tile-v,.tgm .lt .tile-v{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip}
+.tgm .tile-v .tile-s,.tgm .lt .tile-v .tile-s{white-space:normal}
+
+/* UI-10 (2026-10-09): pre-release badge */
+.pill.pre{cursor:default;margin:0 0 var(--sp-3)}
