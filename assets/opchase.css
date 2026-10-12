@@ -1668,3 +1668,10 @@ svg circle.end{fill:var(--accent,#a8740d)}
 
 /* UI-10 (2026-10-09): pre-release badge */
 .pill.pre{cursor:default;margin:0 0 var(--sp-3)}
+
+/* home guides strip (2026-10-12) */
+.hg-c{text-decoration:none;color:inherit}
+.hg-c .tile-eb{height:100%}
+.hg-c:focus-visible .tile-eb{outline:2px solid var(--focus);outline-offset:2px}
+.hg-d{font-size:var(--fs-14);line-height:1.5;color:var(--text-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:760px){.hg-row{display:flex;gap:var(--sp-3);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:var(--sp-2)}.hg-row::-webkit-scrollbar{display:none}.hg-row>.hg-c{flex:0 0 78%;scroll-snap-align:start}}
