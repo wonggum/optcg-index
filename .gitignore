@@ -18,6 +18,7 @@
 !characters/*/
 !guides/
 !guides/*/
+!guides/img/
 !og/
 !index.html
 !.nojekyll
@@ -3245,4 +3246,11 @@
 !og/st13-003-2a-win-luffy-psa-10.png
 !og/st15-002-sp-whitebeard-psa-10.png
 !og/st26-005-sp-en-luffy-psa-10.png
+!guides/img/ace-prb01-013-manga.svg
+!guides/img/kaido-op17-062-sp.svg
+!guides/img/luffy-op01-003-errata.svg
+!guides/img/luffy-op05-119-anniv-jp.svg
+!guides/img/luffy-op05-119-manga.svg
+!guides/img/luffy-op13-119-sp.svg
+!guides/img/mihawk-op14-119.svg
 !.gitignore
