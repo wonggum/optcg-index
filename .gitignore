@@ -4,6 +4,7 @@
 !.github/workflows/
 !assets/
 !assets/fonts/
+!assets/own_ref/
 !cards/
 !cards/*/
 !privacy/
@@ -3249,6 +3250,15 @@
 !og/st15-002-sp-whitebeard-psa-10.png
 !og/st26-005-sp-en-luffy-psa-10.png
 !750cf414457c715f040d079fb3c60b31.txt
+!assets/own_ref/ref-01.webp
+!assets/own_ref/ref-02.webp
+!assets/own_ref/ref-03.webp
+!assets/own_ref/ref-04.webp
+!assets/own_ref/ref-05.webp
+!assets/own_ref/ref-06.webp
+!assets/own_ref/ref-07.webp
+!assets/own_ref/ref-08.webp
+!assets/own_ref/ref-09.webp
 !guides/img/ace-op13-119-wanted-errata.svg
 !guides/img/ace-op13-119-wanted-plain.svg
 !guides/img/ace-prb01-013-manga.svg
