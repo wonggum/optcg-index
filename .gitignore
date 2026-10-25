@@ -3259,3 +3259,7 @@
 !guides/img/luffy-op13-119-sp.svg
 !guides/img/mihawk-op14-119.svg
 !.gitignore
+!data/
+!data/listings/
+!data/listings/cards/
+!data/listings/**/*.json
