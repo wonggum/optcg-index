@@ -53,24 +53,26 @@ g();setInterval(g,60000)})();</script><style>.v4s .lt-ttl,.v4s .ttl{overflow-wra
 (function(){if(window.OPC_V4)return;window.OPC_V4=1;
 var EPN='mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339217952&customid={c}&toolid=10001&mkevt=1',REL='sponsored noopener',
 MSG='Live listings updating \u2014 search on eBay',NOTE=0,FB=[],CACHE={},
-ITM=/^[0-9]{9,15}$/,IMG=/^[A-Za-z0-9_~-]{8,40}$/,SEL=/^[A-Za-z0-9_.*\-]{1,64}$/,CK=/^[A-Za-z0-9]{1,60}$/,CID=/^[A-Za-z0-9_]{1,40}$/,FRESH=216e5,
+ITM=/^[0-9]{9,15}$/,IMG=/^[A-Za-z0-9_~-]{8,40}$/,SEL=/^[A-Za-z0-9_.*\-]{1,64}$/,CK=/^[A-Za-z0-9]{1,60}$/,CID=/^[A-Za-z0-9_]{1,40}$/,FRESH=216e5,HIDE=12e5,FIRE=5,
 DENY={'__proto__':1,constructor:1,prototype:1},HOLDK={ST01x012xSPR:1,ST13x003x2AxWIN:1,Px007xCELEB:1,Px041xONLINExV2:1,Px106xWIN:1},
 BAD=/[<>`{}\\\u0000-\u001f\u007f-\u009f\u00ad\u034f\u115f\u1160\u180e\u3164\u200b-\u200f\u2028\u2029\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]|\udb40[\udc00-\udc7f]/;
 /*SPAM-GEN*/var CONF={"\u0430": "a", "\u0432": "b", "\u0435": "e", "\u0451": "e", "\u043a": "k", "\u043c": "m", "\u043d": "h", "\u043e": "o", "\u0440": "p", "\u0441": "c", "\u0442": "t", "\u0443": "y", "\u0445": "x", "\u0456": "i", "\u0457": "i", "\u0458": "j", "\u0455": "s", "\u0501": "d", "\u051b": "q", "\u051d": "w", "\u0261": "g", "\u0251": "a", "\u03bf": "o", "\u03b1": "a", "\u03b2": "b", "\u03b5": "e", "\u03b9": "i", "\u03ba": "k", "\u03bd": "v", "\u03c1": "p", "\u03c4": "t", "\u03c5": "u", "\u03c7": "x", "\u03c9": "w", "\u0131": "i", "\u0269": "i", "\u2113": "l", "\u3002": ".", "\uff61": ".", "\u2024": ".", "\u2027": ".", "\u00b7": ".", "\u2022": ".", "\u2219": ".", "\u22c5": ".", "\uff20": "@", "\ufe6b": "@"},SAFE=[[new RegExp("([a-z])\\.d\\.(?=[a-z])","g"),"$1 d "],[new RegExp("\\bd\\.(?=[a-z])","g"),"d "],[new RegExp("\\bmr\\.2\\.bon\\.","g"),"mr 2 bon "],[new RegExp("\\bmr\\.(?=\\s*\\d)","g"),"mr "],[new RegExp("\\b(mr|mrs|ms|dr|jr|sr|st|vol|no|ver|ed|sp|alt|ft|pt|gem|mt|pr|ex|vs)\\.","g"),"$1 "]],SELU=new RegExp("^(?:https?|www)[.:]|^www|\\.(?:com|net|org|io|co|me|us|uk|ca|au|de|fr|jp|cn|ru|tv|cc|gg|ly|app|dev|shop|store|site|online|top|vip|club|link|live|xyz|info|biz)(?![\\s\\S])|\\.(?:com|co|net|org)\\.[a-z]{2}(?![\\s\\S])|\\.\\.|^\\.|\\.(?![\\s\\S])",'i'),SPAM=new RegExp("https?:|www\\.|\\b[a-z0-9][a-z0-9-]+\\.[a-z]{2,6}\\b(?!\\.?\\d)|\\b[a-z0-9]\\.(?:com|net|org|io|co|me|us|uk|ca|au|de|fr|jp|cn|ru|tv|cc|gg|ly|app|dev|shop|store|site|online|top|vip|club|link|live|xyz|info|biz)\\b|\\bdot\\s*(?:com|net|org)\\b|[(\\[]\\s*dot\\s*[)\\]]|@\\s*[a-z0-9_]|\\be[\\s._-]?mail\\b|\\b(?:g|hot|yahoo|proton)?mail\\s*(?:me|us)\\b|\\b(?:gmail|yahoo|hotmail|outlook|icloud|proton(?:mail|\\s*me)?|aol|gmx|ymail)\\b|\\blive\\s*(?:dot|\\.)\\s*com\\b|\\bat\\s+(?:gmail|yahoo|hotmail|outlook|icloud|proton\\w*|aol|gmx|ymail)\\b|\\b(?:telegram|whatsapp|instagram|insta|ig|discord|signal|snapchat|wechat|venmo|cashapp|zelle|paypal\\s*me)\\b|\\bt\\.me\\b|\\bwa\\.me\\b|(?:\\+?1[\\s.-]?)?\\(?\\b\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}\\b",""),SPNS=new RegExp("[a-z0-9]\\.(?:com|net|org|io|gg|me|shop|store|xyz|co|us|ly|app)(?![a-z])",""),SPSQ=new RegExp("gmail|hotmail|yahoomail|icloud|protonmail|outlookcom|telegram|whatsapp|instagram|discord|snapchat|https?www|www[a-z0-9]{2,}(?:com|net|org)|[a-z0-9]{3,}dotcom","");function selOk(s){return typeof s==='string'&&SEL.test(s)&&!SELU.test(s)}function fold(t){t=t.normalize('NFKD').replace(/\p{Mn}/gu,'').toLowerCase();var o='',i,c;for(i=0;i<2;i++){o='';for(c of t)o+=CONF.hasOwnProperty(c)?CONF[c]:c;t=o}return t}function spam(t){var f=fold(t),k;for(k=0;k<SAFE.length;k++)f=f.replace(SAFE[k][0],SAFE[k][1]);return SPAM.test(f)||SPNS.test(f.replace(/[ \t\n\r\f\v\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000]+/g,''))||SPSQ.test(f.replace(/[^a-z0-9]+/g,''))}/*/SPAM-GEN*/
 function ckOk(c){return typeof c==='string'&&CK.test(c)&&!DENY[c]&&!HOLDK[c]}
 function tOk(t){return typeof t==='string'&&t.length>0&&t.length<=80&&t.normalize('NFKC')===t&&!BAD.test(t)&&!spam(t)}
-/* shown only if: valid fields AND now < fetched_at+6h AND now < exp <= fetched_at+6h AND (auction: now < end <= fetched_at+10d) */
+/* shown only if: valid fields AND now < fetched_at+6h AND now < exp <= fetched_at+6h AND (auction: now < end-20min, end <= fetched_at+10d)
+   auction-first v1: auctions ending in < 20 min are hidden (HIDE); the 6 h FRESH cap is unchanged */
 function okL(L,n,fa){var e=L&&Date.parse(L.exp),d=L&&L.auction?Date.parse(L.end):0;return !!L&&typeof L==='object'&&!Array.isArray(L)&&typeof L.itm==='string'&&ITM.test(L.itm)&&tOk(L.title)
  &&typeof L.price==='number'&&isFinite(L.price)&&L.price>0&&L.price<=200000&&(L.seller===null||selOk(L.seller))&&(L.img==null||(typeof L.img==='string'&&IMG.test(L.img)))
- &&ckOk(L.card)&&typeof L.auction==='boolean'&&typeof L.chk==='boolean'&&isFinite(fa)&&n<fa+FRESH&&isFinite(e)&&n<e&&e<=fa+FRESH&&(!L.auction||(isFinite(d)&&n<d&&d<=fa+864e6&&e<=d))}
+ &&ckOk(L.card)&&typeof L.auction==='boolean'&&typeof L.chk==='boolean'&&isFinite(fa)&&n<fa+FRESH&&isFinite(e)&&n<e&&e<=fa+FRESH&&(!L.auction||(isFinite(d)&&n<d-HIDE&&d<=fa+864e6&&e<=d))}
 function wb(e){e.style.overflowWrap='anywhere';e.style.wordBreak='break-word';return e}
 function el(t,a,txt){var e=document.createElement(t);if(a)for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e}
 var CKO=null;function href(L,cid){var c=CID.test(cid||'')?cid:'site';return 'https://www.ebay.com/itm/'+L.itm+'?'+EPN.replace('{c}',c+'__'+(CKO||L.card))}
 function a(L,cid,cls,txt){var x=el('a',{href:href(L,cid),rel:REL,target:'_blank'},txt);if(cls)x.className=cls;return x}
+function fire(L){return !!L&&L.auction===true&&typeof L.bids==='number'&&L.bids>=FIRE}
 function money(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function left(end){var m=(Date.parse(end)-Date.now())/6e4;return m<60?Math.max(1,Math.floor(m))+'m':(m<2880?Math.floor(m/60)+'h '+Math.floor(m%60)+'m':Math.round(m/1440)+'d')}
 function btn(L,p){var s=el('span',{'class':'ebp-i'}),x;
- if(L.auction){x=a(L,p+'_bid','ebtn ebtn-sm ebtn-au','Current bid '+money(L.price)+' \u00b7 '+(L.bids!=null?L.bids+' bid'+(L.bids===1?'':'s')+' \u00b7 ':''));
+ if(L.auction){x=a(L,p+'_bid','ebtn ebtn-sm ebtn-au',(fire(L)?'\ud83d\udd25 ':'')+'Current bid '+money(L.price)+' \u00b7 '+(L.bids!=null?L.bids+' bid'+(L.bids===1?'':'s')+' \u00b7 ':''));
   var t=el('span',{'class':'left','data-end':L.end},left(L.end));x.appendChild(t);x.appendChild(document.createTextNode(' left'))}
  else x=a(L,p+'_bin','ebtn ebtn-sm ebtn-bn','Buy Now '+money(L.price));s.appendChild(x);return s}
 function photo(L,cid,w,h){if(!L.img)return null;var u='https://i.ebayimg.com/images/g/'+L.img+'/s-l',x=a(L,cid,'chl-ph');
@@ -81,7 +83,7 @@ function render(ph,L){CKO=ph.getAttribute('data-cid-key');if(!CK.test(CKO||''))C
  if(k==='chk'){if(L.chk===true)out.push(pill(1))}
  else if(k==='btn')out.push(btn(L,p));
  else if(k==='ph'){im=photo(L,cp,300,400);if(im)out.push(im);out.push(credit(L,cc))}
- else if(k==='row'){var td=el('td',{'class':'im'});im=photo(L,cp,72,96);if(im)td.appendChild(im);out.push(td,wb(el('td',{'class':'sm ttl'},L.title)),el('td',{'class':'r'},money(L.price)));var t2=el('td');t2.appendChild(btn(L,p));out.push(t2)}
+ else if(k==='row'){var td=el('td',{'class':'im'});im=photo(L,cp,72,96);if(im)td.appendChild(im);out.push(td,wb(el('td',{'class':'sm ttl'},L.title)),el('td',{'class':'r'},(L.auction?'Current bid ':'')+money(L.price)));var t2=el('td');t2.appendChild(btn(L,p));out.push(t2)}
  else{var w=el('div',{'class':k==='tile'?'tile-eb':'chl-i'});im=photo(L,cp,k==='tile'?300:220,k==='tile'?400:293);if(im)w.appendChild(im);w.appendChild(credit(L,cc));
   w.appendChild(wb(el('div',{'class':'lt-ttl',title:L.title},L.title)));var e=el('div',{'class':'ebp'});e.appendChild(btn(L,p));w.appendChild(e);out.push(w)}
  return out}
@@ -90,8 +92,8 @@ function fillc(ph,L){CKO=ph.getAttribute('data-cid-key');if(!CK.test(CKO||''))CK
  [].forEach.call(ph.querySelectorAll('[data-v4c]'),function(c){var t=c.getAttribute('data-v4c'),n=[],im;
   if(t==='img'){im=photo(L,cp,96,128);if(!im)return;n.push(im)}
   else if(t==='ttl'){c.setAttribute('title',L.title);n.push(document.createTextNode(L.title));wb(c)}
-  else if(t==='pri'){n.push(el('b',null,money(L.price)));if(!L.auction)n.push(el('div',{'class':'sm'},L.ship==null?'incl. ship':(L.ship?money(L.price-L.ship)+' +'+money(L.ship)+' ship':money(L.price)+' free ship')));
-   else n.push(el('div',{'class':'sm'},(L.bids||0)+' bid'+(L.bids===1?'':'s')))}
+  else if(t==='pri'){if(L.auction)n.push(el('span',{'class':'sm cb'},'Current bid '));n.push(el('b',null,money(L.price)));if(!L.auction)n.push(el('div',{'class':'sm'},L.ship==null?'incl. ship':(L.ship?money(L.price-L.ship)+' +'+money(L.ship)+' ship':money(L.price)+' free ship')));
+   else n.push(el('div',{'class':'sm'},(fire(L)?'\ud83d\udd25 ':'')+(L.bids||0)+' bid'+(L.bids===1?'':'s')))}
   else if(t==='left'){n.push(el('b',null));n[0].appendChild(el('span',{'class':'left','data-end':L.end},left(L.end)))}
   else if(t==='lnk'){n.push(a(L,p+(L.auction?'_bid':'_bin'),'ebtn','View on eBay \u2192'))}
   else if(t==='chk'){if(L.chk!==true)return;n.push(pill(0))}
@@ -102,9 +104,11 @@ function fillc(ph,L){CKO=ph.getAttribute('data-cid-key');if(!CK.test(CKO||''))CK
    fallback placeholder is visible any more. */
 function note(){if(NOTE)return;NOTE=1;var f=document.querySelector('.v4s');if(!f)return;var p=el('p',{'class':'stl sm','data-v4n':'1'},MSG+'. Current prices and time left return after our next listing refresh.');
  var t=(f.parentNode&&f.parentNode.closest('.tl,.lcar,.car,table'))||(f.tagName==='TR'?(f.parentNode&&f.parentNode.closest('table'))||f:f);if(t.parentNode)t.parentNode.insertBefore(p,t)}
-function unnote(){if(P.some(function(ph){if(ph.getAttribute('data-v4-live')==='1')return false;var x=ph.closest('[data-v4fb]');return !x}))return;
+/* v1.1: the notice means 'our data is missing/stale', so it stays only while a visible placeholder fell back because of stale/invalid data;
+   a card that simply has no listing right now (fresh data) never raises it */
+function unnote(){if(P.some(function(ph){if(ph.getAttribute('data-v4st')!=='1')return false;var x=ph.closest('[data-v4fb]');return !x}))return;
  [].forEach.call(document.querySelectorAll('p[data-v4n]'),function(x){x.parentNode.removeChild(x)});NOTE=0}
-function restore(ph){var i=+ph.getAttribute('data-fbi');if(!FB[i])return;while(ph.firstChild)ph.removeChild(ph.firstChild);FB[i].forEach(function(c){ph.appendChild(c.cloneNode(true))});ph.removeAttribute('data-lx');ph.removeAttribute('data-fx');ph.removeAttribute('data-v4i');ph.setAttribute('data-v4-live','0')}
+function restore(ph){var i=+ph.getAttribute('data-fbi');if(!FB[i])return;while(ph.firstChild)ph.removeChild(ph.firstChild);FB[i].forEach(function(c){ph.appendChild(c.cloneNode(true))});ph.removeAttribute('data-lx');ph.removeAttribute('data-fx');ph.removeAttribute('data-v4i');ph.removeAttribute('data-v4a');ph.removeAttribute('data-v4e');ph.removeAttribute('data-v4st');ph.setAttribute('data-v4-live','0')}
 function own(d,c){return d.cards&&typeof d.cards==='object'&&ckOk(c)&&Object.prototype.hasOwnProperty.call(d.cards,c)?d.cards[c]:null}
 /* carfix: data-n indexes the card's VALID entries (okL at this moment), so an ended/expired entry never holds a slot; the
    next valid listing of the same card + list moves up. Fallback only when that card's list has no valid entry left at index n. */
@@ -112,12 +116,20 @@ function pick(d,ph,t,fa){var c=ph.getAttribute('data-card'),l=ph.getAttribute('d
  if(l==='ending'){arr=Array.isArray(d.ending)?d.ending:[];v=arr.filter(function(L){if(!L||typeof L!=='object')return false;
   C=own(d,L.card);return !!C&&Array.isArray(C.auc)&&C.auc.some(function(x){return x&&x.itm===L.itm})})}
  else{C=own(d,c);arr=C&&(l==='auc'?C.auc:l==='grail'?C.grail:C.bin);v=Array.isArray(arr)?arr.filter(function(L){return !!L&&L.card===c}):[]}
- v=v.filter(function(L){return okL(L,t,fa)});return v[n]||null}
+ v=v.filter(function(L){return okL(L,t,fa)});
+ /* auction-first v1: auctions by end asc; one tile per itemId (auction preferred over a BIN copy of the same item); an 'auc' slot with
+    no valid auction left at n is backfilled by the same card's valid BIN (k = n - #auctions); reserve tiles + search link stay last */
+ var A=[],S={};if(C&&Array.isArray(C.auc))C.auc.forEach(function(L){if(L&&L.card===c&&okL(L,t,fa)&&!S[L.itm]){S[L.itm]=1;A.push(L)}});
+ if(l==='auc'||l==='ending'){var u={};v=v.filter(function(L){if(u[L.itm])return false;u[L.itm]=1;return true}).sort(function(x,y){return Date.parse(x.end)-Date.parse(y.end)||(x.itm<y.itm?-1:x.itm>y.itm?1:0)})}
+ else if(l==='bin')v=v.filter(function(L){return !S[L.itm]});
+ if(l==='auc'&&!v[n]&&C&&Array.isArray(C.bin)){var B=C.bin.filter(function(L){return !!L&&L.card===c&&!S[L.itm]&&okL(L,t,fa)});return B[n-v.length]||null}
+ return v[n]||null}
 function apply(ph,d,t){var n=t||Date.now(),ok=d&&typeof d==='object'&&d.schema===4,fa=ok?Date.parse(d.fetched_at):NaN,L=ok?pick(d,ph,n,fa):null;
- if(!okL(L,n,fa)){restore(ph);note();return}
+ if(!okL(L,n,fa)){restore(ph);if(!(ok&&isFinite(fa)&&n<fa+FRESH)){ph.setAttribute('data-v4st','1');note()}return}
+ ph.removeAttribute('data-v4st');
  ph.setAttribute('data-fx',String(fa+FRESH));
  if(ph.getAttribute('data-kind')==='rowc')fillc(ph,L);else{var nodes=render(ph,L);while(ph.firstChild)ph.removeChild(ph.firstChild);nodes.forEach(function(x){ph.appendChild(x)})}
- ph.setAttribute('data-lx',L.exp);ph.setAttribute('data-v4-live','1');ph.setAttribute('data-v4i',L.img?'1':'0');
+ ph.setAttribute('data-lx',L.auction?new Date(Math.min(Date.parse(L.exp),Date.parse(L.end)-HIDE)).toISOString():L.exp);ph.setAttribute('data-v4-live','1');ph.setAttribute('data-v4a',L.auction?'1':'0');ph.setAttribute('data-v4e',L.auction?String(Date.parse(L.end)):'');ph.setAttribute('data-v4i',L.img?'1':'0');
  var k=ph.getAttribute('data-kind'),h=(k==='ph'||k==='row'||k==='rowc')&&ph.closest('[data-v4h]');if(h){h.setAttribute('data-p',L.price.toFixed(2));h.setAttribute('data-e',L.auction?String(Date.parse(L.end)):'')}}
 function load(u){if(!CACHE[u])CACHE[u]=fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null});return CACHE[u]}
 var P=[].slice.call(document.querySelectorAll('.v4s[data-v4]'));
@@ -128,8 +140,20 @@ P.forEach(function(ph,i){FB[i]=[].slice.call(ph.childNodes).map(function(c){retu
    a track with no live tile keeps its fallbacks visible (never-disappear rule). Tab counts (.tl-tab span) = visible tiles. */
 /* grail40 reserve: tiles marked data-v4r="1" are per-tier reserves; shown (in order) only while the track's visible live count is below
    its target (= number of regular tiles), so an emptied tile is backfilled by the next real listing of the same tier. */
+/* auction-first v1.1: in an auction track (every tile's main placeholder is data-list auc/ending) the order is
+   ALL live auctions (regular + reserve, end time asc) -> live BIN backfills (regular, then reserve) -> fallbacks; at most target (= regular
+   tile count) tiles visible, so a BIN backfill is shown only once every auction and reserve auction is used, and never before an auction. */
+function sp(x){return x.querySelector('.v4s[data-kind="ph"],.v4s[data-kind="tile"],.v4s[data-kind="panel"]')}
+function aucTrack(k){var m=0,o=1;k.forEach(function(x){var p=sp(x);if(!p)return;m=1;var l=p.getAttribute('data-list');if(l!=='auc'&&l!=='ending')o=0});return m&&o}
+function sinkA(t,k,q){var au=[],bn=[],br=[],fb=[],tg=0,ch=0;
+ k.forEach(function(x){var p=sp(x);if(!p)return;var r=x.getAttribute('data-v4r')==='1';if(!r)tg++;
+  if(p.getAttribute('data-v4-live')!=='1')fb.push(x);else if(p.getAttribute('data-v4a')==='1')au.push([x,+p.getAttribute('data-v4e')||0,k.indexOf(x)]);else(r?br:bn).push(x)});
+ au.sort(function(a,b){return a[1]-b[1]||a[2]-b[2]});var ord=au.map(function(a){return a[0]}).concat(bn,br),vis=ord.slice(0,tg),lv=vis.length;
+ if(!q)ord.concat(fb).forEach(function(x){t.appendChild(x)});
+ k.forEach(function(x){if(!sp(x))return;var h=vis.indexOf(x)<0&&(lv||x.getAttribute('data-v4r')==='1');if(h){if(x.style.display!=='none'||!x.hasAttribute('data-v4fb'))ch=1;x.setAttribute('data-v4fb','1');x.style.display='none'}
+  else if(x.hasAttribute('data-v4fb')){x.removeAttribute('data-v4fb');x.style.display='';ch=1}});return ch}
 var SQ=0;function sink(q){var ch=0;[].forEach.call(document.querySelectorAll('.car-track'),function(t){var k=[].slice.call(t.children),a=[],b=[],lv=0,tg=0,rs=[];
- function sp(x){return x.querySelector('.v4s[data-kind="ph"],.v4s[data-kind="tile"],.v4s[data-kind="panel"]')}
+ if(aucTrack(k)){if(sinkA(t,k,q))ch=1;return}
  k.forEach(function(x){var p=sp(x);if(!p)return;var L=p.getAttribute('data-v4-live')==='1';
   if(x.getAttribute('data-v4r')==='1'){rs.push([x,L]);return}tg++;
   if(!L)b.push(x);else{lv++;if(p.getAttribute('data-v4i')!=='1')a.push(x)}});
@@ -142,7 +166,7 @@ var SQ=0;function sink(q){var ch=0;[].forEach.call(document.querySelectorAll('.c
  unnote();if(ch&&!q){SQ=1;document.dispatchEvent(new Event('opc:repage'));SQ=0}}
 /* home filters (#find) reset tile display then fire opc:repage: re-hide fallback tiles quietly (no reorder, no re-dispatch) */
 document.addEventListener('opc:repage',function(){if(!SQ)sink(1)});
-function reap(n){var Q=P.filter(function(ph){return due(ph,n)});if(!Q.length)return Promise.resolve();
+function reap(n){if(!P.some(function(ph){return due(ph,n)}))return Promise.resolve();var Q=P;   /* v1: re-apply all -> no index-shift duplicates */
  return Promise.all(Q.map(function(ph){return load(ph.getAttribute('data-v4')).then(function(d){restore(ph);apply(ph,d,n)})})).then(function(){sink();document.dispatchEvent(new Event('opc:listings'))})}
 Promise.all(P.map(function(ph){var u=ph.getAttribute('data-v4');return load(u).then(function(d){apply(ph,d)})})).then(function(){sink();
  var live=P.filter(function(p){return p.getAttribute('data-v4-live')==='1'}).length;document.documentElement.setAttribute('data-opc-live',!P.length?'0':live===P.length?'1':live?'partial':'0');
