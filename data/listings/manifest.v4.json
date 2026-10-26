@@ -1,9 +1,9 @@
 {
 "schema": 4,
-"fetched_at": "2026-10-26T09:37:56-07:00",
-"auc_fetched_at": "2026-10-26T09:38:28-07:00",
+"fetched_at": "2026-10-26T13:20:12-07:00",
+"auc_fetched_at": "2026-10-26T13:20:44-07:00",
 "files": {
-"data/listings/home.v4.json": 641,
+"data/listings/home.v4.json": 643,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 1,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 2,
 "data/listings/cards/eb02-006-serial-yamato-psa-10.v4.json": 4,
@@ -17,12 +17,12 @@
 "data/listings/cards/eb03-061-manga-uta-psa-10.v4.json": 12,
 "data/listings/cards/eb04-044-manga-koby-psa-10.v4.json": 14,
 "data/listings/cards/op01-003-aa-luffy-psa-10.v4.json": 3,
-"data/listings/cards/op01-016-manga-prb-nami-psa-10.v4.json": 3,
+"data/listings/cards/op01-016-manga-prb-nami-psa-10.v4.json": 4,
 "data/listings/cards/op01-016-sp-nami-psa-10.v4.json": 9,
-"data/listings/cards/op01-025-aa-zoro-psa-10.v4.json": 9,
+"data/listings/cards/op01-025-aa-zoro-psa-10.v4.json": 10,
 "data/listings/cards/op01-025-tc23-top8-zoro-psa-10.v4.json": 0,
 "data/listings/cards/op01-060-aa-doflamingo-psa-10.v4.json": 6,
-"data/listings/cards/op01-070-aa-mihawk-psa-10.v4.json": 5,
+"data/listings/cards/op01-070-aa-mihawk-psa-10.v4.json": 6,
 "data/listings/cards/op01-078-sp-hancock-psa-10.v4.json": 7,
 "data/listings/cards/op01-094-top8-kaido-psa-10.v4.json": 0,
 "data/listings/cards/op01-120-aa-shanks-psa-10.v4.json": 10,
@@ -37,7 +37,7 @@
 "data/listings/cards/op03-123-cs24-katakuri-psa-10.v4.json": 1,
 "data/listings/cards/op04-083-manga-sabo-psa-10.v4.json": 10,
 "data/listings/cards/op05-060-eb02sp-luffy-psa-10.v4.json": 0,
-"data/listings/cards/op05-069-manga-law-psa-10.v4.json": 7,
+"data/listings/cards/op05-069-manga-law-psa-10.v4.json": 6,
 "data/listings/cards/op05-074-manga-kid-psa-10.v4.json": 10,
 "data/listings/cards/op05-091-sp-rebecca-psa-10.v4.json": 10,
 "data/listings/cards/op05-119-3a-gold-luffy-psa-10.v4.json": 3,
@@ -112,10 +112,10 @@
 "data/listings/cards/db-op07.v4.json": 12,
 "data/listings/cards/db-op08.v4.json": 9,
 "data/listings/cards/db-op09.v4.json": 29,
-"data/listings/cards/db-op10.v4.json": 23,
+"data/listings/cards/db-op10.v4.json": 24,
 "data/listings/cards/db-op11.v4.json": 8,
 "data/listings/cards/db-op12.v4.json": 16,
-"data/listings/cards/db-op13.v4.json": 15,
+"data/listings/cards/db-op13.v4.json": 16,
 "data/listings/cards/db-op14.v4.json": 22,
 "data/listings/cards/db-op16.v4.json": 11,
 "data/listings/cards/db-p.v4.json": 12,
@@ -129,5 +129,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 5
 },
-"n": 1607
+"n": 1613
 }
