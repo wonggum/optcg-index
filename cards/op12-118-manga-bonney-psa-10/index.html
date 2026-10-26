@@ -122,8 +122,13 @@ function fillc(ph,L){CKO=ph.getAttribute('data-cid-key');if(!CK.test(CKO||''))CK
   else if(t==='chk'){if(L.chk!==true)return;n.push(pill(0))}
   else return;
   while(c.firstChild)c.removeChild(c.firstChild);n.forEach(function(x){c.appendChild(x)})})}
-function note(){if(NOTE)return;NOTE=1;var f=document.querySelector('.v4s');if(!f)return;var p=el('p',{'class':'stl sm'},MSG+'. Current prices and time left return after our next listing refresh.');
- var t=f.tagName==='TR'?(f.parentNode&&f.parentNode.closest('table'))||f:f;if(t.parentNode)t.parentNode.insertBefore(p,t)}
+/* grail40: the notice is placed above the block that contains the first placeholder (tier tabs / carousel / table), never inside a tile
+   (it used to land inside the first tile's .tile-eb and stayed there after that tile went live); removed again by sink() when no
+   fallback placeholder is visible any more. */
+function note(){if(NOTE)return;NOTE=1;var f=document.querySelector('.v4s');if(!f)return;var p=el('p',{'class':'stl sm','data-v4n':'1'},MSG+'. Current prices and time left return after our next listing refresh.');
+ var t=(f.parentNode&&f.parentNode.closest('.tl,.lcar,.car,table'))||(f.tagName==='TR'?(f.parentNode&&f.parentNode.closest('table'))||f:f);if(t.parentNode)t.parentNode.insertBefore(p,t)}
+function unnote(){if(P.some(function(ph){if(ph.getAttribute('data-v4-live')==='1')return false;var x=ph.closest('[data-v4fb]');return !x}))return;
+ [].forEach.call(document.querySelectorAll('p[data-v4n]'),function(x){x.parentNode.removeChild(x)});NOTE=0}
 function restore(ph){var i=+ph.getAttribute('data-fbi');if(!FB[i])return;while(ph.firstChild)ph.removeChild(ph.firstChild);FB[i].forEach(function(c){ph.appendChild(c.cloneNode(true))});ph.removeAttribute('data-lx');ph.removeAttribute('data-fx');ph.removeAttribute('data-v4i');ph.setAttribute('data-v4-live','0')}
 function own(d,c){return d.cards&&typeof d.cards==='object'&&ckOk(c)&&Object.prototype.hasOwnProperty.call(d.cards,c)?d.cards[c]:null}
 /* carfix: data-n indexes the card's VALID entries (okL at this moment), so an ended/expired entry never holds a slot; the
@@ -131,7 +136,7 @@ function own(d,c){return d.cards&&typeof d.cards==='object'&&ckOk(c)&&Object.pro
 function pick(d,ph,t,fa){var c=ph.getAttribute('data-card'),l=ph.getAttribute('data-list'),n=+ph.getAttribute('data-n')||0,arr,C,v;
  if(l==='ending'){arr=Array.isArray(d.ending)?d.ending:[];v=arr.filter(function(L){if(!L||typeof L!=='object')return false;
   C=own(d,L.card);return !!C&&Array.isArray(C.auc)&&C.auc.some(function(x){return x&&x.itm===L.itm})})}
- else{C=own(d,c);arr=C&&(l==='auc'?C.auc:C.bin);v=Array.isArray(arr)?arr.filter(function(L){return !!L&&L.card===c}):[]}
+ else{C=own(d,c);arr=C&&(l==='auc'?C.auc:l==='grail'?C.grail:C.bin);v=Array.isArray(arr)?arr.filter(function(L){return !!L&&L.card===c}):[]}
  v=v.filter(function(L){return okL(L,t,fa)});return v[n]||null}
 function apply(ph,d,t){var n=t||Date.now(),ok=d&&typeof d==='object'&&d.schema===4,fa=ok?Date.parse(d.fetched_at):NaN,L=ok?pick(d,ph,n,fa):null;
  if(!okL(L,n,fa)){restore(ph);note();return}
@@ -143,13 +148,27 @@ function load(u){if(!CACHE[u])CACHE[u]=fetch(u,{cache:'no-cache'}).then(function
 var P=[].slice.call(document.querySelectorAll('.v4s[data-v4]'));
 P.forEach(function(ph,i){FB[i]=[].slice.call(ph.childNodes).map(function(c){return c.cloneNode(true)});ph.setAttribute('data-fbi',i)});
 /* carfix: inside each carousel track, tiles with a live listing + photo stay first (original order), then live without photo,
-   then fallback tiles; stable, never removes a tile. */
-function sink(){[].forEach.call(document.querySelectorAll('.car-track'),function(t){var k=[].slice.call(t.children),a=[],b=[];
- k.forEach(function(x){var p=x.querySelector('.v4s[data-kind="ph"],.v4s[data-kind="tile"],.v4s[data-kind="panel"]');if(!p)return;
-  if(p.getAttribute('data-v4-live')!=='1')b.push(x);else if(p.getAttribute('data-v4i')!=='1')a.push(x)});
- a.concat(b).forEach(function(x){t.appendChild(x)})})}
+   then fallback tiles; stable, never removes a tile.
+   grail40: if the track has at least one live tile, every non-live (fallback) tile is hidden (display:none, pager its() skips it);
+   a track with no live tile keeps its fallbacks visible (never-disappear rule). Tab counts (.tl-tab span) = visible tiles. */
+/* grail40 reserve: tiles marked data-v4r="1" are per-tier reserves; shown (in order) only while the track's visible live count is below
+   its target (= number of regular tiles), so an emptied tile is backfilled by the next real listing of the same tier. */
+var SQ=0;function sink(q){var ch=0;[].forEach.call(document.querySelectorAll('.car-track'),function(t){var k=[].slice.call(t.children),a=[],b=[],lv=0,tg=0,rs=[];
+ function sp(x){return x.querySelector('.v4s[data-kind="ph"],.v4s[data-kind="tile"],.v4s[data-kind="panel"]')}
+ k.forEach(function(x){var p=sp(x);if(!p)return;var L=p.getAttribute('data-v4-live')==='1';
+  if(x.getAttribute('data-v4r')==='1'){rs.push([x,L]);return}tg++;
+  if(!L)b.push(x);else{lv++;if(p.getAttribute('data-v4i')!=='1')a.push(x)}});
+ var show=[];rs.forEach(function(r){if(r[1]&&lv+show.length<tg)show.push(r[0]);else b.push(r[0])});lv+=show.length;
+ if(!q)a.concat(b).forEach(function(x){t.appendChild(x)});
+ k.forEach(function(x){var h=b.indexOf(x)>=0&&(lv||x.getAttribute('data-v4r')==='1');if(h){if(x.style.display!=='none'||!x.hasAttribute('data-v4fb'))ch=1;x.setAttribute('data-v4fb','1');x.style.display='none'}
+  else if(x.hasAttribute('data-v4fb')){x.removeAttribute('data-v4fb');x.style.display='';ch=1}})});
+ [].forEach.call(document.querySelectorAll('.tl-tab[aria-controls]'),function(b){var g=document.getElementById(b.getAttribute('aria-controls')),s=b.querySelector('span'),t=g&&g.querySelector('.car-track');
+  if(!s||!t)return;s.textContent=String([].filter.call(t.children,function(x){return x.style.display!=='none'}).length)});
+ unnote();if(ch&&!q){SQ=1;document.dispatchEvent(new Event('opc:repage'));SQ=0}}
+/* home filters (#find) reset tile display then fire opc:repage: re-hide fallback tiles quietly (no reorder, no re-dispatch) */
+document.addEventListener('opc:repage',function(){if(!SQ)sink(1)});
 function reap(n){var Q=P.filter(function(ph){return due(ph,n)});if(!Q.length)return Promise.resolve();
- return Promise.all(Q.map(function(ph){return load(ph.getAttribute('data-v4')).then(function(d){restore(ph);apply(ph,d,n)})})).then(sink)}
+ return Promise.all(Q.map(function(ph){return load(ph.getAttribute('data-v4')).then(function(d){restore(ph);apply(ph,d,n)})})).then(function(){sink();document.dispatchEvent(new Event('opc:listings'))})}
 Promise.all(P.map(function(ph){var u=ph.getAttribute('data-v4');return load(u).then(function(d){apply(ph,d)})})).then(function(){sink();
  var live=P.filter(function(p){return p.getAttribute('data-v4-live')==='1'}).length;document.documentElement.setAttribute('data-opc-live',!P.length?'0':live===P.length?'1':live?'partial':'0');
  document.dispatchEvent(new Event('opc:listings'))});
