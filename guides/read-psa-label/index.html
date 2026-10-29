@@ -271,7 +271,10 @@ function apply(ph,d,t){var n=t||Date.now(),ok=d&&typeof d==='object'&&d.schema==
  if(ph.getAttribute('data-kind')==='rowc')fillc(ph,L);else{var nodes=render(ph,L);while(ph.firstChild)ph.removeChild(ph.firstChild);nodes.forEach(function(x){ph.appendChild(x)})}
  ph.setAttribute('data-lx',L.auction?new Date(Math.min(Date.parse(L.exp),Date.parse(L.end)-HIDE)).toISOString():L.exp);ph.setAttribute('data-v4-live','1');ph.setAttribute('data-v4a',L.auction?'1':'0');ph.setAttribute('data-v4e',L.auction?String(Date.parse(L.end)):'');ph.setAttribute('data-v4i',L.img?'1':'0');
  var k=ph.getAttribute('data-kind'),h=(k==='ph'||k==='row'||k==='rowc')&&ph.closest('[data-v4h]');if(h){h.setAttribute('data-p',L.price.toFixed(2));h.setAttribute('data-e',L.auction?String(Date.parse(L.end)):'')}}
-function load(u){if(!CACHE[u])CACHE[u]=fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null});return CACHE[u]}
+/* VWORD_R2 (GM 2026-10-28): display-only cert-number mask. In every 'title' string of the loaded JSON (in memory only; the JSON files are not changed) a digit run of 9 or more digits shows only its last 4 digits, the rest as '*' (same length, so tOk/spam see the same shape). */
+function mskT(t){return typeof t==='string'?t.replace(/(^|[^0-9])([0-9]{5,})([0-9]{4})(?![0-9])/g,function(m,a,b,c){return a+b.replace(/[0-9]/g,'*')+c}):t}
+function mskD(d,z){if(d&&typeof d==='object'&&(z|0)<8){var k;if(Array.isArray(d)){for(k=0;k<d.length;k++)mskD(d[k],(z|0)+1)}else for(k in d){if(!Object.prototype.hasOwnProperty.call(d,k))continue;if(k==='title'&&typeof d[k]==='string')d[k]=mskT(d[k]);else mskD(d[k],(z|0)+1)}}return d}
+function load(u){if(!CACHE[u])CACHE[u]=fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){return mskD(d,0)}).catch(function(){return null});return CACHE[u]}
 var P=[].slice.call(document.querySelectorAll('.v4s[data-v4]'));
 P.forEach(function(ph,i){FB[i]=[].slice.call(ph.childNodes).map(function(c){return c.cloneNode(true)});ph.setAttribute('data-fbi',i)});
 /* carfix: inside each carousel track, tiles with a live listing + photo stay first (original order), then live without photo,
