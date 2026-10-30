@@ -1,11 +1,11 @@
 {
 "schema": 4,
-"fetched_at": "2026-10-30T06:07:52-07:00",
-"auc_fetched_at": "2026-10-30T06:08:27-07:00",
+"fetched_at": "2026-10-30T09:38:15-07:00",
+"auc_fetched_at": "2026-10-30T09:38:51-07:00",
 "files": {
-"data/listings/home.v4.json": 622,
+"data/listings/home.v4.json": 621,
 "data/listings/cards/tier-grail.v4.json": 143,
-"data/listings/cards/tier-premium.v4.json": 299,
+"data/listings/cards/tier-premium.v4.json": 298,
 "data/listings/cards/tier-core.v4.json": 555,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 1,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 3,
@@ -55,7 +55,7 @@
 "data/listings/cards/op07-109-tr-luffy-psa-10.v4.json": 12,
 "data/listings/cards/op08-105-illus-bonney-psa-10.v4.json": 1,
 "data/listings/cards/op08-118-manga-rayleigh-psa-10.v4.json": 12,
-"data/listings/cards/op09-004-manga-shanks-psa-10.v4.json": 7,
+"data/listings/cards/op09-004-manga-shanks-psa-10.v4.json": 6,
 "data/listings/cards/op09-004-sp-gold-shanks-psa-10.v4.json": 4,
 "data/listings/cards/op09-004-wanted-shanks-psa-10.v4.json": 5,
 "data/listings/cards/op09-051-manga-buggy-psa-10.v4.json": 7,
@@ -107,7 +107,7 @@
 "data/listings/cards/st10-005-1a-jinbe-psa-10.v4.json": 4,
 "data/listings/cards/st10-010-topprize-law-psa-10.v4.json": 1,
 "data/listings/cards/st15-002-sp-whitebeard-psa-10.v4.json": 8,
-"data/listings/cards/st26-005-sp-en-luffy-psa-10.v4.json": 6,
+"data/listings/cards/st26-005-sp-en-luffy-psa-10.v4.json": 7,
 "data/listings/cards/db-eb01.v4.json": 14,
 "data/listings/cards/db-eb02.v4.json": 28,
 "data/listings/cards/db-eb03.v4.json": 16,
@@ -138,5 +138,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 6
 },
-"n": 2593
+"n": 2591
 }
