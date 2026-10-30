@@ -53,7 +53,7 @@
   function row(r, root) {
     var set = DATA.sets[r.s] ? ' title="' + esc(DATA.sets[r.s]) + '"' : '';
     // 2026-10-07 affiliate-only pivot: no index value; tracked printings link to their checked eBay listings
-    var badge = r.val != null ? (r.oc ? '<a class="dbs-ix" href="' + root + esc(r.oc) + '" title="Live eBay listings checked for this exact version, English, PSA 10">Checked listings</a>'
+    var badge = r.val != null ? (r.oc ? '<a class="dbs-ix" href="' + root + esc(r.oc) + '" title="Live eBay listings checked for this exact version, English, PSA 10">eBay listings</a>'
       : '<span class="dbs-ix">Tracked</span>') : '';
     // 2026-10-05: Bandai official card-list search link (only when the number is in our official scrape; freewords search URL)
     var bd = (DATA.bd && DATA.bd[r.num]) ? ('<a class="dbs-bd" href="https://en.onepiece-cardgame.com/cardlist/?freewords=' + encodeURIComponent(r.num) + '" rel="noopener noreferrer" target="_blank" title="Official Bandai English card list">Bandai ↗</a>') : '';
