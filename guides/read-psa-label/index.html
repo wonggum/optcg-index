@@ -184,4 +184,31 @@ function due(ph,n){var x=ph.getAttribute('data-lx'),f=+ph.getAttribute('data-fx'
 setInterval(function(){var n=Date.now();reap(n);
  document.querySelectorAll('.v4s .left[data-end]').forEach(function(t){t.textContent=left(t.getAttribute('data-end'))});freshTick(n)},60000);
 window.OPC_V4_TICK=function(now){freshTick(now);return reap(now)};
-})();</script></body></html>
+})();</script><script data-opc-src="b1">/* OPChase EPN source tag (B1, opchase_epn_b1_r1). Reads utm_source and document.referrer of THIS pageview only; at click time appends
+   __s<code> to the EPN customid of eBay links that carry campid (campid and rel untouched). No cookies, no storage, no network requests. */
+(function(){
+var C=[['gpt',['chatgpt','chatgpt.com','openai'],['chatgpt.com','chat.openai.com','openai.com']],
+['ppx',['perplexity','perplexity.ai'],['perplexity.ai']],
+['bng',['copilot','bing'],['copilot.microsoft.com','copilot.cloud.microsoft','bing.com','edgeservices.bing.com']],
+['gem',['gemini','bard'],['gemini.google.com','bard.google.com']],
+['cld',['claude','claude.ai','anthropic'],['claude.ai']],
+['ggl',['google'],null],
+['xtw',['x','twitter','t.co'],['t.co','x.com','twitter.com','mobile.twitter.com']]];
+var GG=/^(www\.)?google\.[a-z]{2,3}(\.[a-z]{2})?$/,DONE=/__s(gpt|ppx|bng|gem|cld|ggl|xtw|dir|oth)$/,CID=/([?&]customid=)([A-Za-z0-9_]{1,200})(?=&|#|$)/,EB=/^https?:\/\/([a-z0-9-]+\.)*ebay\.[a-z.]+\//i;
+function sub(h,d){return h===d||h.slice(-d.length-1)==='.'+d}
+function code(us,ref,self){var i,j,h='';us=String(us||'').toLowerCase().trim();
+  if(us){for(i=0;i<C.length;i++)if(C[i][1].indexOf(us)>=0)return C[i][0];return 'oth'}
+  try{h=ref?new URL(ref).hostname.toLowerCase():''}catch(e){h=''}
+  if(!h||h===String(self||'').toLowerCase())return 'dir';
+  for(i=0;i<C.length;i++){if(!C[i][2]){if(GG.test(h)||h==='news.google.com')return C[i][0];continue}
+    for(j=0;j<C[i][2].length;j++)if(sub(h,C[i][2][j]))return C[i][0]}
+  return 'oth'}
+function tagHref(h,k){h=String(h||'');if(!EB.test(h)||!/[?&]campid=/.test(h))return h;var m=h.match(CID);if(!m||DONE.test(m[2]))return h;
+  var v=m[2]+'__s'+k;return v.length>200?h:h.replace(CID,'$1'+v)}
+var us='';try{us=new URLSearchParams(location.search).get('utm_source')||''}catch(e){}
+var K=code(us,document.referrer,location.hostname);
+function on(e){var a=e.target&&e.target.closest&&e.target.closest('a[href*="ebay."]');if(!a)return;var h=a.getAttribute('href'),n=tagHref(h,K);if(n!==h)a.setAttribute('href',n)}
+['pointerdown','mousedown','touchstart','keydown','click','auxclick','contextmenu'].forEach(function(t){document.addEventListener(t,on,true)});
+window.OPC_SRC={code:code,tagHref:tagHref,k:K};   // exposed for QA only
+})();</script>
+</body></html>
