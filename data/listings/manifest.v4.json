@@ -1,11 +1,11 @@
 {
 "schema": 4,
-"fetched_at": "2026-10-31T22:03:07-07:00",
-"auc_fetched_at": "2026-10-31T22:03:42-07:00",
+"fetched_at": "2026-10-31T22:34:07-07:00",
+"auc_fetched_at": "2026-10-31T22:34:41-07:00",
 "files": {
-"data/listings/home.v4.json": 632,
+"data/listings/home.v4.json": 633,
 "data/listings/cards/tier-grail.v4.json": 142,
-"data/listings/cards/tier-premium.v4.json": 364,
+"data/listings/cards/tier-premium.v4.json": 365,
 "data/listings/cards/tier-core.v4.json": 586,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 2,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 3,
@@ -25,7 +25,7 @@
 "data/listings/cards/op01-016-sp-nami-psa-10.v4.json": 9,
 "data/listings/cards/op01-025-aa-zoro-psa-10.v4.json": 10,
 "data/listings/cards/op01-025-tc23-top8-zoro-psa-10.v4.json": 0,
-"data/listings/cards/op01-060-aa-doflamingo-psa-10.v4.json": 7,
+"data/listings/cards/op01-060-aa-doflamingo-psa-10.v4.json": 8,
 "data/listings/cards/op01-070-aa-mihawk-psa-10.v4.json": 5,
 "data/listings/cards/op01-078-sp-hancock-psa-10.v4.json": 7,
 "data/listings/cards/op01-094-top8-kaido-psa-10.v4.json": 0,
@@ -138,5 +138,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 7
 },
-"n": 2755
+"n": 2758
 }
