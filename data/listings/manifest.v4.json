@@ -1,12 +1,12 @@
 {
 "schema": 4,
-"fetched_at": "2026-11-03T22:05:20-08:00",
-"auc_fetched_at": "2026-11-03T22:06:37-08:00",
+"fetched_at": "2026-11-04T02:04:35-08:00",
+"auc_fetched_at": "2026-11-04T02:05:51-08:00",
 "files": {
-"data/listings/home.v4.json": 601,
-"data/listings/cards/tier-grail.v4.json": 134,
+"data/listings/home.v4.json": 603,
+"data/listings/cards/tier-grail.v4.json": 135,
 "data/listings/cards/tier-premium.v4.json": 344,
-"data/listings/cards/tier-core.v4.json": 570,
+"data/listings/cards/tier-core.v4.json": 567,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 2,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 3,
 "data/listings/cards/eb02-006-serial-yamato-psa-10.v4.json": 4,
@@ -52,7 +52,7 @@
 "data/listings/cards/op06-119-manga-prb2-sanji-psa-10.v4.json": 0,
 "data/listings/cards/op07-051-manga-hancock-psa-10.v4.json": 10,
 "data/listings/cards/op07-091-off-fin-luffy-psa-10.v4.json": 1,
-"data/listings/cards/op07-109-tr-luffy-psa-10.v4.json": 12,
+"data/listings/cards/op07-109-tr-luffy-psa-10.v4.json": 13,
 "data/listings/cards/op08-105-illus-bonney-psa-10.v4.json": 1,
 "data/listings/cards/op08-118-manga-rayleigh-psa-10.v4.json": 10,
 "data/listings/cards/op09-004-manga-shanks-psa-10.v4.json": 6,
@@ -75,7 +75,7 @@
 "data/listings/cards/op12-015-tc64-luffy-psa-10.v4.json": 0,
 "data/listings/cards/op12-118-manga-bonney-psa-10.v4.json": 11,
 "data/listings/cards/op13-016-tc-garp-psa-10.v4.json": 3,
-"data/listings/cards/op13-118-manga-luffy-psa-10.v4.json": 10,
+"data/listings/cards/op13-118-manga-luffy-psa-10.v4.json": 11,
 "data/listings/cards/op13-118-redmanga-luffy-psa-10.v4.json": 0,
 "data/listings/cards/op13-119-manga-ace-psa-10.v4.json": 5,
 "data/listings/cards/op13-119-redmanga-ace-psa-10.v4.json": 2,
@@ -139,5 +139,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 7
 },
-"n": 2654
+"n": 2656
 }
