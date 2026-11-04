@@ -14,12 +14,25 @@
     t.split(/\s+/).forEach(function (c) { c = c.replace(/[^a-z0-9]/g, ''); if (c) out.push(c); });
     return out.filter(Boolean);
   }
+  function joinw(s) {   // AB-4a TY-SEP-1: multi-word name -> one joined word (kouzuki oden -> kouzukioden); final key must be > 2 chars
+    var p = norm(s).split(/[^a-z0-9]+/).filter(Boolean), j = p.join('');
+    return p.length > 1 && j.length > 2 ? [j] : [];
+  }
+  var NUMS = {}, RX = /^\s*(op|st|eb|prb)(\d{1,2})-(\d{1,3})\s*$/i, RXP = /^\s*p-(\d{1,3})\s*$/i;
+  function pad(d, w) { d = String(parseInt(d, 10)); return d.length > w ? null : new Array(w - d.length + 1).join('0') + d; }
+  function r4(q) {   // AB-4a TY-NUM-1: op5-119 -> OP05-119 only when that number exists in c
+    var m = RX.exec(q), k = null, a, b;
+    if (m) { a = pad(m[2], 2); b = pad(m[3], 3); if (a && b) k = m[1].toUpperCase() + a + '-' + b; }
+    else if ((m = RXP.exec(q))) { b = pad(m[1], 3); if (b) k = 'P-' + b; }
+    return k && NUMS[k] ? k : null;
+  }
   function build(d) {
     var rows = [], vtw = d.vt.map(function (l) { var x = l; ALIAS.forEach(function (a) { if (a[0].test(l)) x += ' ' + a[1]; }); return words(x); });
     d.c.forEach(function (c) {
-      var num = c[0], cw = words(num + ' ' + c[1]);
+      var num = c[0], cw = words(num + ' ' + c[1]).concat(joinw(c[1]));
+      NUMS[num] = 1;
       c[2].forEach(function (p, i) {
-        var nm = p[5] || c[1], w = cw.concat(vtw[p[0]], words((p[1] || '') + ' ' + (p[2] || '')), p[5] ? words(p[5]) : []);
+        var nm = p[5] || c[1], w = cw.concat(vtw[p[0]], words((p[1] || '') + ' ' + (p[2] || '')), p[5] ? words(p[5]).concat(joinw(p[5])) : []);
         if (p[3] != null) w.push('opchase', 'checked', 'listings', 'tracked');
         rows.push({ num: num, name: nm, v: d.vt[p[0]], r: p[1] || '', s: p[2] || '', val: p[3], oc: p[4] || '', w: ' ' + w.join(' ') + ' ', nn: num.toLowerCase().replace(/[^a-z0-9]/g, ''), nw: ' ' + words(nm).join(' ') + ' ', o: rows.length });
       });
@@ -33,6 +46,7 @@
     return LOADING;
   }
   function search(q) {
+    var z = r4(q); if (z) q = z;
     var toks = norm(q).split(/\s+/).map(function (t) { return t.replace(/[^a-z0-9]/g, ''); }).filter(Boolean);
     if (!toks.length) return [];
     var whole = toks.join(''), res = [];
