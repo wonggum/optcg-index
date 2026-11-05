@@ -59,7 +59,7 @@ window.OPC_SRC_ALL={code:code,tagHref:tagHref,k:K};   // exposed for QA only
    cap and without the per-listing exp cap. Auctions are still filtered by end time (an ended auction is never shown); auctions are
    ordered by soonest end, Buy It Now by lowest listed amount. A neutral line says when the listings were last updated. Every slot keeps
    its static Search on eBay link (a rendered Buy It Now / bid button gets that same link below it). Affiliate params, rel and the
-   customid come from the loader code copied verbatim below (campid 5339217952, rel "sponsored noopener"); no raw-card layer.
+   customid come from the loader code copied verbatim below (campid 5339217952, rel "sponsored noopener"); AB-4b adds a raw-card layer for pilot keys (OP10 + Luffy calibrated rows from assets/version-keywords-pilot.json).
    Bandai thumbnails: assets/opchase-bdimg.json (signed imgmap_* tables, status mapped only). Kill switch: that file with "on":false
    (or the file removed) -> no official image is shown anywhere; no ?v change needed. */
 (function(){if(window.OPC_SFB)return;window.OPC_SFB=1;
@@ -141,20 +141,82 @@ function bdPass(){return bd().then(function(m){var on=!!(m&&m.on===true&&m.pages
   var w=el('span',{'class':'opc-bdimg','data-bdimg':'1','data-bdu':e.u,style:'display:block;margin:0 0 .75em'});
   w.appendChild(el('img',{src:e.u,alt:e.a,loading:'lazy',decoding:'async',width:String(e.w),height:String(e.h),referrerpolicy:'no-referrer',style:'display:block;width:100%;max-width:min(100%,'+e.w+'px);height:auto'}));
   w.appendChild(el('span',{'class':'sm'},BDSRC));ph.insertBefore(w,ph.firstChild)})})}
-function pass(){if(RUN)return Promise.resolve();RUN=1;var n=Date.now(),P=[].slice.call(document.querySelectorAll('.v4s[data-v4]')).filter(function(ph){return ph.getAttribute('data-v4st')==='1'}),U={};
- P.forEach(function(ph){if(ph.getAttribute('data-sfb')!=='1')SN.set(ph,[].slice.call(ph.childNodes).filter(function(c){return !isBd(c)}).map(function(c){return c.cloneNode(true)}));U[ph.getAttribute('data-v4')]=1});
+
+/* AB-4b: pilot two-tier raw-card layer (assets/version-keywords-pilot.json). */
+var VKP=null,VKP_L=null,LM7='No PSA 10 listed right now \u2014 raw copies below if you want to grade one yourself',GUIDE_REL='guides/read-psa-label/';
+function vkLoad(){if(VKP_L)return VKP_L;VKP_L=rd(BASE+'assets/version-keywords-pilot.json').then(function(d){VKP=(d&&typeof d==='object'&&Array.isArray(d.rows))?d:null;return VKP}).catch(function(){VKP=null;return null});return VKP_L}
+function vkIdx(){var byK={},byC={};if(!VKP)return{byK:byK,byC:byC};VKP.rows.forEach(function(r){if(!r||typeof r.k!=='string'||typeof r.c!=='string')return;byK[r.k]=r;(byC[r.c]=byC[r.c]||[]).push(r)});return{byK:byK,byC:byC}}
+function tok(s){return String(s||'').toLowerCase().match(/[a-z0-9]+/g)||[]}
+function hasWords(t,w){if(!w||!String(w).trim())return true;var tl=String(t||'').toLowerCase();return String(w).toLowerCase().split(/\s+/).filter(Boolean).every(function(x){return tl.indexOf(x)>=0})}
+function exclOk(t,ex){if(!ex||!String(ex).trim())return true;var tl=String(t||'').toLowerCase(),parts=String(ex).match(/"[^"]+"|[^\s]+/g)||[];for(var i=0;i<parts.length;i++){var p=parts[i].replace(/^-+/,'').replace(/^"|"$/g,'').toLowerCase();if(!p)continue;if(tl.indexOf(p)>=0)return false}return true}
+function isPsa10(t){return /\bpsa\s*10\b/i.test(String(t||''))}
+function isGraded(t){return /\b(psa|bgs|cgc|sgc|beckett|graded)\b/i.test(String(t||''))}
+function okPsaTitle(t,r){return !!r&&hasWords(t,r.c)&&hasWords(t,r.req)&&exclOk(t,r.psa_x)&&isPsa10(t)}
+function okRawTitle(t,r){return !!r&&hasWords(t,r.c)&&hasWords(t,r.req)&&exclOk(t,r.raw_x)&&!isGraded(t)}
+function schUrl(kw,ex,cid){var c=/^[A-Za-z0-9_]{1,80}$/.test(cid||'')?cid:'site';return 'https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent((String(kw||'')+' '+String(ex||'')).replace(/\s+/g,' ').trim())+'&_sacat=183454&LH_PrefLoc=1&'+EPN.replace('{c}',c)}
+function guideHref(){try{return new URL(GUIDE_REL,BASE||location.href).href}catch(_){return '/'+GUIDE_REL}}
+function pathSlug(){try{var p=location.pathname.toLowerCase(),m=p.match(/\/cards\/([a-z0-9-]+)/);return m?m[1].replace(/-psa-10\/?$/,''):''}catch(_){return ''}}
+function resolvePilot(ph,I){var slug=pathSlug(),best=null,sc=-1;if(!I||!I.byC)return null;Object.keys(I.byC).forEach(function(code){var cl=code.toLowerCase(),compact=cl.replace(/-/g,'');(I.byC[code]||[]).forEach(function(r){var s=0;if(slug&&(slug.indexOf(cl)>=0||slug.indexOf(compact)>=0))s+=10;var id=(document.querySelector('.cp[data-id],.panel.cp[data-id]')||{getAttribute:function(){return ''}}).getAttribute('data-id')||'';if(id&&(id.indexOf(code)>=0||id.replace(/-/g,'').indexOf(compact)>=0))s+=8;tok(slug).forEach(function(t){if(t.length<3)return;var blob=((r.psa||'')+' '+(r.raw||'')+' '+(r.req||'')).toLowerCase();if(blob.indexOf(t)>=0)s+=1});if(s>sc){sc=s;best=r}})});return sc>=10?best:null}
+function pickSPilot(d,ph,n,r){var L=pickS(d,ph,n);if(!r)return L;if(L&&okPsaTitle(L.title,r))return L;var c=ph.getAttribute('data-card'),C=own(d,c);if(!C)return null;var list=ph.getAttribute('data-list'),pool=[];
+ if(list==='auc'||list==='ending')pool=(C.auc||[]);else pool=(list==='grail'?C.grail:C.bin)||[];
+ var A=uniq((pool||[]).filter(function(x){return !!x&&x.card===c&&okS(x,n)&&okPsaTitle(x.title,r)}));
+ if(list==='auc'||list==='ending')A.sort(byEnd);else A.sort(byAmt);
+ return A[+ph.getAttribute('data-n')||0]||null}
+function renderRaw(ph,r){var p=ph.getAttribute('data-pfx')||'site',ck=ph.getAttribute('data-card')||'x',prev=srch(ph),cid='site',mm;if(prev){mm=(prev.getAttribute('href')||'').match(/[?&]customid=([A-Za-z0-9_]+)/);if(mm){var parts=mm[1].split('__');cid=(parts[0]?parts[0].replace(/_(?:search|bin|bid|photo|credit|raw)$/,'_raw'):p+'_raw')+'__'+(parts[1]||ck)}}
+ else cid=p+'_raw__'+ck;if(!/^[A-Za-z0-9_]{1,80}$/.test(cid))cid=p+'_raw';
+ var box=el('div',{'class':'opc-raw','data-opc-raw':'1'});box.appendChild(el('p',{'class':'stl sm','data-opc-lm7':'1'},LM7));
+ var gp=el('p',{'class':'sm'});gp.appendChild(el('a',{href:guideHref(),rel:'noopener noreferrer'},'How to read a PSA label'));box.appendChild(gp);
+ box.appendChild(el('a',{'class':'ebtn ebtn-sm ebtn-sr',href:schUrl(r.raw,r.raw_x,cid),rel:REL,target:'_blank'},'Search on eBay \u203a'));
+ if(prev){var fb=prev.cloneNode(true);fb.setAttribute('data-opc-fb','1');box.appendChild(fb)}
+ else box.appendChild(el('a',{'class':'ebtn ebtn-sm ebtn-sr',href:schUrl(r.psa,r.psa_x,p+'_search__'+ck),rel:REL,target:'_blank','data-opc-fb':'1'},'Search on eBay \u203a'));
+ return [box]}
+
+function pass(){if(RUN)return Promise.resolve();RUN=1;var n=Date.now();
+ return vkLoad().then(function(){var I=vkIdx(),onCards=pathSlug().length>0;
+ var P=[].slice.call(document.querySelectorAll('.v4s[data-v4]')).filter(function(ph){var st=ph.getAttribute('data-v4st')==='1',pr=onCards&&!!resolvePilot(ph,I);return st||pr});
+ var U={};P.forEach(function(ph){if(ph.getAttribute('data-sfb')!=='1')SN.set(ph,[].slice.call(ph.childNodes).filter(function(c){return !isBd(c)}).map(function(c){return c.cloneNode(true)}));U[ph.getAttribute('data-v4')]=1});
  var K=Object.keys(U);return Promise.all(K.map(rd)).then(function(R){var D={},ch=0,fa=NaN;K.forEach(function(u,i){D[u]=R[i]});
-  P.forEach(function(ph){var d=D[ph.getAttribute('data-v4')],ok=d&&typeof d==='object'&&d.schema===4,L=ok?pickS(d,ph,n):null,was=ph.getAttribute('data-sfb')==='1';
-   if(!L){if(was){back(ph);ch=1}return}
+  P.forEach(function(ph){var d=D[ph.getAttribute('data-v4')],ok=d&&typeof d==='object'&&d.schema===4,pr=resolvePilot(ph,I),L=ok?(pr?pickSPilot(d,ph,n,pr):pickS(d,ph,n)):null,was=ph.getAttribute('data-sfb')==='1';
+   if(!L){if(pr&&ok){var nodes=renderRaw(ph,pr);put(ph,nodes);ph.setAttribute('data-sfb','1');ph.setAttribute('data-v4-live','0');ph.setAttribute('data-opc-tier','raw');AT.forEach(function(k){ph.removeAttribute(k)});ch=1;return}
+    if(was){back(ph);ch=1}return}
    var nodes=render(ph,L);if(ph.getAttribute('data-kind')==='btn'){var s=srch(ph);if(s){var w=el('span',{'class':'ebp-s'});w.appendChild(s);nodes.push(w)}}
-   put(ph,nodes);ph.setAttribute('data-sfb','1');ph.setAttribute('data-v4-live','1');ph.setAttribute('data-v4a',L.auction?'1':'0');ph.setAttribute('data-v4e',L.auction?String(Date.parse(L.end)):'');
+   put(ph,nodes);ph.setAttribute('data-sfb','1');ph.setAttribute('data-v4-live','1');ph.setAttribute('data-opc-tier','psa10');ph.setAttribute('data-v4a',L.auction?'1':'0');ph.setAttribute('data-v4e',L.auction?String(Date.parse(L.end)):'');
    ph.setAttribute('data-v4i',L.img?'1':'0');ph.setAttribute('data-v4ck',L.card);ph.setAttribute('data-v4tot',String(L.price));ch=1;
    var t=Date.parse(d.fetched_at);if(isFinite(t)&&!(t>=fa))fa=t});
   note(document.querySelector('.v4s[data-sfb="1"]')?fa:NaN);
   if(ch)document.dispatchEvent(new Event('opc:repage'));
-  return bdPass()}).catch(function(){}).then(function(){RUN=0})}
+  return bdPass()})}).catch(function(){}).then(function(){RUN=0})}
 document.addEventListener('opc:listings',function(){pass()});
 setInterval(pass,60000);
 if(document.querySelector('.v4s[data-v4st="1"]'))setTimeout(pass,0);   // loader may have finished before this file ran
 window.OPC_SFB_PASS=pass;   // exposed for QA only
 })();
+
+/* AB-4b: /card/<num>/ two-tier link enhance for pilot printing keys only (D2a). */
+(function(){if(window.OPC_CARD_TIER)return;window.OPC_CARD_TIER=1;
+var EPN='mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339217952&customid={c}&toolid=10001&mkevt=1',REL='sponsored noopener',
+LM7='No PSA 10 listed right now \u2014 raw copies below if you want to grade one yourself',GUIDE_REL='guides/read-psa-label/';
+var BASE=(function(){var s=(document.currentScript&&document.currentScript.src)||'',i=s.lastIndexOf('assets/opchase-ui.js');return i>=0?s.slice(0,i):''})();
+function rd(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
+function schUrl(kw,ex,cid){var c=/^[A-Za-z0-9_]{1,80}$/.test(cid||'')?cid:'site';return 'https://www.ebay.com/sch/i.html?_nkw='+encodeURIComponent((String(kw||'')+' '+String(ex||'')).replace(/\s+/g,' ').trim())+'&_sacat=183454&LH_PrefLoc=1&'+EPN.replace('{c}',c)}
+function guideHref(){try{return new URL(GUIDE_REL,BASE||location.href).href}catch(_){return '/'+GUIDE_REL}}
+function onCard(){try{return /\/card\/[^/]+\/?$/.test(location.pathname)}catch(_){return false}}
+function enhance(rows){if(!onCard()||!rows||!rows.length)return;var byId={},conflict={};
+ rows.forEach(function(r){var ids=(r.dom_ids&&r.dom_ids.length)?r.dom_ids:[];ids.forEach(function(id){if(!id)return;if(byId[id]&&byId[id]!==r){conflict[id]=1;return}byId[id]=r})});
+ Object.keys(conflict).forEach(function(id){delete byId[id]});
+ [].forEach.call(document.querySelectorAll('article.pcard[id^="p-"]'),function(art){var r=byId[art.id];if(!r)return;var k=art.id.replace(/^p-/,'');
+  var acts=art.querySelector('.pcard-acts');if(!acts||acts.querySelector('[data-opc-tier]'))return;
+  var a=acts.querySelector('a.pcard-ebay,a.ebtn-sr');if(!a)return;
+  var href=a.getAttribute('href')||'',mm=href.match(/[?&]customid=([A-Za-z0-9_]+)/),cid=mm?mm[1]:'db_search__'+k.replace(/-/g,'x').replace(/_/g,'y'),
+  cidRaw=(mm?(mm[1].split('__')[0].replace(/_search$/,'_raw')+'__'+(mm[1].split('__')[1]||'')):('db_raw__'+k.replace(/-/g,'x').replace(/_/g,'y')));
+  if(!/^[A-Za-z0-9_]{1,80}$/.test(cid))cid='db_search';if(!/^[A-Za-z0-9_]{1,80}$/.test(cidRaw))cidRaw='db_raw';
+  a.setAttribute('href',schUrl(r.psa,r.psa_x,cid));a.setAttribute('data-opc-tier','psa10');
+  var box=document.createElement('div');box.setAttribute('data-opc-tier','raw');box.className='opc-raw';
+  var p=document.createElement('p');p.className='stl sm';p.setAttribute('data-opc-lm7','1');p.textContent=LM7;box.appendChild(p);
+  var gp=document.createElement('p');gp.className='sm';var gl=document.createElement('a');gl.href=guideHref();gl.rel='noopener noreferrer';gl.textContent='How to read a PSA label';gp.appendChild(gl);box.appendChild(gp);
+  var ra=document.createElement('a');ra.className='ebtn ebtn-sm ebtn-sr';ra.rel=REL;ra.target='_blank';ra.href=schUrl(r.raw,r.raw_x,cidRaw);ra.textContent='Search on eBay \u203a';ra.setAttribute('data-opc-tier','raw-search');box.appendChild(ra);
+  acts.appendChild(box)})}
+function go(){rd(BASE+'assets/version-keywords-pilot.json').then(function(d){if(d&&Array.isArray(d.rows))enhance(d.rows)})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+

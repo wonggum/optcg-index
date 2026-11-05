@@ -1,0 +1,1050 @@
+{
+  "src_vk_sha8": "66772954",
+  "src_vk_sha256": "6677295426f22f35e5b67d177c7ab81e1d71b72eff7e5a04a32d9c52471eac03",
+  "n": 81,
+  "rows": [
+    {
+      "k": "EB04-061",
+      "c": "EB04-061",
+      "s": "luffy",
+      "psa": "EB04-061 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "EB04-061 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "EB04-061",
+      "dom_ids": [
+        "p-EB04-061"
+      ]
+    },
+    {
+      "k": "EB04-061_p1",
+      "c": "EB04-061",
+      "s": "luffy",
+      "psa": "EB04-061 Monkey D Luffy Alternate Art PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy -Manga",
+      "raw": "EB04-061 Monkey D Luffy Alternate Art",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC -Manga",
+      "req": "EB04-061 + Alternate Art",
+      "dom_ids": [
+        "p-EB04-061_p1"
+      ]
+    },
+    {
+      "k": "OP01-003",
+      "c": "OP01-003",
+      "s": "top100+luffy",
+      "psa": "OP01-003 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP01-003 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP01-003",
+      "dom_ids": [
+        "p-OP01-003"
+      ]
+    },
+    {
+      "k": "OP01-003_p1",
+      "c": "OP01-003",
+      "s": "top100+luffy",
+      "psa": "OP01-003 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP01-003 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP01-003 + Parallel",
+      "dom_ids": [
+        "p-OP01-003_p1"
+      ]
+    },
+    {
+      "k": "OP03-070",
+      "c": "OP03-070",
+      "s": "luffy",
+      "psa": "OP03-070 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP03-070 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP03-070",
+      "dom_ids": []
+    },
+    {
+      "k": "OP04-014",
+      "c": "OP04-014",
+      "s": "luffy",
+      "psa": "OP04-014 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP04-014 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP04-014",
+      "dom_ids": [
+        "p-OP04-014"
+      ]
+    },
+    {
+      "k": "OP06-013",
+      "c": "OP06-013",
+      "s": "luffy",
+      "psa": "OP06-013 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP06-013 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP06-013",
+      "dom_ids": [
+        "p-OP06-013"
+      ]
+    },
+    {
+      "k": "OP06-013_p1",
+      "c": "OP06-013",
+      "s": "luffy",
+      "psa": "OP06-013 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP06-013 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP06-013 + Parallel",
+      "dom_ids": [
+        "p-OP06-013_p1"
+      ]
+    },
+    {
+      "k": "OP07-033",
+      "c": "OP07-033",
+      "s": "luffy",
+      "psa": "OP07-033 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP07-033 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-033",
+      "dom_ids": [
+        "p-OP07-033"
+      ]
+    },
+    {
+      "k": "OP07-033_r1",
+      "c": "OP07-033",
+      "s": "luffy",
+      "psa": "OP07-033 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP07-033 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-033",
+      "dom_ids": []
+    },
+    {
+      "k": "OP07-073",
+      "c": "OP07-073",
+      "s": "luffy",
+      "psa": "OP07-073 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP07-073 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-073",
+      "dom_ids": [
+        "p-OP07-073"
+      ]
+    },
+    {
+      "k": "OP07-091",
+      "c": "OP07-091",
+      "s": "top100+luffy",
+      "psa": "OP07-091 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP07-091 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-091",
+      "dom_ids": [
+        "p-OP07-091"
+      ]
+    },
+    {
+      "k": "OP07-109",
+      "c": "OP07-109",
+      "s": "top100+luffy",
+      "psa": "OP07-109 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP07-109 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-109",
+      "dom_ids": [
+        "p-OP07-109"
+      ]
+    },
+    {
+      "k": "OP07-109_p1",
+      "c": "OP07-109",
+      "s": "top100+luffy",
+      "psa": "OP07-109 Monkey D Luffy Alternate Art PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy -TR -Manga",
+      "raw": "OP07-109 Monkey D Luffy Alternate Art",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC -TR -Manga",
+      "req": "OP07-109 + Alternate Art",
+      "dom_ids": [
+        "p-OP07-109_p1"
+      ]
+    },
+    {
+      "k": "OP07-109_p2",
+      "c": "OP07-109",
+      "s": "top100+luffy",
+      "psa": "OP07-109 Monkey D Luffy TR PSA 10",
+      "psa_x": "-japanese -jpn -proxy",
+      "raw": "OP07-109 Monkey D Luffy TR",
+      "raw_x": "-japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-109 + TR",
+      "dom_ids": [
+        "p-OP07-109_tcgp564551"
+      ]
+    },
+    {
+      "k": "OP07-109_r1",
+      "c": "OP07-109",
+      "s": "top100+luffy",
+      "psa": "OP07-109 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP07-109 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP07-109",
+      "dom_ids": [
+        "p-OP07-109_r1"
+      ]
+    },
+    {
+      "k": "OP09-036",
+      "c": "OP09-036",
+      "s": "luffy",
+      "psa": "OP09-036 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP09-036 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP09-036",
+      "dom_ids": [
+        "p-OP09-036"
+      ]
+    },
+    {
+      "k": "OP10-111",
+      "c": "OP10-111",
+      "s": "luffy",
+      "psa": "OP10-111 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP10-111 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP10-111",
+      "dom_ids": [
+        "p-OP10-111"
+      ]
+    },
+    {
+      "k": "OP10-111_p1",
+      "c": "OP10-111",
+      "s": "luffy",
+      "psa": "OP10-111 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP10-111 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP10-111 + Parallel",
+      "dom_ids": [
+        "p-OP10-111_p1"
+      ]
+    },
+    {
+      "k": "OP10-111_r1",
+      "c": "OP10-111",
+      "s": "luffy",
+      "psa": "OP10-111 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP10-111 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP10-111",
+      "dom_ids": []
+    },
+    {
+      "k": "OP11-040",
+      "c": "OP11-040",
+      "s": "luffy",
+      "psa": "OP11-040 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP11-040 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP11-040",
+      "dom_ids": [
+        "p-OP11-040"
+      ]
+    },
+    {
+      "k": "OP11-040_p1",
+      "c": "OP11-040",
+      "s": "luffy",
+      "psa": "OP11-040 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP11-040 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP11-040 + Parallel",
+      "dom_ids": [
+        "p-OP11-040_p1"
+      ]
+    },
+    {
+      "k": "OP11-118",
+      "c": "OP11-118",
+      "s": "top100+luffy",
+      "psa": "OP11-118 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP11-118 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP11-118",
+      "dom_ids": [
+        "p-OP11-118"
+      ]
+    },
+    {
+      "k": "OP13-001",
+      "c": "OP13-001",
+      "s": "luffy",
+      "psa": "OP13-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP13-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP13-001",
+      "dom_ids": [
+        "p-OP13-001"
+      ]
+    },
+    {
+      "k": "OP13-001_p1",
+      "c": "OP13-001",
+      "s": "luffy",
+      "psa": "OP13-001 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP13-001 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP13-001 + Parallel",
+      "dom_ids": [
+        "p-OP13-001_p1"
+      ]
+    },
+    {
+      "k": "OP14-013",
+      "c": "OP14-013",
+      "s": "luffy",
+      "psa": "OP14-013 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP14-013 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP14-013",
+      "dom_ids": [
+        "p-OP14-013"
+      ]
+    },
+    {
+      "k": "OP14-013_p1",
+      "c": "OP14-013",
+      "s": "luffy",
+      "psa": "OP14-013 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP14-013 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP14-013 + Parallel",
+      "dom_ids": [
+        "p-OP14-013_p1"
+      ]
+    },
+    {
+      "k": "OP14-034",
+      "c": "OP14-034",
+      "s": "luffy",
+      "psa": "OP14-034 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP14-034 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP14-034",
+      "dom_ids": [
+        "p-OP14-034"
+      ]
+    },
+    {
+      "k": "OP15-051",
+      "c": "OP15-051",
+      "s": "luffy",
+      "psa": "OP15-051 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP15-051 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP15-051",
+      "dom_ids": [
+        "p-OP15-051"
+      ]
+    },
+    {
+      "k": "OP15-092",
+      "c": "OP15-092",
+      "s": "luffy",
+      "psa": "OP15-092 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP15-092 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP15-092",
+      "dom_ids": [
+        "p-OP15-092"
+      ]
+    },
+    {
+      "k": "OP15-092_p1",
+      "c": "OP15-092",
+      "s": "luffy",
+      "psa": "OP15-092 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP15-092 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP15-092 + Parallel",
+      "dom_ids": [
+        "p-OP15-092_p1"
+      ]
+    },
+    {
+      "k": "OP15-098",
+      "c": "OP15-098",
+      "s": "luffy",
+      "psa": "OP15-098 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP15-098 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP15-098",
+      "dom_ids": [
+        "p-OP15-098"
+      ]
+    },
+    {
+      "k": "OP15-098_p1",
+      "c": "OP15-098",
+      "s": "luffy",
+      "psa": "OP15-098 Monkey D Luffy Alternate Art PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy -Manga",
+      "raw": "OP15-098 Monkey D Luffy Alternate Art",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC -Manga",
+      "req": "OP15-098 + Alternate Art",
+      "dom_ids": [
+        "p-OP15-098_p1"
+      ]
+    },
+    {
+      "k": "OP15-119",
+      "c": "OP15-119",
+      "s": "luffy",
+      "psa": "OP15-119 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP15-119 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP15-119",
+      "dom_ids": [
+        "p-OP15-119"
+      ]
+    },
+    {
+      "k": "OP15-119_p1",
+      "c": "OP15-119",
+      "s": "luffy",
+      "psa": "OP15-119 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP15-119 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP15-119 + Parallel",
+      "dom_ids": [
+        "p-OP15-119_p1"
+      ]
+    },
+    {
+      "k": "OP16-022",
+      "c": "OP16-022",
+      "s": "top100+luffy",
+      "psa": "OP16-022 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP16-022 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP16-022",
+      "dom_ids": [
+        "p-OP16-022"
+      ]
+    },
+    {
+      "k": "OP16-022_p1",
+      "c": "OP16-022",
+      "s": "top100+luffy",
+      "psa": "OP16-022 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP16-022 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP16-022 + Parallel",
+      "dom_ids": [
+        "p-OP16-022_p1"
+      ]
+    },
+    {
+      "k": "OP16-034",
+      "c": "OP16-034",
+      "s": "luffy",
+      "psa": "OP16-034 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP16-034 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP16-034",
+      "dom_ids": [
+        "p-OP16-034"
+      ]
+    },
+    {
+      "k": "OP16-034_p1",
+      "c": "OP16-034",
+      "s": "luffy",
+      "psa": "OP16-034 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP16-034 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP16-034 + Parallel",
+      "dom_ids": [
+        "p-OP16-034_p1"
+      ]
+    },
+    {
+      "k": "OP16-052",
+      "c": "OP16-052",
+      "s": "luffy",
+      "psa": "OP16-052 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP16-052 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP16-052",
+      "dom_ids": [
+        "p-OP16-052"
+      ]
+    },
+    {
+      "k": "OP16-095",
+      "c": "OP16-095",
+      "s": "luffy",
+      "psa": "OP16-095 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP16-095 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP16-095",
+      "dom_ids": [
+        "p-OP16-095"
+      ]
+    },
+    {
+      "k": "OP17-030",
+      "c": "OP17-030",
+      "s": "luffy",
+      "psa": "OP17-030 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP17-030 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP17-030",
+      "dom_ids": [
+        "p-OP17-030"
+      ]
+    },
+    {
+      "k": "OP17-079",
+      "c": "OP17-079",
+      "s": "top100+luffy",
+      "psa": "OP17-079 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP17-079 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP17-079",
+      "dom_ids": [
+        "p-OP17-079"
+      ]
+    },
+    {
+      "k": "OP17-079_p1",
+      "c": "OP17-079",
+      "s": "top100+luffy",
+      "psa": "OP17-079 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP17-079 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP17-079 + Parallel",
+      "dom_ids": [
+        "p-OP17-079_p1"
+      ]
+    },
+    {
+      "k": "OP17-079_p2",
+      "c": "OP17-079",
+      "s": "top100+luffy",
+      "psa": "OP17-079 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP17-079 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP17-079 + Parallel",
+      "dom_ids": [
+        "p-OP17-079_p2"
+      ]
+    },
+    {
+      "k": "OP17-093",
+      "c": "OP17-093",
+      "s": "luffy",
+      "psa": "OP17-093 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP17-093 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP17-093",
+      "dom_ids": [
+        "p-OP17-093"
+      ]
+    },
+    {
+      "k": "OP17-093_p1",
+      "c": "OP17-093",
+      "s": "luffy",
+      "psa": "OP17-093 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "OP17-093 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "OP17-093 + Parallel",
+      "dom_ids": [
+        "p-OP17-093_p1"
+      ]
+    },
+    {
+      "k": "P-055_r1",
+      "c": "P-055",
+      "s": "luffy",
+      "psa": "P-055 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "P-055 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "P-055",
+      "dom_ids": [
+        "p-P-055_r1"
+      ]
+    },
+    {
+      "k": "P-075",
+      "c": "P-075",
+      "s": "luffy",
+      "psa": "P-075 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "P-075 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "P-075",
+      "dom_ids": []
+    },
+    {
+      "k": "P-075_r1",
+      "c": "P-075",
+      "s": "luffy",
+      "psa": "P-075 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "P-075 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "P-075",
+      "dom_ids": []
+    },
+    {
+      "k": "PRB02-005",
+      "c": "PRB02-005",
+      "s": "luffy",
+      "psa": "PRB02-005 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "PRB02-005 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "PRB02-005",
+      "dom_ids": [
+        "p-PRB02-005"
+      ]
+    },
+    {
+      "k": "PRB02-005_p1",
+      "c": "PRB02-005",
+      "s": "luffy",
+      "psa": "PRB02-005 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "PRB02-005 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "PRB02-005 + Parallel",
+      "dom_ids": [
+        "p-PRB02-005_p1"
+      ]
+    },
+    {
+      "k": "ST01-001",
+      "c": "ST01-001",
+      "s": "top100+luffy",
+      "psa": "ST01-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST01-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST01-001",
+      "dom_ids": [
+        "p-ST01-001_tcgp288228"
+      ]
+    },
+    {
+      "k": "ST08-001",
+      "c": "ST08-001",
+      "s": "luffy",
+      "psa": "ST08-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST08-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST08-001",
+      "dom_ids": [
+        "p-ST08-001"
+      ]
+    },
+    {
+      "k": "ST08-011",
+      "c": "ST08-011",
+      "s": "luffy",
+      "psa": "ST08-011 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST08-011 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST08-011",
+      "dom_ids": [
+        "p-ST08-011"
+      ]
+    },
+    {
+      "k": "ST09-011",
+      "c": "ST09-011",
+      "s": "luffy",
+      "psa": "ST09-011 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST09-011 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST09-011",
+      "dom_ids": [
+        "p-ST09-011"
+      ]
+    },
+    {
+      "k": "ST10-002",
+      "c": "ST10-002",
+      "s": "luffy",
+      "psa": "ST10-002 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST10-002 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST10-002",
+      "dom_ids": [
+        "p-ST10-002"
+      ]
+    },
+    {
+      "k": "ST10-006",
+      "c": "ST10-006",
+      "s": "luffy",
+      "psa": "ST10-006 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST10-006 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST10-006",
+      "dom_ids": [
+        "p-ST10-006"
+      ]
+    },
+    {
+      "k": "ST13-015",
+      "c": "ST13-015",
+      "s": "luffy",
+      "psa": "ST13-015 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST13-015 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST13-015",
+      "dom_ids": [
+        "p-ST13-015"
+      ]
+    },
+    {
+      "k": "ST13-015_p1",
+      "c": "ST13-015",
+      "s": "luffy",
+      "psa": "ST13-015 Monkey D Luffy Black & White Alt Art PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy -Manga",
+      "raw": "ST13-015 Monkey D Luffy Black & White Alt Art",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC -Manga",
+      "req": "ST13-015 + Black & White Alt Art",
+      "dom_ids": [
+        "p-ST13-015_p1"
+      ]
+    },
+    {
+      "k": "ST14-001",
+      "c": "ST14-001",
+      "s": "luffy",
+      "psa": "ST14-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST14-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST14-001",
+      "dom_ids": [
+        "p-ST14-001"
+      ]
+    },
+    {
+      "k": "ST14-012",
+      "c": "ST14-012",
+      "s": "luffy",
+      "psa": "ST14-012 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST14-012 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST14-012",
+      "dom_ids": [
+        "p-ST14-012"
+      ]
+    },
+    {
+      "k": "ST16-005",
+      "c": "ST16-005",
+      "s": "luffy",
+      "psa": "ST16-005 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST16-005 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST16-005",
+      "dom_ids": [
+        "p-ST16-005"
+      ]
+    },
+    {
+      "k": "ST16-005_p1",
+      "c": "ST16-005",
+      "s": "luffy",
+      "psa": "ST16-005 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST16-005 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST16-005 + Parallel",
+      "dom_ids": [
+        "p-ST16-005_p1"
+      ]
+    },
+    {
+      "k": "ST16-005_r1",
+      "c": "ST16-005",
+      "s": "luffy",
+      "psa": "ST16-005 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST16-005 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST16-005",
+      "dom_ids": [
+        "p-ST16-005_r1"
+      ]
+    },
+    {
+      "k": "ST21-001",
+      "c": "ST21-001",
+      "s": "luffy",
+      "psa": "ST21-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST21-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST21-001",
+      "dom_ids": [
+        "p-ST21-001"
+      ]
+    },
+    {
+      "k": "ST21-001_p1",
+      "c": "ST21-001",
+      "s": "luffy",
+      "psa": "ST21-001 Monkey D Luffy Black & White Alt Art PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy -Manga",
+      "raw": "ST21-001 Monkey D Luffy Black & White Alt Art",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC -Manga",
+      "req": "ST21-001 + Black & White Alt Art",
+      "dom_ids": [
+        "p-ST21-001_p1"
+      ]
+    },
+    {
+      "k": "ST21-001_r1",
+      "c": "ST21-001",
+      "s": "luffy",
+      "psa": "ST21-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST21-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST21-001",
+      "dom_ids": [
+        "p-ST21-001_r1"
+      ]
+    },
+    {
+      "k": "ST21-014",
+      "c": "ST21-014",
+      "s": "luffy",
+      "psa": "ST21-014 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST21-014 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST21-014",
+      "dom_ids": [
+        "p-ST21-014"
+      ]
+    },
+    {
+      "k": "ST21-014_p1",
+      "c": "ST21-014",
+      "s": "luffy",
+      "psa": "ST21-014 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST21-014 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST21-014 + Parallel",
+      "dom_ids": [
+        "p-ST21-014_p1"
+      ]
+    },
+    {
+      "k": "ST23-004",
+      "c": "ST23-004",
+      "s": "luffy",
+      "psa": "ST23-004 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST23-004 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST23-004",
+      "dom_ids": [
+        "p-ST23-004_tcgp633764"
+      ]
+    },
+    {
+      "k": "ST23-004_r1",
+      "c": "ST23-004",
+      "s": "luffy",
+      "psa": "ST23-004 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST23-004 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST23-004",
+      "dom_ids": [
+        "p-ST23-004_r1"
+      ]
+    },
+    {
+      "k": "ST26-005",
+      "c": "ST26-005",
+      "s": "top100+luffy",
+      "psa": "ST26-005 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST26-005 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST26-005",
+      "dom_ids": [
+        "p-ST26-005"
+      ]
+    },
+    {
+      "k": "ST26-005_p1",
+      "c": "ST26-005",
+      "s": "top100+luffy",
+      "psa": "ST26-005 Monkey D Luffy SP PSA 10",
+      "psa_x": "-japanese -jpn -proxy",
+      "raw": "ST26-005 Monkey D Luffy SP",
+      "raw_x": "-japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST26-005 + SP",
+      "dom_ids": [
+        "p-ST26-005_p1"
+      ]
+    },
+    {
+      "k": "ST29-001",
+      "c": "ST29-001",
+      "s": "luffy",
+      "psa": "ST29-001 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST29-001 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST29-001",
+      "dom_ids": [
+        "p-ST29-001_tcgp671534"
+      ]
+    },
+    {
+      "k": "ST29-001_p1",
+      "c": "ST29-001",
+      "s": "luffy",
+      "psa": "ST29-001 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST29-001 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST29-001 + Parallel",
+      "dom_ids": [
+        "p-ST29-001_tcgp671547"
+      ]
+    },
+    {
+      "k": "ST29-012",
+      "c": "ST29-012",
+      "s": "luffy",
+      "psa": "ST29-012 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST29-012 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST29-012",
+      "dom_ids": [
+        "p-ST29-012"
+      ]
+    },
+    {
+      "k": "ST29-012_p1",
+      "c": "ST29-012",
+      "s": "luffy",
+      "psa": "ST29-012 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST29-012 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST29-012 + Parallel",
+      "dom_ids": [
+        "p-ST29-012_p1"
+      ]
+    },
+    {
+      "k": "ST30-012",
+      "c": "ST30-012",
+      "s": "luffy",
+      "psa": "ST30-012 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST30-012 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST30-012",
+      "dom_ids": [
+        "p-ST30-012"
+      ]
+    },
+    {
+      "k": "ST30-012_p1",
+      "c": "ST30-012",
+      "s": "luffy",
+      "psa": "ST30-012 Monkey D Luffy Parallel PSA 10",
+      "psa_x": "-\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST30-012 Monkey D Luffy Parallel",
+      "raw_x": "-\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST30-012 + Parallel",
+      "dom_ids": [
+        "p-ST30-012_p1"
+      ]
+    },
+    {
+      "k": "ST31-004",
+      "c": "ST31-004",
+      "s": "luffy",
+      "psa": "ST31-004 Monkey D Luffy PSA 10",
+      "psa_x": "-parallel -\"SP card\" -japanese -jpn -proxy",
+      "raw": "ST31-004 Monkey D Luffy",
+      "raw_x": "-parallel -\"SP card\" -japanese -jpn -proxy -PSA -BGS -CGC",
+      "req": "ST31-004",
+      "dom_ids": [
+        "p-ST31-004"
+      ]
+    }
+  ]
+}
