@@ -8,6 +8,7 @@
   var EPN = 'mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339217952&customid={c}&toolid=10001&mkevt=1', REL = 'sponsored noopener';
   function vkLoad(root) {
     if (VKP) return Promise.resolve(VKP);
+    /* EPIC-FIND-CARD-P1 r3: target-status strategy A; signed pilot preserved */
     if (!VKP_L) VKP_L = fetch(root + 'assets/version-keywords-pilot.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (d) { VKP = (d && Array.isArray(d.rows)) ? d : { rows: [] }; return VKP; }).catch(function () { VKP = { rows: [] }; return VKP; });
     return VKP_L;
@@ -18,20 +19,47 @@
     VKP.rows.forEach(function (r) { if (!r || !r.c) return; (m[r.c] = m[r.c] || []).push(r); });
     return m;
   }
-  function pickVk(num, vlabel) {
-    var list = vkByCode()[num]; if (!list || !list.length) return null;
-    if (list.length === 1) return list[0];
-    var vl = String(vlabel || '').toLowerCase(), best = list[0], sc = -1;
-    list.forEach(function (r) {
-      var blob = ((r.psa || '') + ' ' + (r.raw || '') + ' ' + (r.req || '')).toLowerCase(), s = 0;
-      String(vl).split(/[^a-z0-9]+/).filter(function (t) { return t.length > 2; }).forEach(function (t) { if (blob.indexOf(t) >= 0) s += 2; });
-      if (/manga/.test(vl) && /manga/.test(blob)) s += 5;
-      if (/alternate|\baa\b|parallel/.test(vl) && /alt|alternate|parallel|aa/.test(blob)) s += 5;
-      if (/\bsp\b|special/.test(vl) && /\bsp\b|special/.test(blob)) s += 5;
-      if ((/^normal|base|^l$|^c$|^r$|^sr$|^sec$|^uc$|^p$/i.test(String(vlabel || '').split(/[·(]/)[0].trim()) || /normal|base/.test(vl)) && r.k === r.c) s += 4;
-      if (s > sc) { sc = s; best = r; }
-    });
-    return best;
+  function scoreVk(r, vlabel) {
+    var vl = String(vlabel || ''), vll = vl.toLowerCase(), vt = String(r.vt || ''), vtl = vt.toLowerCase();
+    var blob = ((r.psa || '') + ' ' + (r.raw || '') + ' ' + (r.req || '') + ' ' + vt).toLowerCase();
+    var s = 0;
+    if (vt && vl === vt) s += 100; /* exact runtime label match */
+    else if (vt && (vtl === vll)) s += 90;
+    else if (vt && vtl.indexOf(vll) === 0 && (vt.length === vl.length || vt.charAt(vl.length) === ' ' || vt.charAt(vl.length) === '·')) s += 40;
+    else if (vt && vll.indexOf(vtl) === 0 && vtl.length >= 4) s += 25;
+    String(vll).split(/[^a-z0-9]+/).filter(function (t) { return t.length > 2; }).forEach(function (t) { if (blob.indexOf(t) >= 0) s += 2; });
+    if (/manga/.test(vll) && /manga/.test(blob)) s += 8;
+    if (/\bsp\b|special/.test(vll) && /\bsp\b|special/.test(blob)) s += 8;
+    if (/alternate|\baa\b|parallel/.test(vll) && /alt|alternate|parallel|aa/.test(blob)) s += 6;
+    if (/pre-?release|prerelease/.test(vll) && /pre-?release|prerelease/.test(blob)) s += 8;
+    if (/release event/.test(vll) && /release event/.test(blob)) s += 8;
+    if (/anniversary/.test(vll) && /anniversary/.test(blob)) s += 8;
+    if ((/^normal|base|^l$|^c$|^r$|^sr$|^sec$|^uc$|^p$/i.test(String(vl).split(/[·(]/)[0].trim()) || /(^|\s)normal(\s|$)/.test(vll)) && (r.k === r.c || /\bnormal\b/i.test(vt))) s += 6;
+    /* penalize longer specialized vt when query is shorter generic AA/Normal */
+    if (/alternate art \(aa\)/i.test(vl) && /super leader/i.test(vt)) s -= 20;
+    if (/^normal$/i.test(vl.trim()) && /pre-?release|release event|anniversary|deck|dash pack/i.test(vt)) s -= 30;
+    return s;
+  }
+  function pickVk(num, vlabel, setHint) {
+    /* EPIC-FIND-CARD-P1 r3 strategy A: score ALL; enhance ONLY best TARGET if calibrated; never borrow other version */
+    var list = vkByCode()[num] || [];
+    if (!list.length) return null;
+    var scored = list.map(function (r) {
+      var s = scoreVk(r, vlabel);
+      if (setHint && r.req && String(r.req).indexOf(String(setHint)) >= 0) s += 15;
+      if (setHint && r.psa && String(r.psa).indexOf(String(setHint)) >= 0) s += 8;
+      /* prefer calibrated over nm/paused on equal semantic score */
+      var pri = (r.status === 'calibrated' || !r.status) ? 2 : (r.status === 'needs_manual' ? 0 : 1);
+      return { r: r, s: s, pri: pri };
+    }).sort(function (a, b) { return b.s - a.s || b.pri - a.pri; });
+    var best = scored[0];
+    if (!best || best.s < 8) return null;
+    var tied = scored.filter(function (x) { return x.s === best.s && x.pri === best.pri; });
+    if (tied.length > 1) return null; /* ambiguous same-status targets */
+    var st = best.r.status;
+    if (st === 'paused' || st === 'needs_manual') return null;
+    if (st && st !== 'calibrated') return null;
+    return best.r;
   }
   function schUrl(kw, ex, cid) {
     var c = /^[A-Za-z0-9_]{1,80}$/.test(cid || '') ? cid : 'findcard';
@@ -116,7 +144,7 @@
     // 2026-10-05: Bandai official card-list search link (only when the number is in our official scrape; freewords search URL)
     var bd = (DATA.bd && DATA.bd[r.num]) ? ('<a class="dbs-bd" href="https://en.onepiece-cardgame.com/cardlist/?freewords=' + encodeURIComponent(r.num) + '" rel="noopener noreferrer" target="_blank" title="Official Bandai English card list">Bandai ↗</a>') : '';
     var tier = '';
-    try { var vk = pickVk(r.num, r.v); if (vk) tier = tierHtml(vk, root); } catch (_) {}
+    try { var vk = pickVk(r.num, r.v, r.s); if (vk) tier = tierHtml(vk, root); } catch (_) {}
     return '<li class="dbs-r' + (r.val != null ? ' ix' : '') + '"><a class="dbs-a" href="' + root + 'card/' + esc(r.num.toLowerCase()) + '/"><b class="dbs-id">' + esc(r.num) + '</b> <span class="dbs-n">' + esc(r.name) + '</span>'
       + '<span class="dbs-m">' + esc(r.v) + (r.r ? ' · ' + esc(r.r) : '') + (r.s ? ' · <span' + set + '>' + esc(r.s) + '</span>' : '') + '</span></a>' + badge + bd + tier + '</li>';
   }
