@@ -1,12 +1,12 @@
 {
 "schema": 4,
-"fetched_at": "2026-11-07T22:37:45-08:00",
-"auc_fetched_at": "2026-11-07T22:38:48-08:00",
+"fetched_at": "2026-11-08T02:36:33-08:00",
+"auc_fetched_at": "2026-11-08T02:37:34-08:00",
 "files": {
 "data/listings/home.v4.json": 609,
-"data/listings/cards/tier-grail.v4.json": 139,
-"data/listings/cards/tier-premium.v4.json": 345,
-"data/listings/cards/tier-core.v4.json": 577,
+"data/listings/cards/tier-grail.v4.json": 140,
+"data/listings/cards/tier-premium.v4.json": 344,
+"data/listings/cards/tier-core.v4.json": 580,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 2,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 2,
 "data/listings/cards/eb02-006-serial-yamato-psa-10.v4.json": 3,
@@ -17,7 +17,7 @@
 "data/listings/cards/eb03-031-sp-reiju-psa-10.v4.json": 9,
 "data/listings/cards/eb03-053-sp-nami-psa-10.v4.json": 10,
 "data/listings/cards/eb03-055-sp-robin-psa-10.v4.json": 4,
-"data/listings/cards/eb03-061-manga-uta-psa-10.v4.json": 12,
+"data/listings/cards/eb03-061-manga-uta-psa-10.v4.json": 11,
 "data/listings/cards/eb04-007-op17sp-zoro-psa-10.v4.json": 0,
 "data/listings/cards/eb04-044-manga-koby-psa-10.v4.json": 12,
 "data/listings/cards/op01-003-aa-luffy-psa-10.v4.json": 3,
@@ -41,7 +41,7 @@
 "data/listings/cards/op03-123-cs24-katakuri-psa-10.v4.json": 1,
 "data/listings/cards/op04-083-manga-sabo-psa-10.v4.json": 12,
 "data/listings/cards/op05-060-eb02sp-luffy-psa-10.v4.json": 0,
-"data/listings/cards/op05-069-manga-law-psa-10.v4.json": 3,
+"data/listings/cards/op05-069-manga-law-psa-10.v4.json": 4,
 "data/listings/cards/op05-074-manga-kid-psa-10.v4.json": 9,
 "data/listings/cards/op05-091-sp-rebecca-psa-10.v4.json": 10,
 "data/listings/cards/op05-119-3a-gold-luffy-psa-10.v4.json": 3,
@@ -120,9 +120,9 @@
 "data/listings/cards/db-op06.v4.json": 27,
 "data/listings/cards/db-op07.v4.json": 18,
 "data/listings/cards/db-op08.v4.json": 11,
-"data/listings/cards/db-op09.v4.json": 45,
+"data/listings/cards/db-op09.v4.json": 46,
 "data/listings/cards/db-op10.v4.json": 29,
-"data/listings/cards/db-op11.v4.json": 10,
+"data/listings/cards/db-op11.v4.json": 11,
 "data/listings/cards/db-op12.v4.json": 17,
 "data/listings/cards/db-op13.v4.json": 27,
 "data/listings/cards/db-op14.v4.json": 28,
@@ -139,5 +139,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 8
 },
-"n": 2685
+"n": 2690
 }
