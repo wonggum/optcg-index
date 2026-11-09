@@ -189,6 +189,7 @@ function pass(){if(RUN)return Promise.resolve();RUN=1;var n=Date.now();
 document.addEventListener('opc:listings',function(){pass()});
 setInterval(pass,60000);
 if(document.querySelector('.v4s[data-v4st="1"]'))setTimeout(pass,0);   // loader may have finished before this file ran
+window.OPC_AOK=aOk;  // cardimg reader (kill_op17_r2); BJ/ph behavior unchanged
 window.OPC_SFB_PASS=pass;   // exposed for QA only
 })();
 
@@ -219,4 +220,66 @@ function enhance(rows){if(!onCard()||!rows||!rows.length)return;var byId={},conf
 function go(){rd(BASE+'assets/version-keywords-pilot.json').then(function(d){if(d&&Array.isArray(d.rows))enhance(d.rows)})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 })();
-
+/* OP17 cardimg kill-switch reader (opchase_cardimg_kill_op17_r3). Footer+binding = package B. BJ/ph untouched. */
+(function(){if(window.OPC_CARDIMG)return;window.OPC_CARDIMG=1;
+var BASE=(function(){var s=(document.currentScript&&document.currentScript.src)||'',i=s.lastIndexOf('assets/opchase-ui.js');return i>=0?s.slice(0,i):''})();
+var SRC_RE=/^assets\/cardimg\/op17\/OP17-[0-9]{3}(_[A-Za-z0-9]+)?\.webp$/;
+var SHA_RE=/^[0-9a-f]{64}$/;
+var ENTRY_RE=/^OP17-[0-9]{3}(_[A-Za-z0-9]+)?$/;
+var MARK='data-opc-cardimg';
+function rd(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
+function pageKey(){try{var p=location.pathname.replace(/\/index\.html$/i,'/');if(!/\/$/.test(p)&&/\/card\/op17-\d{3}$/i.test(p))p+='/';var m=p.match(/\/card\/(op17-\d{3})\/$/i);return m?('card/'+m[1].toLowerCase()+'/'):''}catch(_){return ''}}
+function pageCard(pk){var m=/^card\/(op17-\d{3})\/$/.exec(pk||'');return m?m[1].toUpperCase():''}
+function aOk(t){if(typeof window.OPC_AOK!=='function')return false;try{return !!window.OPC_AOK(t)}catch(_){return false}}
+function validRec(e,pk){if(!e||typeof e!=='object'||Array.isArray(e))return null;
+ if(typeof e.entry_id!=='string'||!ENTRY_RE.test(e.entry_id))return null;
+ var want='assets/cardimg/op17/'+e.entry_id+'.webp';
+ if(typeof e.src!=='string'||e.src!==want||!SRC_RE.test(e.src))return null;
+ var pc=pageCard(pk);if(!pc)return null;
+ if(e.entry_id.split('_')[0]!==pc)return null;
+ if(typeof e.alt!=='string'||!aOk(e.alt))return null;
+ if(e.alt.indexOf(pc)<0)return null;
+ if(!/ official card image$/.test(e.alt))return null;
+ if(typeof e.sha256!=='string'||!SHA_RE.test(e.sha256))return null;
+ if(typeof e.w!=='number'||typeof e.h!=='number')return null;
+ if(!Number.isInteger(e.w)||!Number.isInteger(e.h))return null;
+ if(!(e.w>0&&e.w<=1200&&e.h>0&&e.h<=1700))return null;
+ return{entry_id:e.entry_id,src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256}}
+function rmAll(){[].forEach.call(document.querySelectorAll('['+MARK+']'),function(x){if(x.parentNode)x.parentNode.removeChild(x)})}
+function rmIn(art){[].forEach.call(art.querySelectorAll('['+MARK+']'),function(x){if(x.parentNode)x.parentNode.removeChild(x)})}
+function place(art,rec){var h=art.querySelector('.pcard-h');
+ if(!h||!h.parentNode){rmIn(art);return}
+ var olds=art.querySelectorAll('['+MARK+']');
+ if(olds.length===1&&olds[0].getAttribute('data-opc-entry')===rec.entry_id){
+  var img0=olds[0].querySelector('img');
+  if(img0&&img0.getAttribute('src')===(BASE+rec.src)&&img0.getAttribute('alt')===rec.alt&&+img0.getAttribute('width')===rec.w&&+img0.getAttribute('height')===rec.h)return;
+ }
+ rmIn(art);
+ var w=document.createElement('div');w.setAttribute(MARK,'1');w.setAttribute('data-opc-entry',rec.entry_id);
+ w.style.cssText='display:block;text-align:center;margin:.5em 0';
+ var img=document.createElement('img');img.src=BASE+rec.src;img.alt=rec.alt;img.loading='lazy';img.decoding='async';
+ img.width=rec.w;img.height=rec.h;img.style.cssText='display:inline-block;max-width:min(100%,240px);height:auto';
+ w.appendChild(img);
+ if(h.nextSibling)h.parentNode.insertBefore(w,h.nextSibling);else h.parentNode.appendChild(w)}
+function apply(m){
+  var on=!!(m&&m.on===true&&m.pages&&typeof m.pages==='object'&&!Array.isArray(m.pages)&&m.v===1);
+  if(!on){rmAll();return}
+  var pk=pageKey();
+  if(!pk){rmAll();return}
+  if(!Object.prototype.hasOwnProperty.call(m.pages,pk)){rmAll();return}
+  var M=m.pages[pk];
+  if(!M||typeof M!=='object'||Array.isArray(M)){rmAll();return}
+  [].forEach.call(document.querySelectorAll('article.pcard[id^="p-"]'),function(art){
+    if(!Object.prototype.hasOwnProperty.call(M,art.id)){rmIn(art);return}
+    var rec=validRec(M[art.id],pk);
+    if(!rec){rmIn(art);return}
+    place(art,rec)})}
+function pass(){var pk=pageKey();
+  if(!pk){rmAll();return Promise.resolve()}
+  return rd(BASE+'assets/opchase-cardimg.json').then(function(m){apply(m)}).catch(function(){rmAll()})}
+function go(){pass()}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+setInterval(function(){if(document.visibilityState!=='visible')return;if(!pageKey())return;pass()},60000);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState!=='visible')return;if(!pageKey())return;pass()});
+window.OPC_CARDIMG_PASS=pass;
+})();
