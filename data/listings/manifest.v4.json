@@ -1,12 +1,12 @@
 {
 "schema": 4,
-"fetched_at": "2026-11-09T22:05:46-08:00",
-"auc_fetched_at": "2026-11-09T22:07:13-08:00",
+"fetched_at": "2026-11-10T02:04:20-08:00",
+"auc_fetched_at": "2026-11-10T02:05:22-08:00",
 "files": {
-"data/listings/home.v4.json": 608,
-"data/listings/cards/tier-grail.v4.json": 138,
-"data/listings/cards/tier-premium.v4.json": 347,
-"data/listings/cards/tier-core.v4.json": 567,
+"data/listings/home.v4.json": 625,
+"data/listings/cards/tier-grail.v4.json": 139,
+"data/listings/cards/tier-premium.v4.json": 344,
+"data/listings/cards/tier-core.v4.json": 564,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 2,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 4,
 "data/listings/cards/eb02-006-serial-yamato-psa-10.v4.json": 3,
@@ -19,7 +19,7 @@
 "data/listings/cards/eb03-055-sp-robin-psa-10.v4.json": 3,
 "data/listings/cards/eb03-061-manga-uta-psa-10.v4.json": 12,
 "data/listings/cards/eb04-007-op17sp-zoro-psa-10.v4.json": 0,
-"data/listings/cards/eb04-044-manga-koby-psa-10.v4.json": 12,
+"data/listings/cards/eb04-044-manga-koby-psa-10.v4.json": 11,
 "data/listings/cards/op01-003-aa-luffy-psa-10.v4.json": 3,
 "data/listings/cards/op01-016-manga-prb-nami-psa-10.v4.json": 4,
 "data/listings/cards/op01-016-sp-nami-psa-10.v4.json": 11,
@@ -78,7 +78,7 @@
 "data/listings/cards/op13-118-manga-luffy-psa-10.v4.json": 13,
 "data/listings/cards/op13-118-redmanga-luffy-psa-10.v4.json": 0,
 "data/listings/cards/op13-119-manga-ace-psa-10.v4.json": 4,
-"data/listings/cards/op13-119-redmanga-ace-psa-10.v4.json": 1,
+"data/listings/cards/op13-119-redmanga-ace-psa-10.v4.json": 2,
 "data/listings/cards/op13-120-manga-sabo-psa-10.v4.json": 11,
 "data/listings/cards/op13-120-redmanga-sabo-psa-10.v4.json": 1,
 "data/listings/cards/op14-119-manga-mihawk-psa-10.v4.json": 14,
@@ -107,7 +107,7 @@
 "data/listings/cards/st10-005-1a-jinbe-psa-10.v4.json": 4,
 "data/listings/cards/st10-010-topprize-law-psa-10.v4.json": 1,
 "data/listings/cards/st15-002-sp-whitebeard-psa-10.v4.json": 9,
-"data/listings/cards/st26-005-sp-en-luffy-psa-10.v4.json": 5,
+"data/listings/cards/st26-005-sp-en-luffy-psa-10.v4.json": 3,
 "data/listings/cards/db-eb01.v4.json": 17,
 "data/listings/cards/db-eb02.v4.json": 30,
 "data/listings/cards/db-eb03.v4.json": 19,
@@ -118,7 +118,7 @@
 "data/listings/cards/db-op05.v4.json": 22,
 "data/listings/cards/db-op06.v4.json": 27,
 "data/listings/cards/db-op07.v4.json": 18,
-"data/listings/cards/db-op08.v4.json": 12,
+"data/listings/cards/db-op08.v4.json": 13,
 "data/listings/cards/db-op09.v4.json": 42,
 "data/listings/cards/db-op10.v4.json": 29,
 "data/listings/cards/db-op11.v4.json": 12,
@@ -138,5 +138,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 8
 },
-"n": 2672
+"n": 2683
 }
