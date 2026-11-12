@@ -1277,7 +1277,7 @@ table.hist-t{font-size:.86rem}
 table.hist-t td,table.hist-t th{white-space:nowrap;vertical-align:middle}
 table.hist-t td[data-l="Product"]{white-space:normal;min-width:180px}
 table.hist-t td[data-l="eBay"] .ebtn{margin:0}
-@media (max-width:760px){table.hist-t{font-size:.8rem}table.hist-t td[data-l="Product"]{min-width:150px}}
+@media (max-width:760px){table.hist-t{font-size:.8rem}table.hist-t td[data-l="Product"]{min-width:150px}table.hist-t td[data-l="eBay"] .ebtn-sr{display:flex;width:100%;white-space:nowrap}}
 
 /* §31 (2026-10-04) /pro/ page: feature grid + planned pricing (OPChase Pro, not launched) */
 .pro-page h1 .pro-tag{font-size:var(--fs-12);vertical-align:middle}
@@ -1547,23 +1547,23 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .pcard-ph:hover{text-decoration:underline;text-underline-offset:2px}
 .pcard-acts{display:flex;flex-direction:column;gap:8px;padding-top:var(--sp-1);border-top:1px solid var(--border)}
 .bd-cta{display:flex;flex-direction:column;gap:6px;width:100%}
-.bd-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;padding:0 16px;border-radius:var(--r-pill);border:1.5px solid var(--accent-border);background:var(--accent-bg);color:var(--accent-text)!important;font-size:var(--fs-14);font-weight:700;text-decoration:none!important;letter-spacing:-.01em;transition:background .15s,border-color .15s,box-shadow .15s;box-shadow:0 0 0 0 transparent}
+.bd-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;height:44px;min-height:44px;padding:0 16px;border-radius:var(--r-pill);border:1.5px solid var(--accent-border);background:var(--accent-bg);color:var(--accent-text)!important;font-size:var(--fs-14);font-weight:700;text-decoration:none!important;letter-spacing:-.01em;transition:background .15s,border-color .15s,box-shadow .15s;box-shadow:0 0 0 0 transparent}
 .bd-btn:hover{background:var(--accent-bg-2);border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
 .bd-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .bd-ext{font-weight:600}
 .pcard-ix{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .bd-cta .bd-hint{margin:0;text-align:center}
-.pcard-ebay{width:100%;min-height:40px;justify-content:center;background:var(--text)!important;border-color:var(--text)!important;color:var(--bg)!important;font-weight:650;border-radius:var(--r-pill)}
+.pcard-ebay{order:-1;width:100%;height:44px;min-height:44px;font-size:var(--fs-14);justify-content:center;background:var(--text)!important;border-color:var(--text)!important;color:var(--bg)!important;font-weight:650;border-radius:var(--r-pill)}
 .pcard-ebay:hover{background:var(--text-2)!important;border-color:var(--text-2)!important;color:var(--bg)!important}
 .pcard-ebay::before{opacity:1;background:currentColor}
-/* Desktop: side-by-side actions; hint beside button when space allows */
+/* Desktop (CARD-CTA-1): eBay left, Bandai right, equal halves; Bandai hint below its button; raw box on its own row */
 @media (min-width:761px){
   .pcard{padding:var(--sp-5)}
-  .pcard-acts{flex-direction:row;flex-wrap:wrap;align-items:stretch}
-  .bd-cta{flex:1 1 280px;flex-direction:row;align-items:center;gap:12px;width:auto;min-width:0}
-  .bd-btn{width:auto;flex:1 1 auto;min-width:220px;padding:0 20px}
-  .bd-cta .bd-hint{text-align:left;white-space:nowrap}
-  .pcard-ebay{width:auto;flex:0 1 240px;min-width:180px}
+  .pcard-acts{flex-direction:row;flex-wrap:wrap;align-items:flex-start}
+  .bd-cta{flex:1 1 calc(50% - 8px);width:auto;min-width:0}
+  .bd-btn{padding:0 20px}
+  .pcard-ebay{flex:1 1 calc(50% - 8px);width:auto;min-width:0}
+  .pcard-acts>.opc-raw{flex-basis:100%}
   .plist{gap:var(--sp-4)}
 }
 @media (min-width:1100px){
