@@ -224,7 +224,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 /* OP17 cardimg reader + binding + footer swap (IMG-1). Single switch: assets/opchase-cardimg.json v:2 "card" block. Off, unreadable or
    any other shape -> no image (fail-closed). An <img> that fails to load removes its whole node. Never touches og/meta. */
-(function(){if(window.OPC_CARDIMG)return;window.OPC_CARDIMG=3;
+(function(){if(window.OPC_CARDIMG)return;window.OPC_CARDIMG=4;
 var BASE=(function(){var s=(document.currentScript&&document.currentScript.src)||'',i=s.lastIndexOf('assets/opchase-ui.js');return i>=0?s.slice(0,i):''})();
 var SRC_RE=/^assets\/cardimg\/op17\/OP17-[0-9]{3}(_p[0-9]{1,2})?\.webp$/;
 var SHA_RE=/^[0-9a-f]{64}$/;
@@ -236,6 +236,22 @@ var FOOT_OLD='Card text and facts are quoted from public sources for reference; 
 var FOOT_NEW='Card images \u00a9 Bandai Namco / One Piece Card Game, shown for card identification. Card data from the official card list.';
 var MARK='data-opc-cardimg',FMARK='data-opc-cardimg-foot';
 var FT=null,FV=null;
+/* IMG-FIX-1 desktop layout (GM 2026-11-12 11:56). Only >=900px: a version card that HAS an image node becomes a 2-column grid, text left,
+   image + source line right (220px), buttons full width below both. <=899px: no layout rule applies, the inline-styled single column
+   (240px centred image right after the version name) is unchanged (only R3 below); no image / K1 on:false / image error -> no node -> original layout.
+   DOM order is never changed (grid placement only). 12 auto rows + 1fr: the image spans them, so a tall image never stretches text rows.
+   R3 (GM 12:05, all widths): while a version card shows its image, its 'View on Bandai card list' button + 'Nth image on Bandai's page'
+   hint (.bd-cta) are hidden; the image source line links to the same official card list URL (bdHref). Pure CSS :has, no JS: once the
+   image node is gone (K1 on:false, image error, no image) the rule no longer matches and the button is back.
+   px literals 220 (column) / 900 (breakpoint) approved by GM (Q5/Q7), 待 --op-* 变量化. */
+var CSS_ID='opc-cimg-css',CSS='.pcard:has(>[data-opc-cardimg]) .bd-cta{display:none}'+
+ '@media (min-width:900px){'+
+ '.pcard:has(>[data-opc-cardimg]){display:grid;grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:repeat(12,auto) 1fr auto;column-gap:var(--sp-6);row-gap:0}'+
+ '.pcard:has(>[data-opc-cardimg])>*{grid-column:1;min-width:0}'+
+ '.pcard:has(>[data-opc-cardimg])>*+*{margin-top:var(--sp-3)}'+
+ '.pcard:has(>[data-opc-cardimg])>[data-opc-cardimg]{grid-column:2;grid-row:1/14;margin:0!important}'+
+ '.pcard:has(>[data-opc-cardimg])>.pcard-acts{grid-column:1/-1;grid-row:14}}';
+function css(){if(document.getElementById(CSS_ID))return;var st=document.createElement('style');st.id=CSS_ID;st.textContent=CSS;(document.head||document.documentElement).appendChild(st)}
 function rd(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
 function pageKey(){try{var p=location.pathname.replace(/\/index\.html$/i,'/');if(!/\/$/.test(p)&&/\/card\/op17-\d{3}$/i.test(p))p+='/';var m=p.match(/\/card\/(op17-\d{3})\/$/i);return m?('card/'+m[1].toLowerCase()+'/'):''}catch(_){return ''}}
 function pageCard(pk){var m=/^card\/(op17-\d{3})\/$/.exec(pk||'');return m?m[1].toUpperCase():''}
@@ -256,7 +272,7 @@ function validRec(e,pk,domId){if(!e||typeof e!=='object'||Array.isArray(e))retur
  if(typeof e.w!=='number'||typeof e.h!=='number')return null;
  if(!Number.isInteger(e.w)||!Number.isInteger(e.h))return null;
  if(!(e.w>0&&e.w<=1200&&e.h>0&&e.h<=1700))return null;
- return{entry_id:e.entry_id,src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256,label:'Version '+am[3]+' ('+am[4]+')'}}
+ return{entry_id:e.entry_id,src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256}}
 function footNodes(){var out=[];[].forEach.call(document.querySelectorAll('footer.site-f p'),function(p){[].forEach.call(p.childNodes,function(t){if(t.nodeType===3)out.push(t)})});return out}
 function footSet(on){
  if(on){if(FT)return;
@@ -276,16 +292,15 @@ function place(art,rec,href){var h=art.querySelector('.pcard-h');
   var img0=olds[0].querySelector('img'),a0=olds[0].querySelector('a');
   if(img0&&a0&&img0.getAttribute('src')===(BASE+rec.src)&&img0.getAttribute('alt')===rec.alt&&+img0.getAttribute('width')===rec.w&&+img0.getAttribute('height')===rec.h&&a0.getAttribute('href')===href)return;
  }
- rmIn(art);
+ rmIn(art);css();
  var w=document.createElement('div');w.setAttribute(MARK,'1');w.setAttribute('data-opc-entry',rec.entry_id);
  w.style.cssText='display:block;text-align:center;margin:.5em 0';
  var img=document.createElement('img');img.src=BASE+rec.src;img.alt=rec.alt;img.setAttribute('loading','lazy');img.setAttribute('decoding','async');
  img.width=rec.w;img.height=rec.h;img.style.cssText='display:inline-block;max-width:min(100%,240px);height:auto';
  img.addEventListener('error',function(){if(w.parentNode)w.parentNode.removeChild(w);syncFoot()});
  var c=document.createElement('div');c.style.cssText='font-size:.8em;opacity:.8;margin-top:.25em';
- var v=document.createElement('span');v.textContent=rec.label;
  var a=document.createElement('a');a.setAttribute('href',href);a.setAttribute('rel','noopener');a.setAttribute('target','_blank');a.textContent=SRCLINE;
- c.appendChild(v);c.appendChild(document.createTextNode(' \u00b7 '));c.appendChild(a);
+ c.appendChild(a);
  w.appendChild(img);w.appendChild(c);
  if(h.nextSibling)h.parentNode.insertBefore(w,h.nextSibling);else h.parentNode.appendChild(w)}
 function apply(m){
