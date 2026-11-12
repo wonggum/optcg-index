@@ -60,8 +60,8 @@ window.OPC_SRC_ALL={code:code,tagHref:tagHref,k:K};   // exposed for QA only
    ordered by soonest end, Buy It Now by lowest listed amount. A neutral line says when the listings were last updated. Every slot keeps
    its static Search on eBay link (a rendered Buy It Now / bid button gets that same link below it). Affiliate params, rel and the
    customid come from the loader code copied verbatim below (campid 5339217952, rel "sponsored noopener"); AB-4b adds a raw-card layer for pilot keys (OP10 + Luffy calibrated rows from assets/version-keywords-pilot.json).
-   Bandai thumbnails: assets/opchase-bdimg.json (signed imgmap_* tables, status mapped only). Kill switch: that file with "on":false
-   (or the file removed) -> no official image is shown anywhere; no ?v change needed. */
+   Bandai thumbnails (IMG-1): the "ph" block of assets/opchase-cardimg.json v:2 (local webp under assets/cardimg/ only, from signed
+   tables). Single switch: that file with "on":false, unreadable, or any other shape -> no official image anywhere; no ?v change needed. */
 (function(){if(window.OPC_SFB)return;window.OPC_SFB=1;
 var EPN='mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339217952&customid={c}&toolid=10001&mkevt=1',REL='sponsored noopener',
 MSG='Live listings updating \u2014 search on eBay',NOTE=0,FB=[],CACHE={},
@@ -100,7 +100,7 @@ function render(ph,L){CKO=ph.getAttribute('data-cid-key');if(!CK.test(CKO||''))C
   w.appendChild(wb(el('div',{'class':'lt-ttl',title:L.title},L.title)));var e=el('div',{'class':'ebp'});e.appendChild(btn(L,p));w.appendChild(e);out.push(w)}
  return out}
 var BASE=(function(){var s=(document.currentScript&&document.currentScript.src)||'',i=s.lastIndexOf('assets/opchase-ui.js');return i>=0?s.slice(0,i):''})();
-var SN=new WeakMap(),RUN=0,BDP=null,BDU=/^https:\/\/en\.onepiece-cardgame\.com\/images\/cardlist\/card\/[A-Za-z0-9_-]{3,40}\.png(\?[0-9]{1,10})?$/;
+var SN=new WeakMap(),RUN=0,PHS=/^assets\/cardimg\/(st15|op17)\/((ST15|OP17)-[0-9]{3}(?:_p[0-9]{1,2})?)\.webp$/,PHH=/^[0-9a-f]{64}$/;
 /* same field checks as the loader's okL, minus FRESH / exp; auction: only "not ended yet" (now < end) */
 function okS(L,n){var d=L&&L.auction?Date.parse(L.end):0;return !!L&&typeof L==='object'&&!Array.isArray(L)&&typeof L.itm==='string'&&ITM.test(L.itm)&&tOk(L.title)
  &&typeof L.price==='number'&&isFinite(L.price)&&L.price>0&&L.price<=200000&&(L.seller===null||selOk(L.seller))&&(L.img==null||(typeof L.img==='string'&&IMG.test(L.img)))
@@ -130,16 +130,18 @@ function note(fa){var p=document.querySelector('p[data-v4sn]');if(!isFinite(fa))
  if(!p){p=el('p',{'class':'stl sm','data-v4sn':'1','role':'status'});var f=document.querySelector('.v4s[data-sfb="1"]')||document.querySelector('.v4s'),t=f&&((f.parentNode&&f.parentNode.closest('.tl,.lcar,.car,table,.chl-g'))||f);if(t&&t.parentNode)t.parentNode.insertBefore(p,t);else return}
  if(p.textContent!==txt)p.textContent=txt;[].forEach.call(document.querySelectorAll('p[data-v4n]'),function(x){x.style.display='none'})}
 function pkey(){try{var b=new URL(BASE||'/',location.href).pathname,p=location.pathname;if(p.startsWith(b))p=p.slice(b.length);return p.replace(/[^\/]+\.html$/,'').replace(/^\/+/,'')}catch(_){return ''}}
-function bd(){if(!BDP)BDP=rd(BASE+'assets/opchase-bdimg.json');return BDP}
+function bd(){return rd(BASE+'assets/opchase-cardimg.json')}   // IMG-1 single switch; re-read every pass (no memo)
 var BDSRC='Card image: \u00a9 Bandai / ONE PIECE CARD GAME official card list';   // verbatim WL2:8; the only source line
-function bdE(e){var o=Array.isArray(e)?{u:e[0],a:e[1]}:(e&&typeof e==='object'?e:null);if(!o||!BDU.test(o.u||'')||!aOk(o.a||''))return null;
- var w=+o.w,h=+o.h;if(!(w>0&&w<=1200&&w===Math.floor(w)&&h>0&&h<=1700&&h===Math.floor(h))){w=600;h=838}return{u:o.u,a:o.a,w:w,h:h}}
-function bdPass(){return bd().then(function(m){var on=!!(m&&m.on===true&&m.pages&&typeof m.pages==='object'),M=on&&Object.prototype.hasOwnProperty.call(m.pages,pkey())?m.pages[pkey()]:null;
+function bdE(e){if(!e||typeof e!=='object'||Array.isArray(e))return null;var m=PHS.exec(typeof e.src==='string'?e.src:'');
+ if(!m||e.entry_id!==m[2]||m[1]!==m[3].toLowerCase()||typeof e.alt!=='string'||!aOk(e.alt)||!/ official card image$/.test(e.alt)||typeof e.sha256!=='string'||!PHH.test(e.sha256))return null;
+ var w=e.w,h=e.h;if(!(Number.isInteger(w)&&Number.isInteger(h)&&w>0&&w<=1200&&h>0&&h<=1700))return null;return{u:BASE+e.src,a:e.alt,w:w,h:h}}
+function bdPass(){return bd().then(function(m){var on=!!(m&&m.on===true&&m.v===2&&m.ph&&typeof m.ph==='object'&&!Array.isArray(m.ph)),M=on&&Object.prototype.hasOwnProperty.call(m.ph,pkey())?m.ph[pkey()]:null;if(M&&(typeof M!=='object'||Array.isArray(M)))M=null;
  [].forEach.call(document.querySelectorAll('.v4s[data-kind="ph"]'),function(ph){var X=[].slice.call(ph.querySelectorAll('[data-bdimg]')),c=ph.getAttribute('data-card'),e=M&&ckOk(c)&&Object.prototype.hasOwnProperty.call(M,c)?bdE(M[c]):null;
   if(!e){X.forEach(function(x){x.parentNode.removeChild(x)});return}
   var x=X.shift();X.forEach(function(y){y.parentNode.removeChild(y)});if(x&&x.getAttribute('data-bdu')===e.u){if(ph.firstChild!==x)ph.insertBefore(x,ph.firstChild);return}if(x)x.parentNode.removeChild(x);
   var w=el('span',{'class':'opc-bdimg','data-bdimg':'1','data-bdu':e.u,style:'display:block;margin:0 0 .75em'});
-  w.appendChild(el('img',{src:e.u,alt:e.a,loading:'lazy',decoding:'async',width:String(e.w),height:String(e.h),referrerpolicy:'no-referrer',style:'display:block;width:100%;max-width:min(100%,'+e.w+'px);height:auto'}));
+  var im=el('img',{src:e.u,alt:e.a,loading:'lazy',decoding:'async',width:String(e.w),height:String(e.h),style:'display:block;width:100%;max-width:min(100%,'+e.w+'px);height:auto'});
+  im.addEventListener('error',function(){if(w.parentNode)w.parentNode.removeChild(w)});w.appendChild(im);
   w.appendChild(el('span',{'class':'sm'},BDSRC));ph.insertBefore(w,ph.firstChild)})})}
 
 /* AB-4b: pilot two-tier raw-card layer (assets/version-keywords-pilot.json). */
@@ -189,7 +191,7 @@ function pass(){if(RUN)return Promise.resolve();RUN=1;var n=Date.now();
 document.addEventListener('opc:listings',function(){pass()});
 setInterval(function(){if(document.visibilityState!=='visible')return;pass()},60000);
 if(document.querySelector('.v4s[data-v4st="1"]'))setTimeout(pass,0);   // loader may have finished before this file ran
-window.OPC_AOK=aOk;  // cardimg reader (kill_op17_r2); BJ/ph behavior unchanged
+window.OPC_AOK=aOk;  // cardimg reader (IMG-1 v2) uses the same alt check
 window.OPC_SFB_PASS=pass;   // exposed for QA only
 })();
 
@@ -220,60 +222,90 @@ function enhance(rows){if(!onCard()||!rows||!rows.length)return;var byId={},conf
 function go(){rd(BASE+'assets/version-keywords-pilot.json').then(function(d){if(d&&Array.isArray(d.rows))enhance(d.rows)})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 })();
-/* OP17 cardimg kill-switch reader (opchase_cardimg_kill_op17_r3). Footer+binding = package B. BJ/ph untouched. */
-(function(){if(window.OPC_CARDIMG)return;window.OPC_CARDIMG=1;
+/* OP17 cardimg reader + binding + footer swap (IMG-1). Single switch: assets/opchase-cardimg.json v:2 "card" block. Off, unreadable or
+   any other shape -> no image (fail-closed). An <img> that fails to load removes its whole node. Never touches og/meta. */
+(function(){if(window.OPC_CARDIMG)return;window.OPC_CARDIMG=3;
 var BASE=(function(){var s=(document.currentScript&&document.currentScript.src)||'',i=s.lastIndexOf('assets/opchase-ui.js');return i>=0?s.slice(0,i):''})();
-var SRC_RE=/^assets\/cardimg\/op17\/OP17-[0-9]{3}(_[A-Za-z0-9]+)?\.webp$/;
+var SRC_RE=/^assets\/cardimg\/op17\/OP17-[0-9]{3}(_p[0-9]{1,2})?\.webp$/;
 var SHA_RE=/^[0-9a-f]{64}$/;
-var ENTRY_RE=/^OP17-[0-9]{3}(_[A-Za-z0-9]+)?$/;
-var MARK='data-opc-cardimg';
+var ENTRY_RE=/^OP17-([0-9]{3})(?:_p([0-9]{1,2}))?$/;
+var ALT_RE=/^(\S(?:.*\S)?) (OP17-[0-9]{3}) Version ([0-9]{1,2}) \(([A-Z]{1,4})\) official card image$/;
+var BD_RE=/^https:\/\/en\.onepiece-cardgame\.com\/cardlist\/\?series=569117&freewords=(OP17-[0-9]{3})$/;
+var SRCLINE='Image \u00a9 Bandai Namco / One Piece Card Game';
+var FOOT_OLD='Card text and facts are quoted from public sources for reference; no card images are hosted.';
+var FOOT_NEW='Card images \u00a9 Bandai Namco / One Piece Card Game, shown for card identification. Card data from the official card list.';
+var MARK='data-opc-cardimg',FMARK='data-opc-cardimg-foot';
+var FT=null,FV=null;
 function rd(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
 function pageKey(){try{var p=location.pathname.replace(/\/index\.html$/i,'/');if(!/\/$/.test(p)&&/\/card\/op17-\d{3}$/i.test(p))p+='/';var m=p.match(/\/card\/(op17-\d{3})\/$/i);return m?('card/'+m[1].toLowerCase()+'/'):''}catch(_){return ''}}
 function pageCard(pk){var m=/^card\/(op17-\d{3})\/$/.exec(pk||'');return m?m[1].toUpperCase():''}
 function aOk(t){if(typeof window.OPC_AOK!=='function')return false;try{return !!window.OPC_AOK(t)}catch(_){return false}}
-function validRec(e,pk){if(!e||typeof e!=='object'||Array.isArray(e))return null;
+function verOf(eid){var m=ENTRY_RE.exec(eid);if(!m)return 0;return m[2]===undefined?1:(parseInt(m[2],10)+1)}
+function validRec(e,pk,domId){if(!e||typeof e!=='object'||Array.isArray(e))return null;
+ var pc=pageCard(pk);if(!pc)return null;
+ if(typeof domId!=='string'||!(domId==='p-'+pc||domId.indexOf('p-'+pc+'_')===0))return null;
  if(typeof e.entry_id!=='string'||!ENTRY_RE.test(e.entry_id))return null;
+ if(e.entry_id.split('_')[0]!==pc)return null;
  var want='assets/cardimg/op17/'+e.entry_id+'.webp';
  if(typeof e.src!=='string'||e.src!==want||!SRC_RE.test(e.src))return null;
- var pc=pageCard(pk);if(!pc)return null;
- if(e.entry_id.split('_')[0]!==pc)return null;
  if(typeof e.alt!=='string'||!aOk(e.alt))return null;
- if(e.alt.indexOf(pc)<0)return null;
- if(!/ official card image$/.test(e.alt))return null;
+ var am=ALT_RE.exec(e.alt);if(!am)return null;
+ if(am[2]!==pc)return null;
+ var n=verOf(e.entry_id);if(!n||parseInt(am[3],10)!==n)return null;
  if(typeof e.sha256!=='string'||!SHA_RE.test(e.sha256))return null;
  if(typeof e.w!=='number'||typeof e.h!=='number')return null;
  if(!Number.isInteger(e.w)||!Number.isInteger(e.h))return null;
  if(!(e.w>0&&e.w<=1200&&e.h>0&&e.h<=1700))return null;
- return{entry_id:e.entry_id,src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256}}
-function rmAll(){[].forEach.call(document.querySelectorAll('['+MARK+']'),function(x){if(x.parentNode)x.parentNode.removeChild(x)})}
+ return{entry_id:e.entry_id,src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256,label:'Version '+am[3]+' ('+am[4]+')'}}
+function footNodes(){var out=[];[].forEach.call(document.querySelectorAll('footer.site-f p'),function(p){[].forEach.call(p.childNodes,function(t){if(t.nodeType===3)out.push(t)})});return out}
+function footSet(on){
+ if(on){if(FT)return;
+  var hit=footNodes().filter(function(t){return t.nodeValue.indexOf(FOOT_OLD)>=0});
+  if(hit.length!==1||hit[0].nodeValue.split(FOOT_OLD).length!==2)return;
+  FT=hit[0];FV=FT.nodeValue;FT.nodeValue=FV.split(FOOT_OLD).join(FOOT_NEW);if(FT.parentNode)FT.parentNode.setAttribute(FMARK,'1');return}
+ if(!FT)return;
+ FT.nodeValue=FV;if(FT.parentNode)FT.parentNode.removeAttribute(FMARK);FT=null;FV=null}
+function syncFoot(){footSet(!!document.querySelector('['+MARK+']'))}
+function rmAll(){[].forEach.call(document.querySelectorAll('['+MARK+']'),function(x){if(x.parentNode)x.parentNode.removeChild(x)});footSet(false)}
 function rmIn(art){[].forEach.call(art.querySelectorAll('['+MARK+']'),function(x){if(x.parentNode)x.parentNode.removeChild(x)})}
-function place(art,rec){var h=art.querySelector('.pcard-h');
- if(!h||!h.parentNode){rmIn(art);return}
+function bdHref(art,pc){var a=art.querySelectorAll('a.bd-btn');if(a.length!==1)return '';var h=a[0].getAttribute('href')||'';var m=BD_RE.exec(h);return(m&&m[1]===pc)?h:''}
+function place(art,rec,href){var h=art.querySelector('.pcard-h');
+ if(!h||!h.parentNode||h.parentNode!==art){rmIn(art);return}
  var olds=art.querySelectorAll('['+MARK+']');
  if(olds.length===1&&olds[0].getAttribute('data-opc-entry')===rec.entry_id){
-  var img0=olds[0].querySelector('img');
-  if(img0&&img0.getAttribute('src')===(BASE+rec.src)&&img0.getAttribute('alt')===rec.alt&&+img0.getAttribute('width')===rec.w&&+img0.getAttribute('height')===rec.h)return;
+  var img0=olds[0].querySelector('img'),a0=olds[0].querySelector('a');
+  if(img0&&a0&&img0.getAttribute('src')===(BASE+rec.src)&&img0.getAttribute('alt')===rec.alt&&+img0.getAttribute('width')===rec.w&&+img0.getAttribute('height')===rec.h&&a0.getAttribute('href')===href)return;
  }
  rmIn(art);
  var w=document.createElement('div');w.setAttribute(MARK,'1');w.setAttribute('data-opc-entry',rec.entry_id);
  w.style.cssText='display:block;text-align:center;margin:.5em 0';
- var img=document.createElement('img');img.src=BASE+rec.src;img.alt=rec.alt;img.loading='lazy';img.decoding='async';
+ var img=document.createElement('img');img.src=BASE+rec.src;img.alt=rec.alt;img.setAttribute('loading','lazy');img.setAttribute('decoding','async');
  img.width=rec.w;img.height=rec.h;img.style.cssText='display:inline-block;max-width:min(100%,240px);height:auto';
- w.appendChild(img);
+ img.addEventListener('error',function(){if(w.parentNode)w.parentNode.removeChild(w);syncFoot()});
+ var c=document.createElement('div');c.style.cssText='font-size:.8em;opacity:.8;margin-top:.25em';
+ var v=document.createElement('span');v.textContent=rec.label;
+ var a=document.createElement('a');a.setAttribute('href',href);a.setAttribute('rel','noopener');a.setAttribute('target','_blank');a.textContent=SRCLINE;
+ c.appendChild(v);c.appendChild(document.createTextNode(' \u00b7 '));c.appendChild(a);
+ w.appendChild(img);w.appendChild(c);
  if(h.nextSibling)h.parentNode.insertBefore(w,h.nextSibling);else h.parentNode.appendChild(w)}
 function apply(m){
-  var on=!!(m&&m.on===true&&m.pages&&typeof m.pages==='object'&&!Array.isArray(m.pages)&&m.v===1);
+  var on=!!(m&&m.on===true&&m.v===2&&m.card&&typeof m.card==='object'&&!Array.isArray(m.card));
   if(!on){rmAll();return}
   var pk=pageKey();
   if(!pk){rmAll();return}
-  if(!Object.prototype.hasOwnProperty.call(m.pages,pk)){rmAll();return}
-  var M=m.pages[pk];
+  if(!Object.prototype.hasOwnProperty.call(m.card,pk)){rmAll();return}
+  var M=m.card[pk];
   if(!M||typeof M!=='object'||Array.isArray(M)){rmAll();return}
+  var pc=pageCard(pk),cnt={},k;
+  for(k in M){if(Object.prototype.hasOwnProperty.call(M,k)&&M[k]&&typeof M[k]==='object'&&typeof M[k].entry_id==='string')cnt[M[k].entry_id]=(cnt[M[k].entry_id]||0)+1}
   [].forEach.call(document.querySelectorAll('article.pcard[id^="p-"]'),function(art){
     if(!Object.prototype.hasOwnProperty.call(M,art.id)){rmIn(art);return}
-    var rec=validRec(M[art.id],pk);
-    if(!rec){rmIn(art);return}
-    place(art,rec)})}
+    var rec=validRec(M[art.id],pk,art.id);
+    if(!rec||cnt[rec.entry_id]!==1){rmIn(art);return}
+    var href=bdHref(art,pc);
+    if(!href){rmIn(art);return}
+    place(art,rec,href)});
+  syncFoot()}
 function pass(){var pk=pageKey();
   if(!pk){rmAll();return Promise.resolve()}
   return rd(BASE+'assets/opchase-cardimg.json').then(function(m){apply(m)}).catch(function(){rmAll()})}
