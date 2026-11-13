@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569203",
+  "rows": {
+   "2": {
+    "alt": "Boa Hancock EB03-026 Version 3 (SR) official card image",
+    "entry_id": "EB03-026_p2",
+    "h": 670,
+    "href": "../../card/eb03-026/#p-EB03-026_p2",
+    "sha256": "76a71408eba733a7c0ccfba93b99e8c9bb67b858b55480c128b2db5769fc4a8a",
+    "src": "assets/cardimg/eb03/EB03-026_p2.webp",
+    "w": 480
+   },
+   "3": {
+    "alt": "Nico Robin EB03-055 Version 3 (SR) official card image",
+    "entry_id": "EB03-055_p2",
+    "h": 670,
+    "href": "../../card/eb03-055/#p-EB03-055_p2",
+    "sha256": "4ea1b6465387417b26c9cbb5c1acbce92cad6831cce50292aef80b01cfbbc4fd",
+    "src": "assets/cardimg/eb03/EB03-055_p2.webp",
+    "w": 480
+   },
+   "4": {
+    "alt": "Nami EB03-053 Version 3 (SR) official card image",
+    "entry_id": "EB03-053_p2",
+    "h": 670,
+    "href": "../../card/eb03-053/#p-EB03-053_p2",
+    "sha256": "f16fb82fe13aff404ec79b50bb73082382b35f68aa33e4fa8965952b05e9b469",
+    "src": "assets/cardimg/eb03/EB03-053_p2.webp",
+    "w": 480
+   },
+   "5": {
+    "alt": "Nefeltari Vivi EB03-024 Version 3 (SR) official card image",
+    "entry_id": "EB03-024_p2",
+    "h": 670,
+    "href": "../../card/eb03-024/#p-EB03-024_p2",
+    "sha256": "abaa18d930a75dd4990fe4bc5a5dce1526ffd267c187a6122bb864335a99fa9b",
+    "src": "assets/cardimg/eb03/EB03-024_p2.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Uta EB03-003 Version 3 (SR) official card image",
+    "entry_id": "EB03-003_p2",
+    "h": 670,
+    "href": "../../card/eb03-003/#p-EB03-003_p2",
+    "sha256": "6fc245cd1b7d34bf92fd7936917e6236104099c37c24c5a8c40de40a8c1e0259",
+    "src": "assets/cardimg/eb03/EB03-003_p2.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Vinsmoke Reiju EB03-031 Version 3 (SR) official card image",
+    "entry_id": "EB03-031_p2",
+    "h": 670,
+    "href": "../../card/eb03-031/#p-EB03-031_p2",
+    "sha256": "7296dafbe7fdf9d73516971913489e200724f21b64c0dd7eb489d29c5a770328",
+    "src": "assets/cardimg/eb03/EB03-031_p2.webp",
+    "w": 480
+   },
+   "8": {
+    "alt": "Perona EB03-045 Version 3 (SR) official card image",
+    "entry_id": "EB03-045_p2",
+    "h": 670,
+    "href": "../../card/eb03-045/#p-EB03-045_p2",
+    "sha256": "9cbd945057e6799443187087fc679d5d608548ef7cd541984e026bba6a1d5e9c",
+    "src": "assets/cardimg/eb03/EB03-045_p2.webp",
+    "w": 480
+   },
+   "1": {
+    "alt": "Uta EB03-061 Version 3 (SEC) official card image",
+    "entry_id": "EB03-061_p2",
+    "h": 559,
+    "href": "../../card/eb03-061/#p-EB03-061_p2",
+    "sha256": "ad26b1bc420d3798c5df24a2afd0ac42778d03a9c005215d2bbc2e8a1f5ce764",
+    "src": "assets/cardimg/eb03/EB03-061_p2.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "eb03",
+ "v": 3
+}

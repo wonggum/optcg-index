@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569105",
+  "rows": {
+   "2": {
+    "alt": "Trafalgar Law OP05-069 Version 3 (SR) official card image",
+    "entry_id": "OP05-069_p2",
+    "h": 670,
+    "href": "../../card/op05-069/#p-OP05-069_p2",
+    "sha256": "eb93b742e761e3fa9474d3a26c94e61ac8930f6beea9bb1322a2128536bc528e",
+    "src": "assets/cardimg/op05/OP05-069_p2.webp",
+    "w": 480
+   },
+   "3": {
+    "alt": "Eustass\"Captain\"Kid OP05-074 Version 3 (SR) official card image",
+    "entry_id": "OP05-074_p2",
+    "h": 670,
+    "href": "../../card/op05-074/#p-OP05-074_p2",
+    "sha256": "fc977ad7268ef3a6d7dbf3b04ed7a3133332da62708c77e04373296115277c3c",
+    "src": "assets/cardimg/op05/OP05-074_p2.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Enel OP05-100 Version 3 (SR) official card image",
+    "entry_id": "OP05-100_p2",
+    "h": 670,
+    "href": "../../card/op05-100/#p-OP05-100_p2",
+    "sha256": "ff7edd632902db92075ad847a9bf4f1f12a7bce9ec942f2303171e6c4b87d67a",
+    "src": "assets/cardimg/op05/OP05-100_p2.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Yamato OP01-121 Version 3 (SEC) official card image",
+    "entry_id": "OP01-121_p2",
+    "h": 670,
+    "href": "../../card/op01-121/#p-OP01-121_p2",
+    "sha256": "24bd8e18cac5be52a57cef5033d2523fe134860301bac0231b0899643c6314c0",
+    "src": "assets/cardimg/op01/OP01-121_p2.webp",
+    "w": 480
+   },
+   "8": {
+    "alt": "Uta OP02-120 Version 3 (SEC) official card image",
+    "entry_id": "OP02-120_p2",
+    "h": 670,
+    "href": "../../card/op02-120/#p-OP02-120_p2",
+    "sha256": "772535fbd4d959495b6e3294d499a8755aaa83a78d06c130a2894db0fb7383ee",
+    "src": "assets/cardimg/op02/OP02-120_p2.webp",
+    "w": 480
+   },
+   "1": {
+    "alt": "Monkey.D.Luffy OP05-119 Version 3 (SEC) official card image",
+    "entry_id": "OP05-119_p2",
+    "h": 559,
+    "href": "../../card/op05-119/#p-OP05-119_p2",
+    "sha256": "57c5aaf099a582edbe729c8c772cab126be722e48df769c85bf62c311050fdc4",
+    "src": "assets/cardimg/op05/OP05-119_p2.webp",
+    "w": 400
+   },
+   "4": {
+    "alt": "Nami OP01-016 Version 5 (R) official card image",
+    "entry_id": "OP01-016_p4",
+    "h": 559,
+    "href": "../../card/op01-016/#p-OP01-016_p2",
+    "sha256": "b70d5907fadc127b1cb9ef5d257f145bab92e6fbc877d98c1e56d0fb34791184",
+    "src": "assets/cardimg/op01/OP01-016_p4.webp",
+    "w": 400
+   },
+   "5": {
+    "alt": "Rob Lucci OP03-092 Version 3 (SR) official card image",
+    "entry_id": "OP03-092_p2",
+    "h": 559,
+    "href": "../../card/op03-092/#p-OP03-092_p2",
+    "sha256": "e96d96f56722d39591f4d82341cb8d1c240b7c885cf1438df07111fe338cc6c1",
+    "src": "assets/cardimg/op03/OP03-092_p2.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op05",
+ "v": 3
+}

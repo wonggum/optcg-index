@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569101",
+  "rows": {
+   "1": {
+    "alt": "Shanks OP01-120 Version 3 (SEC) official card image",
+    "entry_id": "OP01-120_p2",
+    "h": 670,
+    "href": "../../card/op01-120/#p-OP01-120_p2",
+    "sha256": "d0dc60d97c2865cb08be696489b6da8983393981408ee3948d2fd24e07eaa305",
+    "src": "assets/cardimg/op01/OP01-120_p2.webp",
+    "w": 480
+   },
+   "2": {
+    "alt": "Monkey.D.Luffy OP01-003 Version 2 (L) official card image",
+    "entry_id": "OP01-003_p1",
+    "h": 670,
+    "href": "../../card/op01-003/#p-OP01-003_p1",
+    "sha256": "130d5c76b3501c584de59a525943b50f1025e996832e70931570f79d9d63a920",
+    "src": "assets/cardimg/op01/OP01-003_p1.webp",
+    "w": 480
+   },
+   "3": {
+    "alt": "Roronoa Zoro OP01-001 Version 2 (L) official card image",
+    "entry_id": "OP01-001_p1",
+    "h": 670,
+    "href": "../../card/op01-001/#p-OP01-001_p1",
+    "sha256": "7d02da5cf9ca61d0030d144ca6b64097872141e5528258d65affaa2b369a168b",
+    "src": "assets/cardimg/op01/OP01-001_p1.webp",
+    "w": 480
+   },
+   "4": {
+    "alt": "Roronoa Zoro OP01-025 Version 2 (SR) official card image",
+    "entry_id": "OP01-025_p1",
+    "h": 670,
+    "href": "../../card/op01-025/#p-OP01-025_p1",
+    "sha256": "9cbfc6b484f4478247fb1aac36b0861b2794682946badc1d3e6ca9c13d2bb605",
+    "src": "assets/cardimg/op01/OP01-025_p1.webp",
+    "w": 480
+   },
+   "5": {
+    "alt": "Donquixote Doflamingo OP01-060 Version 2 (L) official card image",
+    "entry_id": "OP01-060_p1",
+    "h": 670,
+    "href": "../../card/op01-060/#p-OP01-060_p1",
+    "sha256": "b0d11752b147358a13016b83b627b28b5e7ceda1b7f882a78f6a37acea38cbb7",
+    "src": "assets/cardimg/op01/OP01-060_p1.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Dracule Mihawk OP01-070 Version 2 (SR) official card image",
+    "entry_id": "OP01-070_p1",
+    "h": 838,
+    "href": "../../card/op01-070/#p-OP01-070_p1",
+    "sha256": "d819f8ebaebdb9305416f0a05cac0718bdfe36a1974d565d05a57792af225952",
+    "src": "assets/cardimg/op01/OP01-070_p1.webp",
+    "w": 600
+   },
+   "7": {
+    "alt": "Shanks OP01-120 Version 2 (SEC) official card image",
+    "entry_id": "OP01-120_p1",
+    "h": 838,
+    "href": "../../card/op01-120/#p-OP01-120_p1",
+    "sha256": "811c552dff89d3480a1dce4c0c8226d15191d5f7a3e4d87754a1999d48555f47",
+    "src": "assets/cardimg/op01/OP01-120_p1.webp",
+    "w": 600
+   },
+   "8": {
+    "alt": "Monkey.D.Luffy OP01-024 Version 2 (SR) official card image",
+    "entry_id": "OP01-024_p1",
+    "h": 559,
+    "href": "../../card/op01-024/#p-OP01-024_p1",
+    "sha256": "976df47734a4c6f129a5575f90e81fc32d9e7cbd1c40e92fab8ddf05db566e6d",
+    "src": "assets/cardimg/op01/OP01-024_p1.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op01",
+ "v": 3
+}

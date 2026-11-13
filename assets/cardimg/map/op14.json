@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569114",
+  "rows": {
+   "1": {
+    "alt": "Dracule Mihawk OP14-119 Version 3 (SEC) official card image",
+    "entry_id": "OP14-119_p2",
+    "h": 670,
+    "href": "../../card/op14-119/#p-OP14-119_p2",
+    "sha256": "be715ca763ed644595b82720bc7fffaa1d33129ea0a0d5cf656fa293c6e305d9",
+    "src": "assets/cardimg/op14/OP14-119_p2.webp",
+    "w": 480
+   },
+   "2": {
+    "alt": "Buggy OP09-051 Version 5 (R) official card image",
+    "entry_id": "OP09-051_p4",
+    "h": 670,
+    "href": "../../card/op09-051/#p-OP09-051_p4",
+    "sha256": "425f8c6dedbc7156b827899cf1fc5850c925f7cedcf821d742ccb3e991a41d72",
+    "src": "assets/cardimg/op09/OP09-051_p4.webp",
+    "w": 480
+   },
+   "3": {
+    "alt": "Roronoa Zoro PRB02-006 Version 3 (R) official card image",
+    "entry_id": "PRB02-006_p2",
+    "h": 670,
+    "href": "../../card/prb02-006/#p-PRB02-006_p2",
+    "sha256": "fae42a5c4897b201e5721130dd84c7c47f9ead788ae62b0606bbd1550bbb4288",
+    "src": "assets/cardimg/prb02/PRB02-006_p2.webp",
+    "w": 480
+   },
+   "4": {
+    "alt": "Boa Hancock OP14-112 Version 3 (SR) official card image",
+    "entry_id": "OP14-112_p2",
+    "h": 670,
+    "href": "../../card/op14-112/#p-OP14-112_p2",
+    "sha256": "807784b66aecf417b5d622615864228df86431416900996183dc01e3ef15fd62",
+    "src": "assets/cardimg/op14/OP14-112_p2.webp",
+    "w": 480
+   },
+   "5": {
+    "alt": "Buggy OP09-051 Version 6 (R) official card image",
+    "entry_id": "OP09-051_p5",
+    "h": 670,
+    "href": "../../card/op09-051/#p-OP09-051_p5",
+    "sha256": "ae93eb90ad269fecf84a6d4df7f63bd6ed718da86c4e5c9996750c3bd07bd58f",
+    "src": "assets/cardimg/op09/OP09-051_p5.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Dracule Mihawk OP12-030 Version 3 (SR) official card image",
+    "entry_id": "OP12-030_p2",
+    "h": 670,
+    "href": "../../card/op12-030/#p-OP12-030_p2",
+    "sha256": "27884847b1c53bbd7b13390a28a1684fc5c964387b2025e125dcf0fde8f5ee01",
+    "src": "assets/cardimg/op12/OP12-030_p2.webp",
+    "w": 480
+   },
+   "8": {
+    "alt": "Sugar OP10-065 Version 2 (R) official card image",
+    "entry_id": "OP10-065_p1",
+    "h": 670,
+    "href": "../../card/op10-065/#p-OP10-065_p1",
+    "sha256": "484fc0c3d68b1dc4cd0cb275a79cea0e2fc039aa8bef0110be71b317f3794d49",
+    "src": "assets/cardimg/op10/OP10-065_p1.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Perona OP06-093 Version 6 (SR) official card image",
+    "entry_id": "OP06-093_p5",
+    "h": 559,
+    "href": "../../card/op06-093/#p-OP06-093_p5",
+    "sha256": "84823f56e328620ad0cda80fd1e5261c501f508d0f42770296e33a9bf3a5cdf3",
+    "src": "assets/cardimg/op06/OP06-093_p5.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op14",
+ "v": 3
+}

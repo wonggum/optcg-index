@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569110",
+  "rows": {
+   "1": {
+    "alt": "Trafalgar Law OP10-119 Version 3 (SEC) official card image",
+    "entry_id": "OP10-119_p2",
+    "h": 670,
+    "href": "../../card/op10-119/#p-OP10-119_p2",
+    "sha256": "89b1424dbcfb16525b70c209f3bd14db34d57af3c8d0b9f08a66330f8d0c01fe",
+    "src": "assets/cardimg/op10/OP10-119_p2.webp",
+    "w": 480
+   },
+   "3": {
+    "alt": "Portgas.D.Ace OP08-052 Version 3 (TR) official card image",
+    "entry_id": "OP08-052_p2",
+    "h": 670,
+    "href": "../../card/op08-052/#p-OP08-052_p2",
+    "sha256": "74d2b69244459ed4550660c9abfbfc27ca4727b06628406f97dedb5020c38bda",
+    "src": "assets/cardimg/op08/OP08-052_p2.webp",
+    "w": 480
+   },
+   "4": {
+    "alt": "Charlotte Flampe EB01-056 Version 3 (R) official card image",
+    "entry_id": "EB01-056_p2",
+    "h": 838,
+    "href": "../../card/eb01-056/#p-EB01-056_p2",
+    "sha256": "01c58cdda1b843abeda52a3cdd231a0a9ad66e43bff20f48566f149fd218e4af",
+    "src": "assets/cardimg/eb01/EB01-056_p2.webp",
+    "w": 600
+   },
+   "5": {
+    "alt": "Urouge OP07-021 Version 3 (R) official card image",
+    "entry_id": "OP07-021_p2",
+    "h": 670,
+    "href": "../../card/op07-021/#p-OP07-021_p2",
+    "sha256": "d13716dd022214a3a19a4374e6cebbc71b37a1e7add5fc202ec8a841039c10ca",
+    "src": "assets/cardimg/op07/OP07-021_p2.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Charlotte Pudding ST12-012 Version 2 (C) official card image",
+    "entry_id": "ST12-012_p1",
+    "h": 670,
+    "href": "../../card/st12-012/#p-ST12-012_p1",
+    "sha256": "b11397640ceccfef92b1e74727bf0488ea367c722d6685e3d2f77e3ae53c3c97",
+    "src": "assets/cardimg/st12/ST12-012_p1.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Sanji ST14-003 Version 2 (SR) official card image",
+    "entry_id": "ST14-003_p1",
+    "h": 670,
+    "href": "../../card/st14-003/#p-ST14-003_p1",
+    "sha256": "de7c178b8d71e645cf8dd0e135d3ca406a5170b8aecea31deeed926b4f5a6583",
+    "src": "assets/cardimg/st14/ST14-003_p1.webp",
+    "w": 480
+   },
+   "8": {
+    "alt": "Uso-Hachi ST18-001 Version 2 (C) official card image",
+    "entry_id": "ST18-001_p1",
+    "h": 670,
+    "href": "../../card/st18-001/#p-ST18-001_p1",
+    "sha256": "fc01f666157b99550455d627bb9654018385adbab00bc1662ff8fd2bf551bdad",
+    "src": "assets/cardimg/st18/ST18-001_p1.webp",
+    "w": 480
+   },
+   "2": {
+    "alt": "Edward.Newgate ST15-002 Version 2 (SR) official card image",
+    "entry_id": "ST15-002_p1",
+    "h": 559,
+    "href": "../../card/st15-002/#p-ST15-002_p1",
+    "sha256": "9194fd0923cc8d2d6cdaac0b8f61c15e6ce4cd974bc518b44462730f81e89585",
+    "src": "assets/cardimg/st15/ST15-002_p1.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op10",
+ "v": 3
+}

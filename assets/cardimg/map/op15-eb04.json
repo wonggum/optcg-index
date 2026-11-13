@@ -1,0 +1,73 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569115",
+  "rows": {
+   "5": {
+    "alt": "Smoker & Tashigi EB04-003 Version 2 (R) official card image",
+    "entry_id": "EB04-003_p1",
+    "h": 670,
+    "href": "../../card/eb04-003/#p-EB04-003_p1",
+    "sha256": "5ac1e109fb304b26292b710d2969945e53fe2bab2518a1b718efb19a4fe9019f",
+    "src": "assets/cardimg/eb04/EB04-003_p1.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Zeus OP11-106 Version 3 (R) official card image",
+    "entry_id": "OP11-106_p2",
+    "h": 670,
+    "href": "../../card/op11-106/#p-OP11-106_p2",
+    "sha256": "4f68dbc016de1c2d93272e7421e25b14bec8fc42b04fdddf0983baa9b1dbe8a0",
+    "src": "assets/cardimg/op11/OP11-106_p2.webp",
+    "w": 480
+   },
+   "1": {
+    "alt": "Enel OP15-118 Version 3 (SEC) official card image",
+    "entry_id": "OP15-118_p2",
+    "h": 559,
+    "href": "../../card/op15-118/#p-OP15-118_p2",
+    "sha256": "cb8acfbc9e957cc4cb58968dd3ad17e57ee41398463c2c8108cb0a93d2a6b15b",
+    "src": "assets/cardimg/op15/OP15-118_p2.webp",
+    "w": 400
+   },
+   "2": {
+    "alt": "Koby EB04-044 Version 3 (SR) official card image",
+    "entry_id": "EB04-044_p2",
+    "h": 559,
+    "href": "../../card/eb04-044/#p-EB04-044_p2",
+    "sha256": "2065600ed302360214c5e7979c6f6c5decba2f5aacf0bdc7b1d16c4c69a54328",
+    "src": "assets/cardimg/eb04/EB04-044_p2.webp",
+    "w": 400
+   },
+   "3": {
+    "alt": "Monkey.D.Luffy ST26-005 Version 2 (SR) official card image",
+    "entry_id": "ST26-005_p1",
+    "h": 559,
+    "href": "../../card/st26-005/#p-ST26-005_p1",
+    "sha256": "48d1377a7369429671abe3bc51be611f3e660a9df8ab9d7b7dc7d1666f8c13a0",
+    "src": "assets/cardimg/st26/ST26-005_p1.webp",
+    "w": 400
+   },
+   "7": {
+    "alt": "Boa Hancock OP12-014 Version 3 (SR) official card image",
+    "entry_id": "OP12-014_p2",
+    "h": 559,
+    "href": "../../card/op12-014/#p-OP12-014_p2",
+    "sha256": "28834dae95b5a2d7c95f0ca10f89598f6d5923ad147849d2b1ade6ba286cabbb",
+    "src": "assets/cardimg/op12/OP12-014_p2.webp",
+    "w": 400
+   },
+   "8": {
+    "alt": "Trafalgar Law OP13-031 Version 2 (R) official card image",
+    "entry_id": "OP13-031_p1",
+    "h": 559,
+    "href": "../../card/op13-031/#p-OP13-031_p1",
+    "sha256": "40658feb3b331087900c1e15efd8aa36b3dccc604a9a783b2f4b72bd5c97b510",
+    "src": "assets/cardimg/op13/OP13-031_p1.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op15-eb04",
+ "v": 3
+}

@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569116",
+  "rows": {
+   "2": {
+    "alt": "Kuzan OP16-063 Version 3 (R) official card image",
+    "entry_id": "OP16-063_p2",
+    "h": 670,
+    "href": "../../card/op16-063/#p-OP16-063_p2",
+    "sha256": "cc6fc976581b0315a1b7575d8df70c7eb327c8d44c678608fa854c5b04df1de7",
+    "src": "assets/cardimg/op16/OP16-063_p2.webp",
+    "w": 480
+   },
+   "4": {
+    "alt": "Ms. All Sunday OP14-084 Version 3 (SR) official card image",
+    "entry_id": "OP14-084_p2",
+    "h": 838,
+    "href": "../../card/op14-084/#p-OP14-084_p2",
+    "sha256": "5d6523ac919f5e64ff39aa69e7013becd0e737cdcc238bfe97c952210dc42316",
+    "src": "assets/cardimg/op14/OP14-084_p2.webp",
+    "w": 600
+   },
+   "5": {
+    "alt": "Portgas.D.Ace ST15-005 Version 6 (SR) official card image",
+    "entry_id": "ST15-005_p5",
+    "h": 670,
+    "href": "../../card/st15-005/#p-ST15-005_p5",
+    "sha256": "a275290abff1fcfd1095b73d2ab3491e5f8a240d464ad06d6ecb640e7b109fff",
+    "src": "assets/cardimg/st15/ST15-005_p5.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Cavendish OP10-045 Version 3 (R) official card image",
+    "entry_id": "OP10-045_p2",
+    "h": 670,
+    "href": "../../card/op10-045/#p-OP10-045_p2",
+    "sha256": "4cfecbb6ef7a82514b6721c7e7c039cabbf4e6088f107fb13a7c8a20620c8140",
+    "src": "assets/cardimg/op10/OP10-045_p2.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Tashigi OP14-029 Version 2 (R) official card image",
+    "entry_id": "OP14-029_p1",
+    "h": 670,
+    "href": "../../card/op14-029/#p-OP14-029_p1",
+    "sha256": "99c1b65be4e3fa3518691385335775d92d351804dca7a35ada36541a0a760969",
+    "src": "assets/cardimg/op14/OP14-029_p1.webp",
+    "w": 480
+   },
+   "8": {
+    "alt": "Bartholomew Kuma EB04-054 Version 2 (R) official card image",
+    "entry_id": "EB04-054_p1",
+    "h": 670,
+    "href": "../../card/eb04-054/#p-EB04-054_p1",
+    "sha256": "c78f03b9cfb8ea52a14f6d52982024757842843f85df03a0dd385c5f9b993ff6",
+    "src": "assets/cardimg/eb04/EB04-054_p1.webp",
+    "w": 480
+   },
+   "1": {
+    "alt": "Sakazuki OP16-065 Version 3 (SR) official card image",
+    "entry_id": "OP16-065_p2",
+    "h": 559,
+    "href": "../../card/op16-065/#p-OP16-065_p2",
+    "sha256": "d11a331e83c9a58386615991ef8a8fcec7ff3987d04ff5461072b6f9c4785c29",
+    "src": "assets/cardimg/op16/OP16-065_p2.webp",
+    "w": 400
+   },
+   "3": {
+    "alt": "Borsalino OP16-073 Version 3 (R) official card image",
+    "entry_id": "OP16-073_p2",
+    "h": 559,
+    "href": "../../card/op16-073/#p-OP16-073_p2",
+    "sha256": "c3ad374e561bdabb00e83ef48e443019566eb246ad78ffc9251c7d9f5c834c16",
+    "src": "assets/cardimg/op16/OP16-073_p2.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op16",
+ "v": 3
+}

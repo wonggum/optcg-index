@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569109",
+  "rows": {
+   "3": {
+    "alt": "Gol.D.Roger OP09-118 Version 3 (SEC) official card image",
+    "entry_id": "OP09-118_p2",
+    "h": 670,
+    "href": "../../card/op09-118/#p-OP09-118_p2",
+    "sha256": "aa0ca215f637d15ffcfde432ab88bf3e0e05359c87b85ee11f372b6a9a1984f0",
+    "src": "assets/cardimg/op09/OP09-118_p2.webp",
+    "w": 480
+   },
+   "4": {
+    "alt": "Shanks OP09-004 Version 3 (SR) official card image",
+    "entry_id": "OP09-004_p2",
+    "h": 670,
+    "href": "../../card/op09-004/#p-OP09-004_p2",
+    "sha256": "6dd5d52b0ad1393405919dcc31057e0d0dbe9c9c0f7a0f9df111a491c8fefa1f",
+    "src": "assets/cardimg/op09/OP09-004_p2.webp",
+    "w": 480
+   },
+   "6": {
+    "alt": "Monkey.D.Luffy OP05-119 Version 7 (SEC) official card image",
+    "entry_id": "OP05-119_p6",
+    "h": 670,
+    "href": "../../card/op05-119/#p-OP05-119_p6",
+    "sha256": "2c0c8d08f6b7ab977166bba319b5b64f86a9c98c4e68e2fa65cf23822fae6ada",
+    "src": "assets/cardimg/op05/OP05-119_p6.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Shanks OP09-004 Version 4 (SR) official card image",
+    "entry_id": "OP09-004_p3",
+    "h": 670,
+    "href": "../../card/op09-004/#p-OP09-004_p3",
+    "sha256": "1f478438047e99f276c17bcc7c2ed91fe257b4e18138695a422da3d55c9f649e",
+    "src": "assets/cardimg/op09/OP09-004_p3.webp",
+    "w": 480
+   },
+   "8": {
+    "alt": "Marshall.D.Teach OP09-093 Version 4 (SR) official card image",
+    "entry_id": "OP09-093_p3",
+    "h": 670,
+    "href": "../../card/op09-093/#p-OP09-093_p3",
+    "sha256": "ffec5aadcf2b1d78197dd3ad9c497d95b55aabf87742782a3a92b056e524e820",
+    "src": "assets/cardimg/op09/OP09-093_p3.webp",
+    "w": 480
+   },
+   "1": {
+    "alt": "Monkey.D.Luffy OP09-119 Version 3 (SEC) official card image",
+    "entry_id": "OP09-119_p2",
+    "h": 559,
+    "href": "../../card/op09-119/#p-OP09-119_p2",
+    "sha256": "1474e3cc90962e7532a0e3dfc62002bdf64ad174a9b878f0f378ef551f70e4a6",
+    "src": "assets/cardimg/op09/OP09-119_p2.webp",
+    "w": 400
+   },
+   "2": {
+    "alt": "Marshall.D.Teach OP09-093 Version 3 (SR) official card image",
+    "entry_id": "OP09-093_p2",
+    "h": 559,
+    "href": "../../card/op09-093/#p-OP09-093_p2",
+    "sha256": "450eff8e9d6b4943b71f5d406ce482d8c816c0f4e2668714a0b3d520701da72f",
+    "src": "assets/cardimg/op09/OP09-093_p2.webp",
+    "w": 400
+   },
+   "5": {
+    "alt": "Buggy OP09-051 Version 3 (R) official card image",
+    "entry_id": "OP09-051_p2",
+    "h": 559,
+    "href": "../../card/op09-051/#p-OP09-051_tcgp596984",
+    "sha256": "cd7ff68aa9a2a28394c499a26a561e39495635c0ee315dcaaefafb495ce374b1",
+    "src": "assets/cardimg/op09/OP09-051_p2.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op09",
+ "v": 3
+}

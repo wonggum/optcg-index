@@ -1,0 +1,82 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569111",
+  "rows": {
+   "3": {
+    "alt": "Monkey.D.Luffy OP05-119 Version 8 (SEC) official card image",
+    "entry_id": "OP05-119_p7",
+    "h": 670,
+    "href": "../../card/op05-119/#p-OP05-119_p7",
+    "sha256": "12aed870f2151c0a813ad80f75f0b2c199e58819d6e6b4347e862614b7674b6b",
+    "src": "assets/cardimg/op05/OP05-119_p7.webp",
+    "w": 480
+   },
+   "5": {
+    "alt": "Shirahoshi EB01-057 Version 3 (SR) official card image",
+    "entry_id": "EB01-057_p2",
+    "h": 670,
+    "href": "../../card/eb01-057/#p-EB01-057_p2",
+    "sha256": "c29bb4934554df4e31c03850b66771065c61d64204498fb775c6e38e66d11606",
+    "src": "assets/cardimg/eb01/EB01-057_p2.webp",
+    "w": 480
+   },
+   "7": {
+    "alt": "Sanji OP06-119 Version 3 (SEC) official card image",
+    "entry_id": "OP06-119_p2",
+    "h": 670,
+    "href": "../../card/op06-119/#p-OP06-119_p2",
+    "sha256": "062a9ccbb1ed88b6d8ae2fa5669b404749ceb159b4f5fc3bb15b20f527958e3a",
+    "src": "assets/cardimg/op06/OP06-119_p2.webp",
+    "w": 480
+   },
+   "1": {
+    "alt": "Monkey.D.Luffy OP05-119 Version 9 (SEC) official card image",
+    "entry_id": "OP05-119_p8",
+    "h": 559,
+    "href": "../../card/op05-119/#p-OP05-119_p8",
+    "sha256": "7f3d059badcc81061734923c2195ef05ae4649f048a690e48fea23c1322a261c",
+    "src": "assets/cardimg/op05/OP05-119_p8.webp",
+    "w": 400
+   },
+   "2": {
+    "alt": "Monkey.D.Luffy OP11-118 Version 3 (SEC) official card image",
+    "entry_id": "OP11-118_p2",
+    "h": 559,
+    "href": "../../card/op11-118/#p-OP11-118_p2",
+    "sha256": "1c362b1177f4e0e400dbe54fd3379561c4f637541aaa53d799b83052c0495d50",
+    "src": "assets/cardimg/op11/OP11-118_p2.webp",
+    "w": 400
+   },
+   "4": {
+    "alt": "Luffy-Tarou ST18-005 Version 2 (SR) official card image",
+    "entry_id": "ST18-005_p1",
+    "h": 559,
+    "href": "../../card/st18-005/#p-ST18-005_p1",
+    "sha256": "898d3cf56137a27cf25161480b6f4fb1aae1553a42d9b0148ab3bf1222d28ec0",
+    "src": "assets/cardimg/st18/ST18-005_p1.webp",
+    "w": 400
+   },
+   "6": {
+    "alt": "Stussy OP07-085 Version 3 (SR) official card image",
+    "entry_id": "OP07-085_p2",
+    "h": 559,
+    "href": "../../card/op07-085/#p-OP07-085_p2",
+    "sha256": "d5126d565184f5318ff1e9cb886345deffe62483bf6e4b6c0f51798bcdfa0de6",
+    "src": "assets/cardimg/op07/OP07-085_p2.webp",
+    "w": 400
+   },
+   "8": {
+    "alt": "Silvers Rayleigh OP09-005 Version 2 (R) official card image",
+    "entry_id": "OP09-005_p1",
+    "h": 559,
+    "href": "../../card/op09-005/#p-OP09-005_p1",
+    "sha256": "ed3743fe682e83a53bf54cf95d05ee7ff90222936da815fc7fe255a497c9671a",
+    "src": "assets/cardimg/op09/OP09-005_p1.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op11",
+ "v": 3
+}

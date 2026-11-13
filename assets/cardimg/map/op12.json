@@ -1,0 +1,64 @@
+{
+ "card": {},
+ "chase": {
+  "list": "https://en.onepiece-cardgame.com/cardlist/?series=569112",
+  "rows": {
+   "4": {
+    "alt": "Zoro-Juurou ST18-004 Version 3 (SR) official card image",
+    "entry_id": "ST18-004_p2",
+    "h": 838,
+    "href": "../../card/st18-004/#p-ST18-004_p2",
+    "sha256": "94dd4777678071be744572763f3c4d76c8c7ee30eacef188709245a168617ad5",
+    "src": "assets/cardimg/st18/ST18-004_p2.webp",
+    "w": 600
+   },
+   "5": {
+    "alt": "Portgas.D.Ace ST13-011 Version 3 (SR) official card image",
+    "entry_id": "ST13-011_p2",
+    "h": 838,
+    "href": "../../card/st13-011/#p-ST13-011_p2",
+    "sha256": "bbfcd44bf051c63a6605c8fe3fc6da7f85491488cbdde2a1ccf32edfa34a8ea5",
+    "src": "assets/cardimg/st13/ST13-011_p2.webp",
+    "w": 600
+   },
+   "6": {
+    "alt": "Vinsmoke Sanji OP10-063 Version 2 (TR) official card image",
+    "entry_id": "OP10-063_p1",
+    "h": 838,
+    "href": "../../card/op10-063/#p-OP10-063_tcgp644882",
+    "sha256": "6b3aabf7f04f0885ebcbe0f545cb746781add12dcf78c80ccc36a80a4a3d536a",
+    "src": "assets/cardimg/op10/OP10-063_p1.webp",
+    "w": 600
+   },
+   "7": {
+    "alt": "Kuzan OP10-082 Version 3 (SR) official card image",
+    "entry_id": "OP10-082_p2",
+    "h": 838,
+    "href": "../../card/op10-082/#p-OP10-082_p2",
+    "sha256": "c8c86f40605f132ab7b7753bd25b7263d362bcd9b6d56b59a50f6f44290ca9bb",
+    "src": "assets/cardimg/op10/OP10-082_p2.webp",
+    "w": 600
+   },
+   "8": {
+    "alt": "Tashigi OP06-050 Version 3 (R) official card image",
+    "entry_id": "OP06-050_p2",
+    "h": 670,
+    "href": "../../card/op06-050/#p-OP06-050_p2",
+    "sha256": "0f7f167971b45db8aeea8889787127f83f3012b59ff227e36456a2430d04c9bc",
+    "src": "assets/cardimg/op06/OP06-050_p2.webp",
+    "w": 480
+   },
+   "2": {
+    "alt": "Jewelry Bonney OP12-118 Version 3 (SEC) official card image",
+    "entry_id": "OP12-118_p2",
+    "h": 559,
+    "href": "../../card/op12-118/#p-OP12-118_p2",
+    "sha256": "b85881732be6b7f68bbc6cdef9a70a0cab48fd6b19c44c76e774b14872cdae3d",
+    "src": "assets/cardimg/op12/OP12-118_p2.webp",
+    "w": 400
+   }
+  }
+ },
+ "key": "op12",
+ "v": 3
+}
