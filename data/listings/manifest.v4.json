@@ -1,9 +1,9 @@
 {
 "schema": 4,
-"fetched_at": "2026-11-17T00:35:33-08:00",
-"auc_fetched_at": "2026-11-17T00:36:08-08:00",
+"fetched_at": "2026-11-17T02:38:21-08:00",
+"auc_fetched_at": "2026-11-17T02:38:52-08:00",
 "files": {
-"data/listings/home.v4.json": 875,
+"data/listings/home.v4.json": 874,
 "data/listings/cards/tier-grail.v4.json": 161,
 "data/listings/cards/tier-premium.v4.json": 308,
 "data/listings/cards/tier-core.v4.json": 211,
@@ -123,7 +123,7 @@
 "data/listings/cards/db-op10.v4.json": 8,
 "data/listings/cards/db-op11.v4.json": 4,
 "data/listings/cards/db-op12.v4.json": 5,
-"data/listings/cards/db-op13.v4.json": 7,
+"data/listings/cards/db-op13.v4.json": 6,
 "data/listings/cards/db-op14.v4.json": 31,
 "data/listings/cards/db-op16.v4.json": 8,
 "data/listings/cards/db-p.v4.json": 3,
@@ -133,5 +133,5 @@
 "data/listings/cards/db-st15.v4.json": 1,
 "data/listings/cards/db-st18.v4.json": 2
 },
-"n": 2377
+"n": 2375
 }
