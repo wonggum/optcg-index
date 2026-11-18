@@ -46,7 +46,7 @@ jobs:
             SSHC="ssh -i $K -o IdentitiesOnly=yes -o UserKnownHostsFile=$D/kh -o StrictHostKeyChecking=yes"
             GIT_SSH_COMMAND="$SSHC" git clone -q --depth 1 -b state "$PIPE_REPO" "$D/pstate" &&
             GIT_SSH_COMMAND="$SSHC" git clone -q --depth 1 -b main --filter=blob:none --sparse "$PIPE_REPO" "$D/pipe" &&
-            git -C "$D/pipe" sparse-checkout set actions &&
+            GIT_SSH_COMMAND="$SSHC" git -C "$D/pipe" sparse-checkout set actions &&   # HOTFIX1: blob:none -> sparse-checkout lazily fetches blobs over ssh; needs the key (run 44252195837)
             for r in pstate pipe; do git -C "$D/$r" config core.sshCommand "$SSHC"; done
           } >>"$L" 2>&1 || { rm -f "$D/pk"; echo "gate: clone failed (details private)"; exit 1; }
           python3 "$D/pipe/actions/slot_gate.py" "$D/pstate/$OPC_MODE/ws" "$OPC_MODE" >>"$L" 2>&1; grc=$?
