@@ -1,0 +1,147 @@
+# OFFBOX-C r1 -- listings round on GitHub Actions, SHADOW phase. NOT pushed, NOT enabled (needs user approval, see APPROVALS_zh.md).
+# Lives in PUBLIC wonggum/optcg-index. SHADOW = permissions contents:read -> physically cannot push optcg-index; no CHECK_TOKEN -> no Worker ack.
+# Base: OFFBOX-B r9 listings-offbox.yml (GM tech PASS 11/10). Simplified per survey 2026-11-17 §8:
+#   - trigger: schedule every 30 min (:17/:47 UTC, off :00 rush and the :10-:15 no-push window) + workflow_dispatch; slot_gate.py decides in PT
+#     (DST-proof). shadow_dispatch.sh / shadow_budget.json / P95 windows removed.
+#   - job "gate" (ubuntu, no container, no deps, ~20 s): shallow state clone -> slot_gate.py -> on RUN only: commit+push slot mark and counter
+#     BEFORE any eBay call (fail-closed on quota). SKIP passes push nothing (no 48 commits/day).
+#   - job "round" (debian:trixie pinned digest = box OS) only when gate says run=1.
+# Public log: every step after setup starts with  exec >>"$RUNLOG" 2>&1 ; no xtrace anywhere; only public_summary.py reaches the public log.
+name: listings-offbox
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: read          # publish_lane.sh pages_busy(): gh run list on optcg-index
+concurrency:
+  group: opchase-listings
+  cancel-in-progress: false
+env:
+  OPC_MODE: shadow
+  PIPE_REPO: git@github.com:wonggum/opchase-pipeline.git
+  INDEX_URL: https://github.com/wonggum/optcg-index.git
+  # GitHub ssh-ed25519 host key (verified vs api.github.com/meta in GM-OFFB-PRE-1 S0, 11/09). Re-verify at S8 time.
+  GH_HOSTKEY: 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+      why: ${{ steps.g.outputs.why }}
+    defaults: { run: { shell: bash } }
+    steps:
+      - name: gate
+        id: g
+        env:
+          PIPE_KEY: ${{ secrets.OPC_PIPELINE_DEPLOY_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          D="$RUNNER_TEMP/g"; mkdir -p "$D"; chmod 700 "$D"; L="$D/gate.log"
+          {
+            K="$D/pk"; ( umask 077; printf '%s\n' "$PIPE_KEY" > "$K"; printf '%s\n' "$GH_HOSTKEY" > "$D/kh" )
+            SSHC="ssh -i $K -o IdentitiesOnly=yes -o UserKnownHostsFile=$D/kh -o StrictHostKeyChecking=yes"
+            GIT_SSH_COMMAND="$SSHC" git clone -q --depth 1 -b state "$PIPE_REPO" "$D/pstate" &&
+            GIT_SSH_COMMAND="$SSHC" git clone -q --depth 1 -b main --filter=blob:none --sparse "$PIPE_REPO" "$D/pipe" &&
+            git -C "$D/pipe" sparse-checkout set actions &&
+            for r in pstate pipe; do git -C "$D/$r" config core.sshCommand "$SSHC"; done
+          } >>"$L" 2>&1 || { rm -f "$D/pk"; echo "gate: clone failed (details private)"; exit 1; }
+          python3 "$D/pipe/actions/slot_gate.py" "$D/pstate/$OPC_MODE/ws" "$OPC_MODE" >>"$L" 2>&1; grc=$?
+          run=$(grep -oE '^run=[01]' "$GITHUB_OUTPUT" | tail -1 | cut -d= -f2)
+          if [ "$grc" = 0 ] && [ "$run" = 1 ]; then
+            { git -C "$D/pstate" add -A -- "$OPC_MODE/ws/optcg_site/scheduler_state" &&
+              git -C "$D/pstate" -c user.name=opchase-actions -c user.email=opchase-actions@users.noreply.github.com commit -q -m "gate: $OPC_MODE run" &&
+              bash "$D/pipe/actions/pipeline_push.sh" "$D/pstate"; } >>"$L" 2>&1 || { rm -f "$D/pk"; echo "gate: state push failed -> no round"; echo "run=0" >> "$GITHUB_OUTPUT"; exit 1; }
+          fi
+          rm -f "$D/pk"
+          echo "gate: rc=$grc run=${run:-0}"   # the reason text stays private (it may name slots/ages only, but the whitelist rule is: rc + run only)
+          [ "$grc" = 0 ]
+  round:
+    needs: gate
+    if: needs.gate.outputs.run == '1'
+    runs-on: ubuntu-24.04
+    container:
+      image: debian:trixie@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6   # r9 pin; re-query digest at snapshot time
+    timeout-minutes: 75
+    defaults: { run: { shell: bash } }
+    steps:
+      - name: setup
+        run: |
+          set -euo pipefail
+          D="$RUNNER_TEMP/opc"; mkdir -p "$D"; chmod 700 "$D"
+          echo "RUNLOG=$D/run.log" >> "$GITHUB_ENV"; echo "RUNLOG_DIR=$D" >> "$GITHUB_ENV"; echo "OPC_STATUS=$D/status.json" >> "$GITHUB_ENV"
+          echo "PIPE_SHA_OUT=$D/pipeline_sha" >> "$GITHUB_ENV"; date +%s > "$D/t0"; echo "setup ok"
+      - name: bootstrap
+        run: |
+          exec >>"$RUNLOG" 2>&1; set -euo pipefail
+          export DEBIAN_FRONTEND=noninteractive; apt-get update -q
+          apt-get install -y -q --no-install-recommends git=1:2.47.3-0+deb13u1 python3=3.13.5-1 python3.13=3.13.5-2+deb13u5 gh=2.46.0-3 ca-certificates curl openssh-client
+      - name: checkout_state
+        env:
+          PIPE_KEY: ${{ secrets.OPC_PIPELINE_DEPLOY_KEY }}
+        run: |
+          exec >>"$RUNLOG" 2>&1; set -euo pipefail
+          K="$RUNLOG_DIR/pk"; ( umask 077; printf '%s\n' "$PIPE_KEY" > "$K"; printf '%s\n' "$GH_HOSTKEY" > "$RUNLOG_DIR/kh" )
+          SSHC="ssh -i $K -o IdentitiesOnly=yes -o UserKnownHostsFile=$RUNLOG_DIR/kh -o StrictHostKeyChecking=yes"
+          GIT_SSH_COMMAND="$SSHC" git clone -q --depth 1 -b state "$PIPE_REPO" "$RUNLOG_DIR/pstate"
+          GIT_SSH_COMMAND="$SSHC" git clone -q --depth 1 -b main "$PIPE_REPO" "$RUNLOG_DIR/pipe"
+          for r in pstate pipe; do git -C "$RUNLOG_DIR/$r" config core.sshCommand "$SSHC"; done
+      - name: deps
+        run: |
+          exec >>"$RUNLOG" 2>&1; set -euo pipefail
+          bash "$RUNLOG_DIR/pipe/actions/runner_deps.sh" boot   # asserts the bootstrap pins (exact/prefix), python 3.13
+          bash "$RUNLOG_DIR/pipe/actions/runner_deps.sh" full
+          python3 -m venv "$RUNLOG_DIR/venv"; echo "$RUNLOG_DIR/venv/bin" >> "$GITHUB_PATH"
+          "$RUNLOG_DIR/venv/bin/pip" install -q --no-input --require-hashes --only-binary=:all: -r "$RUNLOG_DIR/pipe/requirements-actions.txt"
+      - name: layout
+        run: |
+          exec >>"$RUNLOG" 2>&1; set -euo pipefail
+          mkdir -p /workspace
+          git clone -q --depth 1 "$INDEX_URL" /workspace/optcg_site
+          # data commits made on the runner carry their own identity (a fresh clone has none -> publish_lane.sh commit-tree would fail in live)
+          git -C /workspace/optcg_site config user.name opchase-actions; git -C /workspace/optcg_site config user.email opchase-actions@users.noreply.github.com
+          cp -a "$RUNLOG_DIR/pipe/ws/." /workspace/
+          mkdir -p /workspace/opchase-backup /workspace/optcg_site/plan /workspace/optcg_site/scheduler_state
+          bash "$RUNLOG_DIR/pipe/actions/state_sync.sh" restore "$OPC_MODE" "$RUNLOG_DIR/pstate"
+      - name: round
+        timeout-minutes: 50
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          OPCHASE_SELLER_HMAC_KEY: ${{ secrets.OPCHASE_SELLER_HMAC_KEY }}
+          HMAC_SELFTEST_DIGEST: ${{ secrets.HMAC_SELFTEST_DIGEST }}
+          GH_TOKEN: ${{ github.token }}
+          OPC_SHADOW_LEDGER_CAP: '900'
+          OPC_ROUND_STEP_S: '3000'
+          OPC_GATE_WHY: ${{ needs.gate.outputs.why }}
+        run: |
+          exec >>"$RUNLOG" 2>&1
+          bash "$RUNLOG_DIR/pipe/actions/round_actions.sh"
+      - name: save_state
+        id: save_state
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          exec >>"$RUNLOG" 2>&1; set -euo pipefail
+          brc=0; bash "$RUNLOG_DIR/pipe/actions/budget_check.sh" "$RUNLOG_DIR/t0" || brc=$?
+          cp -p "$RUNLOG" "$RUNLOG_DIR/run.snapshot.log"
+          bash "$RUNLOG_DIR/pipe/actions/state_sync.sh" save "$OPC_MODE" "$RUNLOG_DIR/pstate" "$RUNLOG_DIR/run.snapshot.log"
+          bash "$RUNLOG_DIR/pipe/actions/pipeline_push.sh" "$RUNLOG_DIR/pstate"
+          exit $brc
+      - name: public_summary
+        if: always()
+        env:
+          SAVE_OUTCOME: ${{ steps.save_state.outcome }}
+        run: |
+          exec 3>&1 >>"$RUNLOG" 2>&1
+          python3 "$RUNLOG_DIR/pipe/actions/finalize_status.py" "$OPC_STATUS" "$PIPE_SHA_OUT" "" "1" "${SAVE_OUTCOME:-}"
+          python3 "$RUNLOG_DIR/pipe/actions/public_summary.py" "$OPC_STATUS" >&3
+          python3 -c 'import json,sys;sys.exit(0 if json.load(open(sys.argv[1])).get("result") in ("ok","skip") else 1)' "$OPC_STATUS"
+      - name: cleanup
+        if: always()
+        run: |
+          exec >>"$RUNLOG" 2>&1; rm -f "$RUNLOG_DIR/pk"
