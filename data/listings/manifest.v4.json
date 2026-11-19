@@ -1,12 +1,12 @@
 {
 "schema": 4,
-"fetched_at": "2026-11-19T00:40:57-08:00",
-"auc_fetched_at": "2026-11-19T00:41:23-08:00",
+"fetched_at": "2026-11-19T03:26:02-08:00",
+"auc_fetched_at": "2026-11-19T03:26:44-08:00",
 "files": {
-"data/listings/home.v4.json": 874,
+"data/listings/home.v4.json": 875,
 "data/listings/cards/tier-grail.v4.json": 161,
-"data/listings/cards/tier-premium.v4.json": 310,
-"data/listings/cards/tier-core.v4.json": 208,
+"data/listings/cards/tier-premium.v4.json": 311,
+"data/listings/cards/tier-core.v4.json": 209,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 3,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 6,
 "data/listings/cards/eb02-006-serial-yamato-psa-10.v4.json": 3,
@@ -71,7 +71,7 @@
 "data/listings/cards/op10-119-manga-law-psa-10.v4.json": 12,
 "data/listings/cards/op11-041-l-aa-nami-psa-10.v4.json": 11,
 "data/listings/cards/op11-041-wci-nami-psa-10.v4.json": 0,
-"data/listings/cards/op11-118-manga-luffy-psa-10.v4.json": 14,
+"data/listings/cards/op11-118-manga-luffy-psa-10.v4.json": 15,
 "data/listings/cards/op12-015-tc64-luffy-psa-10.v4.json": 0,
 "data/listings/cards/op12-118-manga-bonney-psa-10.v4.json": 11,
 "data/listings/cards/op13-016-tc-garp-psa-10.v4.json": 3,
@@ -110,7 +110,7 @@
 "data/listings/cards/st26-005-sp-en-luffy-psa-10.v4.json": 8,
 "data/listings/cards/db-eb01.v4.json": 9,
 "data/listings/cards/db-eb02.v4.json": 15,
-"data/listings/cards/db-eb03.v4.json": 11,
+"data/listings/cards/db-eb03.v4.json": 10,
 "data/listings/cards/db-op01.v4.json": 12,
 "data/listings/cards/db-op02.v4.json": 1,
 "data/listings/cards/db-op03.v4.json": 7,
@@ -124,7 +124,7 @@
 "data/listings/cards/db-op11.v4.json": 3,
 "data/listings/cards/db-op12.v4.json": 5,
 "data/listings/cards/db-op13.v4.json": 6,
-"data/listings/cards/db-op14.v4.json": 31,
+"data/listings/cards/db-op14.v4.json": 32,
 "data/listings/cards/db-op16.v4.json": 8,
 "data/listings/cards/db-prb02.v4.json": 1,
 "data/listings/cards/db-st01.v4.json": 1,
@@ -133,5 +133,5 @@
 "data/listings/cards/db-st18.v4.json": 2,
 "data/listings/cards/db-eb04.v4.json": 4
 },
-"n": 2383
+"n": 2387
 }
