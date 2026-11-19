@@ -398,6 +398,7 @@ function applyChase(C){
    if(!rec||cnt[rec.entry_id]!==1||as.length!==1||typeof e.href!=='string'||as[0].getAttribute('href')!==e.href||!(hm=HREF_RE.exec(e.href))||hm[1].toUpperCase()!==rec.card)rec=null}
   plan.push({href:href,cardNo:cardNo,nameLine:nameLine,ver:ver,rar:rar,rec:rec})}
  for(i=0;i<plan.length;i++){if(!plan[i].href||!plan[i].cardNo){rmAll();return}}
+ plan=plan.filter(function(p){return p.rec}).concat(plan.filter(function(p){return !p.rec}));
  var old=sec.querySelectorAll('[data-opc-cardimg-grid]');
  if(!(old.length===1&&tw.getAttribute('data-opc-cardimg-hide')==='1'&&gridSame(old[0],plan))){
   chaseCss();rmSel(sec,'[data-opc-cardimg-grid]');rmSel(sec,'['+SMARK+']');rmSel(sec,'['+MARK+']');
