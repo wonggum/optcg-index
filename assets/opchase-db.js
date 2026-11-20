@@ -97,6 +97,15 @@ var im2=dlg.querySelector('img');im2.src=img.currentSrc||img.src;im2.alt=img.alt
 if(img.tabIndex<0)img.tabIndex=0;dlg.showModal()}
 doc.addEventListener('click',function(ev){var t=ev.target;if(t&&t.tagName==='IMG'&&t.closest&&t.closest('.cp1 [data-opc-cardimg]')){ev.preventDefault();zoom(t)}});
 })()}else
+/* SETS-INDEX-1 start */if(document.querySelector('main.si1')){(function(){var M=document.querySelector('main.si1');M.classList.add('js');
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],n=new Date(),T=n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2);
+function sd(d){var p=d.split('-');return MON[+p[1]-1]+' '+(+p[2])+', '+p[0]}
+[].forEach.call(M.querySelectorAll('[data-rel]'),function(x){var d=x.getAttribute('data-rel');if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||T<d)return;var t=x.textContent;
+ if(x.classList.contains('si1-date')){if(t.indexOf('Releases ')===0)x.textContent='Released '+t.slice(9)}else if(t.indexOf('Releases ')===0)x.textContent=sd(d)+' \u00b7 No PSA 10 yet'});
+var C=M.querySelector('.si1-chips');if(C){C.hidden=false;[].forEach.call(C.querySelectorAll('button[data-f]'),function(b){b.addEventListener('click',function(){var f=b.getAttribute('data-f');M.setAttribute('data-f',f);if(f==='all')[].forEach.call(M.querySelectorAll('.si1-sec.open'),function(s){s.classList.remove('open');var m=s.querySelector('.si1-more');if(m){m.setAttribute('aria-expanded','false');m.textContent=m.getAttribute('data-t0')}});
+ [].forEach.call(C.querySelectorAll('button[data-f]'),function(o){var on=o===b;o.classList.toggle('on',on);o.setAttribute('aria-pressed',on?'true':'false')})})})}
+[].forEach.call(M.querySelectorAll('.si1-more'),function(b){var s=b.closest('.si1-sec'),t0=b.textContent;b.setAttribute('data-t0',t0);b.hidden=false;b.addEventListener('click',function(){var o=!s.classList.contains('open');s.classList.toggle('open',o);
+ b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Show fewer \u2191':t0;if(!o&&s.getBoundingClientRect().top<0)s.scrollIntoView({block:'start'})})})})()}else/* SETS-INDEX-1 end */
 /* SETPAGE-LAYOUT-1 end */
 (function(){var q=document.getElementById('q'),t=document.getElementById('cl');if(!q||!t)return;
 var sel=['fg','fc','ft','fr','fv'].map(function(i){return document.getElementById(i)});var key={fg:'g',fc:'c',ft:'t',fr:'r',fv:'v'};

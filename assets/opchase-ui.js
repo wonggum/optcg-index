@@ -252,7 +252,8 @@ function info(){try{var p=location.pathname.replace(/\/index\.html$/i,'/'),m;
  if(m){var s=m[1].toLowerCase();return{k:'card',pk:'card/'+s+'-'+m[2]+'/',mk:s,pc:(s+'-'+m[2]).toUpperCase()}}
  m=p.match(/\/sets\/([a-z0-9-]{2,26})\/$/i);
  if(m&&KEY_RE.test(m[1].toLowerCase())){var t=m[1].toLowerCase();return{k:'set',pk:'sets/'+t+'/',mk:t}}
- return null}catch(_){return null}}
+ if(/\/sets\/$/i.test(p))return{k:'setidx'};
+return null}catch(_){return null}}
 function aOk(t){if(typeof window.OPC_AOK!=='function')return false;try{return !!window.OPC_AOK(t)}catch(_){return false}}
 function verOf(eid){var m=ENTRY_RE.exec(eid);if(!m)return 0;if(m[4]!==undefined)return parseInt(m[4],10);return m[3]===undefined?1:(parseInt(m[3],10)+1)}
 function baseRec(e){if(!isObj(e))return null;
@@ -418,10 +419,35 @@ function applyChase(C){
  else rmSel(sec,'['+SMARK+']');
  [].forEach.call(document.querySelectorAll('['+MARK+']'),function(x){if(!sec.contains(x)&&x.parentNode)x.parentNode.removeChild(x)});
  syncFoot()}
+var SI_SRC='Card images \u00a9 Bandai Namco, shown for identification only.',SI_MC={};
+function siMap(k){if(!own(SI_MC,k))SI_MC[k]=rd(BASE+'assets/cardimg/map/'+k+'.json').then(function(d){return isObj(d)&&d.v===3&&d.key===k&&isObj(d.card)&&isObj(d.chase)?d:null});return SI_MC[k]}
+function siCnt(o){var c={},k;for(k in o){if(own(o,k)&&isObj(o[k])&&typeof o[k].entry_id==='string')c[o[k].entry_id]=(c[o[k].entry_id]||0)+1}return c}
+function siRec(c,m){var p=c.split('|'),d,e,rec,hm,k;
+ if(p[0]==='c'&&p.length===4&&KEY_RE.test(p[1])&&/^[0-9]{1,3}$/.test(p[2])){if(m.sets.indexOf(p[1])<0)return null;
+  return siMap(p[1]).then(function(d){if(!d||!isObj(d.chase.rows))return null;e=d.chase.rows[p[2]];rec=baseRec(e);
+   if(!rec||typeof e.href!=='string'||e.href!==p[3]||!(hm=HREF_RE.exec(e.href))||hm[1].toUpperCase()!==rec.card||siCnt(d.chase.rows)[rec.entry_id]!==1)return null;return rec})}
+ if(p[0]==='l'&&p.length===3&&/^(?:OP|EB|ST|PRB)[0-9]{2}-[0-9]{3}$/.test(p[1])&&p[2]==='p-'+p[1]){k=p[1].split('-')[0].toLowerCase();if(m.sets.indexOf(k)<0)return null;
+  return siMap(k).then(function(d){var P=d&&d.card['card/'+p[1].toLowerCase()+'/'];if(!isObj(P))return null;rec=baseRec(P[p[2]]);
+   if(!rec||rec.card!==p[1]||siCnt(P)[rec.entry_id]!==1)return null;return rec})}
+ return null}
+function siSrc(){var any=!!document.querySelector('main.si1 [data-si1-i]'),s=document.querySelectorAll('['+SMARK+']'),f=document.getElementById('si1-faq');
+ if(any&&f){if(!(s.length===1&&s[0].nextElementSibling===f&&s[0].textContent===SI_SRC)){rmSel(document,'['+SMARK+']');var p=document.createElement('p');p.className='sm si1-src';p.setAttribute(SMARK,'1');p.textContent=SI_SRC;f.parentNode.insertBefore(p,f)}}
+ else rmSel(document,'['+SMARK+']');syncFoot()}
+function applySetIdx(m){var figs=document.querySelectorAll('main.si1 .si1-fig[data-si1-cands]'),boost=document.querySelectorAll('#si1-boost .si1-fig[data-si1-cands]');
+ return Promise.all([].map.call(figs,function(fig){var cs=(fig.getAttribute('data-si1-cands')||'').split(';'),eager=[].indexOf.call(boost,fig)>=0&&[].indexOf.call(boost,fig)<3;
+  return Promise.all(cs.map(function(c){try{return Promise.resolve(siRec(c,m)).catch(function(){return null})}catch(_){return null}})).then(function(R){
+   function put(i){for(;i<R.length&&!R[i];i++);var w=fig.querySelector('['+MARK+']');
+    if(i>=R.length){if(w)fig.removeChild(w);siSrc();return}
+    if(w&&+w.getAttribute('data-si1-i')===i&&same(w,R[i],null))return;if(w)fig.removeChild(w);
+    w=document.createElement('div');w.setAttribute(MARK,'1');w.setAttribute('data-opc-entry',R[i].entry_id);w.setAttribute('data-si1-i',String(i));
+    var img=mkImg(R[i],w,fig.classList.contains('si1-mini')?'':'');if(eager)img.setAttribute('loading','eager');
+    img.addEventListener('error',function(){put(i+1)});w.appendChild(img);fig.insertBefore(w,fig.firstChild)}
+   if(!fig.hasAttribute('data-si1-fail'))put(0)})})).then(siSrc)}
 function pass(){var I=info();
  if(!I){rmAll();return Promise.resolve()}
  return rd(BASE+'assets/opchase-cardimg.json').then(function(m){
   var on=!!(isObj(m)&&m.on===true&&m.v===3&&Array.isArray(m.sets)&&isObj(m.ph));
+  if(I.k==='setidx'){if(!on){rmAll();return}return applySetIdx(m)}
   if(!on||m.sets.indexOf(I.mk)<0||!KEY_RE.test(I.mk)){rmAll();return}
   return rd(BASE+'assets/cardimg/map/'+I.mk+'.json').then(function(d){
    if(!isObj(d)||d.v!==3||d.key!==I.mk||!isObj(d.card)||!isObj(d.chase)){rmAll();return}
