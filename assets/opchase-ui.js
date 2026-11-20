@@ -230,8 +230,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){if(window.OPC_CARDIMG)return;window.OPC_CARDIMG=4;
 var BASE=(function(){var s=(document.currentScript&&document.currentScript.src)||'',i=s.lastIndexOf('assets/opchase-ui.js');return i>=0?s.slice(0,i):''})();
 var SHA_RE=/^[0-9a-f]{64}$/;
-var ENTRY_RE=/^((?:OP|EB|ST|PRB)[0-9]{2})-([0-9]{3})(?:_p([0-9]{1,2}))?$/;
-var ALT_RE=/^(\S(?:.*\S)?) ((?:OP|EB|ST|PRB)[0-9]{2}-[0-9]{3}) Version ([0-9]{1,2}) \(([A-Z]{1,4}(?: CARD)?)\) official card image$/;
+var ENTRY_RE=/^((?:OP|EB|ST|PRB)[0-9]{2})-([0-9]{3})(?:_p([0-9]{1,2})|_r([1-9]))?$/;
+var ALT_RE=/^(\S(?:.*\S)?) ((?:OP|EB|ST|PRB)[0-9]{2}-[0-9]{3}) (Version|Reprint) ([0-9]{1,2}) \(([A-Z]{1,4}(?: CARD)?)\) official card image$/;
 var BD_RE=/^https:\/\/en\.onepiece-cardgame\.com\/cardlist\/\?series=[0-9]{6}&freewords=((?:OP|EB|ST|PRB)[0-9]{2}-[0-9]{3})$/;
 var LIST_RE=/^https:\/\/en\.onepiece-cardgame\.com\/cardlist\/\?series=[0-9]{6}$/;
 var HREF_RE=/^\.\.\/\.\.\/card\/((?:op|eb|st|prb)[0-9]{2}-[0-9]{3})\/#p-[A-Za-z0-9_-]{1,40}$/;
@@ -254,7 +254,7 @@ function info(){try{var p=location.pathname.replace(/\/index\.html$/i,'/'),m;
  if(m&&KEY_RE.test(m[1].toLowerCase())){var t=m[1].toLowerCase();return{k:'set',pk:'sets/'+t+'/',mk:t}}
  return null}catch(_){return null}}
 function aOk(t){if(typeof window.OPC_AOK!=='function')return false;try{return !!window.OPC_AOK(t)}catch(_){return false}}
-function verOf(eid){var m=ENTRY_RE.exec(eid);if(!m)return 0;return m[3]===undefined?1:(parseInt(m[3],10)+1)}
+function verOf(eid){var m=ENTRY_RE.exec(eid);if(!m)return 0;if(m[4]!==undefined)return parseInt(m[4],10);return m[3]===undefined?1:(parseInt(m[3],10)+1)}
 function baseRec(e){if(!isObj(e))return null;
  if(typeof e.entry_id!=='string')return null;var em=ENTRY_RE.exec(e.entry_id);if(!em)return null;
  var want='assets/cardimg/'+em[1].toLowerCase()+'/'+e.entry_id+'.webp';
@@ -262,11 +262,11 @@ function baseRec(e){if(!isObj(e))return null;
  if(typeof e.alt!=='string'||!aOk(e.alt))return null;
  var am=ALT_RE.exec(e.alt);if(!am)return null;
  if(am[2]!==em[1]+'-'+em[2])return null;
- var n=verOf(e.entry_id);if(!n||parseInt(am[3],10)!==n)return null;
+ var n=verOf(e.entry_id);if(!n||(em[4]!==undefined?(am[3]!=='Reprint'||parseInt(am[4],10)!==n):(am[3]!=='Version'||parseInt(am[4],10)!==n)))return null;
  if(typeof e.sha256!=='string'||!SHA_RE.test(e.sha256))return null;
  if(typeof e.w!=='number'||typeof e.h!=='number'||!Number.isInteger(e.w)||!Number.isInteger(e.h))return null;
  if(!(e.w>0&&e.w<=1200&&e.h>0&&e.h<=1700))return null;
- return{entry_id:e.entry_id,card:am[2],src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256,label:LABEL_PRE+am[3]+' ('+am[4]+')'}}
+ return{entry_id:e.entry_id,card:am[2],src:e.src,w:e.w,h:e.h,alt:e.alt,sha256:e.sha256,label:(em[4]!==undefined?('Bandai reprint '+am[4]+' ('+am[5]+')'):(LABEL_PRE+am[4]+' ('+am[5]+')'))}}
 function footNodes(){var out=[];[].forEach.call(document.querySelectorAll('footer.site-f p'),function(p){[].forEach.call(p.childNodes,function(t){if(t.nodeType===3)out.push(t)})});return out}
 function footSet(on){
  if(on){if(FT)return;

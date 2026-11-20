@@ -26,7 +26,77 @@ if(btn){btn.hidden=act||N<=LIM;btn.textContent=open?'Show fewer \u2191':'Show al
 chips.forEach(function(b){b.addEventListener('click',function(){ck=b.getAttribute('data-k')||'';chips.forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false')});run()})});
 q.addEventListener('input',run);sel.forEach(function(e){if(e)e.addEventListener('change',run)});
 if(btn)btn.addEventListener('click',function(){open=!open;run();if(!open){var l=doc.getElementById('list');if(l&&l.scrollIntoView)l.scrollIntoView()}});
-run()})()}else
+run()})()}else if(document.querySelector('main.cp1')){(function(){
+var doc=document;
+function parkCardImg(node){
+  if(!node||!node.parentNode)return;
+  var art=node.closest?node.closest('article.pcard'):null;
+  if(!art)return;
+  var side=art.querySelector(':scope > .pcard-side')||art.querySelector('.pcard-side');
+  if(!side||node.parentNode===side)return;
+  side.insertBefore(node,side.firstChild);
+}
+function parkAllCardImg(){
+  [].forEach.call(doc.querySelectorAll('article.pcard > [data-opc-cardimg]'),parkCardImg);
+}
+parkAllCardImg();
+if(window.MutationObserver){
+  var parkRoot=doc.getElementById('printings')||doc.body;
+  if(parkRoot){
+    var parkOb=new MutationObserver(function(){parkAllCardImg()});
+    parkOb.observe(parkRoot,{childList:true,subtree:true});
+  }
+}
+function fresh(d){var t=Date.parse(d&&d.fetched_at);return isFinite(t)&& (Date.now()-t)<=6*60*60*1000}
+function nOf(d,key){if(!d||d.schema!==4||!d.cards)return 0;var now=Date.now(),n=0,keys=key?[key]:Object.keys(d.cards);
+keys.forEach(function(k){var c=d.cards[k]||{};
+function add(arr,auc){(Array.isArray(arr)?arr:[]).forEach(function(x){if(!x)return;var e=Date.parse(x.exp);if(!(e>now))return;if(auc){var z=Date.parse(x.end);if(!(z-20*60*1000>now))return}n++})}
+add(c.bin,0);add(c.auc,1)});return n}
+var links=[].slice.call(doc.querySelectorAll('a.cp1-live[data-cp1-src]'));
+var srcs={};links.forEach(function(a){srcs[a.getAttribute('data-cp1-src')]=1});
+var urls=Object.keys(srcs);
+function apply(map,stale){
+if(stale)return;
+var rows=[];
+[].forEach.call(doc.querySelectorAll('article.pcard'),function(art){
+var a=art.querySelector('a.cp1-live');if(!a)return;
+var src=a.getAttribute('data-cp1-src'),d=map[src];if(!d||!fresh(d))return;
+var n=nOf(d,a.getAttribute('data-cp1-key'));if(n<1)return;
+if(a.classList.contains('cp1-ph')){var s=a.querySelector('.cp1-n');if(s){s.textContent=n+' live · ';s.hidden=false}}
+else{a.hidden=false;a.textContent=n+' live'}
+var nameEl=art.querySelector('.pcard-v');
+rows.push({id:art.id,name:nameEl?(nameEl.textContent||'').replace(/\s+/g,' ').trim():art.id})});
+var jump=doc.querySelector('p.cp1-jump');if(!jump||!rows.length)return;
+var k=rows.length,show=rows.slice(0,4);
+jump.textContent='';
+jump.appendChild(doc.createTextNode((k===1?'1 version has live listings: ':k+' versions have live listings: ')));
+show.forEach(function(r,i){if(i)jump.appendChild(doc.createTextNode(' · '));
+var link=doc.createElement('a');link.href='#'+r.id;var label=r.name;
+if(label.length>28){link.textContent=label.slice(0,27)+'\u2026';link.title=label}else link.textContent=label;
+jump.appendChild(link)});
+if(k>4)jump.appendChild(doc.createTextNode(' · +'+(k-4)+' more'));
+jump.hidden=false}
+if(window.fetch&&urls.length){Promise.all(urls.map(function(u){return fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(d){return [u,d]})})).then(function(pairs){
+var map={},stale=false;pairs.forEach(function(p){map[p[0]]=p[1];if(p[1]&&p[1].schema===4&&!fresh(p[1]))stale=true});
+if(stale)return;apply(map,false)})}
+var box=doc.getElementById('printings'),line=doc.querySelector('p.cp1-imgsrc');
+if(box&&line&&window.MutationObserver){var done=false;function stop(ob,t){if(done)return;done=true;ob.disconnect();clearTimeout(t)}
+var ob=new MutationObserver(function(){if(box.querySelector('[data-opc-cardimg] img')){line.hidden=false;stop(ob,timer)}});
+ob.observe(box,{childList:true,subtree:true});
+var timer=setTimeout(function(){stop(ob,timer)},10000);
+if(box.querySelector('[data-opc-cardimg] img')){line.hidden=false;stop(ob,timer)}}
+var lastImg=null,dlg=null;
+function zoom(img){lastImg=img;if(!dlg){dlg=doc.createElement('dialog');dlg.className='cp1-zoom';
+var b=doc.createElement('button');b.type='button';b.className='cp1-zoom-x';b.textContent='Close';
+var im=doc.createElement('img');var p=doc.createElement('p');p.textContent='Image \u00a9 Bandai Namco / One Piece Card Game';
+b.addEventListener('click',function(){dlg.close()});
+dlg.addEventListener('click',function(ev){if(ev.target===dlg)dlg.close()});
+dlg.addEventListener('close',function(){if(lastImg&&lastImg.focus)lastImg.focus()});
+dlg.appendChild(b);dlg.appendChild(im);dlg.appendChild(p);doc.body.appendChild(dlg)}
+var im2=dlg.querySelector('img');im2.src=img.currentSrc||img.src;im2.alt=img.alt||'';
+if(img.tabIndex<0)img.tabIndex=0;dlg.showModal()}
+doc.addEventListener('click',function(ev){var t=ev.target;if(t&&t.tagName==='IMG'&&t.closest&&t.closest('.cp1 [data-opc-cardimg]')){ev.preventDefault();zoom(t)}});
+})()}else
 /* SETPAGE-LAYOUT-1 end */
 (function(){var q=document.getElementById('q'),t=document.getElementById('cl');if(!q||!t)return;
 var sel=['fg','fc','ft','fr','fv'].map(function(i){return document.getElementById(i)});var key={fg:'g',fc:'c',ft:'t',fr:'r',fv:'v'};

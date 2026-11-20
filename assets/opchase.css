@@ -1739,3 +1739,85 @@ svg circle.end{fill:var(--accent,#a8740d)}
 .sp1 .sp1-cisrc{font-size:var(--fs-12);color:var(--muted);margin:var(--sp-2) 0 0}
 @media (max-width:760px){.sp1 td[data-l="Name"] .sp1-ci{width:64px}}
 /* SETPAGE-LAYOUT-1 end */
+/* CARDPAGE-LAYOUT-1 start */
+.cp1-meta{margin:var(--sp-3) 0;font-size:var(--fs-14);line-height:var(--lh-body);color:var(--text-2)}
+.cp1-meta .upd{display:inline;margin:0}
+.cp1-lead{margin:0 0 var(--sp-3);font-size:var(--fs-14);line-height:var(--lh-body);color:var(--text-2)}
+.cp1-jump{margin:0 0 var(--sp-3);font-size:var(--fs-14);line-height:var(--lh-snug);color:var(--text-2)}
+.cp1-jump a{color:var(--accent-text);font-weight:600}
+/* H1 desktop: .pcard-side is the first child and floats at the top.
+   Left column is .pcard-h then .pcard-main, each a fixed width so they stack from the top
+   and do not wait for the right column. Right column is the float: image (parked into the side) then tags then buttons. */
+@media (min-width:900px){
+.cp1 article.pcard{scroll-margin-top:calc(var(--header-h) + var(--sp-3));display:flow-root!important;padding:var(--sp-5)}
+.cp1 article.pcard>.pcard-side{float:right;width:260px;margin:0 0 0 var(--sp-8);display:flex;flex-direction:column;align-items:flex-end;gap:var(--sp-2)}
+.cp1 article.pcard>.pcard-h,.cp1 article.pcard>.pcard-main{display:block;width:calc(100% - 260px - var(--sp-8));margin:0;min-width:0}
+.cp1 article.pcard>.pcard-main{margin-top:var(--sp-3)}
+.cp1 .pcard-side>[data-opc-cardimg]{float:none!important;width:260px!important;max-width:260px!important;margin:0 0 var(--sp-2) 0!important}
+.cp1 .pcard:has(>[data-opc-cardimg]){display:flow-root!important;grid-template-columns:none!important;grid-template-rows:none!important}
+.cp1 .pcard:has(>[data-opc-cardimg])>*{grid-column:auto!important;grid-row:auto!important;margin-top:0}
+}
+/* C2 §6.4: hide View on Bandai when a card image is present (any viewport). */
+.cp1 article.pcard:has([data-opc-cardimg]) .bd-cta{display:none}
+.cp1 [data-opc-cardimg]{display:block!important;text-align:center!important}
+.cp1 [data-opc-cardimg] img{display:block!important;width:260px!important;max-width:260px!important;height:auto!important}
+.cp1 [data-opc-cardimg] a{font-size:var(--fs-12);color:var(--muted)}
+.cp1 .pcard-v{font-size:27px;font-weight:700;line-height:var(--lh-tight)}
+.cp1 .pcard-h{align-items:center}
+.cp1 .pcard-prod{font-size:var(--fs-14)}
+.cp1 .pcard-prod.pcard-same{font-size:var(--fs-12);color:var(--muted)}
+.cp1 .pcard-prod.pcard-xset{font-size:var(--fs-14)}
+.cp1 .pcard-prod.pcard-xset a{font-weight:600;color:var(--text)}
+.cp1 .pcard-row.cp1-how{border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:var(--r-md);padding:var(--sp-2) var(--sp-3)}
+.cp1 .pcard-row.cp1-how .pcard-body{font-size:var(--fs-20);font-weight:500;line-height:var(--lh-snug)}
+.cp1 .lbl{max-width:none}
+.cp1 .pcard-side{display:flex;flex-direction:column;align-items:flex-end;gap:var(--sp-2);min-width:0}
+.cp1 .pcard-side .pcard-acts{width:210px;align-items:stretch}
+.cp1 a.cp1-live{display:inline-flex;align-items:center;margin-left:auto;font-size:var(--fs-12);font-weight:650;color:var(--accent-text);background:var(--accent-bg-2);border-radius:var(--r-pill);padding:2px var(--sp-2);text-decoration:none}
+.cp1 .pcard-acts{flex-direction:column;align-items:stretch;gap:var(--sp-2);width:210px}
+.cp1 .pcard-acts .pcard-ebay,.cp1 .bd-cta .bd-btn{width:210px;height:36px;min-height:36px;font-size:var(--fs-14);padding:0 12px;border-radius:var(--r-pill);justify-content:center;box-sizing:border-box}
+.cp1 .bd-cta{width:210px;padding:0}
+.cp1 .bd-hint{font-size:var(--fs-12);color:var(--muted);text-align:center}
+.cp1-tag{display:inline-block;margin-left:6px;font-size:var(--fs-12);color:var(--muted);border:1px solid var(--border);border-radius:var(--r-pill);padding:0 var(--sp-2);font-weight:600}
+.cp1-pre{margin:0;font-size:var(--fs-12);color:var(--muted);text-align:center;width:210px}
+.cp1-imgsrc{font-size:var(--fs-12);color:var(--muted);margin-top:var(--sp-2)}
+.cp1 table.hist-t td[data-l="PSA label"]{white-space:normal;min-width:160px}
+.cp1-zoom{border:0;padding:var(--sp-4);background:var(--surface);color:var(--text);max-width:96vw}
+.cp1-zoom img{width:min(92vw,600px);height:auto;display:block}
+.cp1-zoom p{margin:var(--sp-2) 0 0;font-size:var(--fs-12);color:var(--muted);text-align:center}
+.cp1-zoom-x{position:absolute;top:8px;right:8px;min-width:44px;min-height:44px;padding:0 12px}
+@media (min-width:761px) and (max-width:899px){
+.cp1 article.pcard{scroll-margin-top:calc(var(--header-h) + var(--sp-3));display:flex!important;flex-direction:column;align-items:stretch;padding:var(--sp-5);gap:var(--sp-3)}
+.cp1 article.pcard>.pcard-side{float:none;width:100%;margin:0;display:contents}
+.cp1 article.pcard>.pcard-h{order:1;width:100%;margin:0}
+.cp1 .pcard-side>[data-opc-cardimg]{order:2;width:200px!important;max-width:200px!important;margin:0 auto!important}
+.cp1 article.pcard>.pcard-main{order:3;width:100%;margin:0}
+.cp1 article.pcard .cp1-live,.cp1 article.pcard .pcard-acts,.cp1 article.pcard .cp1-pre{order:4;width:100%}
+.cp1 [data-opc-cardimg],.cp1 [data-opc-cardimg] img{width:200px!important;max-width:200px!important}
+.cp1 .pcard-side .pcard-acts,.cp1 .pcard-acts{width:100%;flex-direction:row;flex-wrap:wrap}
+.cp1 .pcard-acts .pcard-ebay,.cp1 .pcard-acts .bd-cta,.cp1 .bd-cta,.cp1 .bd-cta .bd-btn{width:auto;flex:1 1 calc(50% - 8px);height:44px;min-height:44px}
+.cp1-pre{width:100%}
+}
+@media (max-width:760px){
+/* C2 §6.3: large image on top (replace C1 72px thumb + height:0). */
+.cp1 article.pcard{scroll-margin-top:calc(var(--header-h) + var(--sp-3));display:flex!important;flex-direction:column;align-items:stretch;padding:var(--sp-5);gap:var(--sp-2)}
+.cp1 article.pcard>.pcard-side{float:none;display:contents;width:auto;margin:0}
+.cp1 article.pcard>.pcard-h{order:1;width:100%;margin:0}
+.cp1 .pcard-side>[data-opc-cardimg]{order:2;width:min(100%,240px)!important;max-width:min(100%,240px)!important;height:auto!important;margin:0 auto!important;align-self:center}
+.cp1 [data-opc-cardimg],.cp1 [data-opc-cardimg] img{width:min(100%,240px)!important;max-width:min(100%,240px)!important;border-radius:var(--r-sm);margin-left:auto;margin-right:auto}
+/* Keep Image © Bandai source line visible under the image (C2 §6.4). */
+.cp1 [data-opc-cardimg]>div{display:block!important;text-align:center}
+.cp1 article.pcard>.pcard-main{order:3;width:100%;margin:0}
+.cp1 article.pcard .cp1-live{order:4;width:100%}
+.cp1 article.pcard .pcard-acts{order:5;width:100%}
+.cp1 article.pcard .cp1-pre{order:6;width:100%}
+.cp1 .pcard-v{font-size:var(--fs-20)}
+.cp1 .pcard-row.cp1-how .pcard-body{font-size:var(--fs-16)}
+.cp1 .pcard-side{align-items:stretch}
+.cp1 .pcard-side .pcard-acts,.cp1 .pcard-acts,.cp1 .bd-cta,.cp1-pre{width:100%}
+.cp1 .pcard-acts{flex-direction:column}
+.cp1 .pcard-acts .pcard-ebay,.cp1 .pcard-acts .bd-cta,.cp1 .bd-cta .bd-btn{width:100%;max-width:none;height:44px;min-height:44px;font-size:15px;flex:none;box-sizing:border-box}
+.cp1 article.pcard .pcard-side,.cp1 article.pcard .pcard-acts,.cp1 article.pcard .bd-cta{width:100%;max-width:none;align-self:stretch;padding-left:0;padding-right:0}
+.cp1 a.cp1-live.cp1-ph{min-height:44px;justify-content:flex-start}
+}
+/* CARDPAGE-LAYOUT-1 end */
