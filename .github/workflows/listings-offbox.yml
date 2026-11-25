@@ -1,8 +1,7 @@
-# OFFBOX-C r1 -- listings round on GitHub Actions, SHADOW phase. NOT pushed, NOT enabled (needs user approval, see APPROVALS_zh.md).
-# Lives in PUBLIC wonggum/optcg-index. SHADOW = permissions contents:read -> physically cannot push optcg-index; no CHECK_TOKEN -> no Worker ack.
+# OFFBOX-CUTOVER-1 r2 -- LIVE workflow (Actions = primary listings pusher). Pushed to main / enabled ONLY by the cutover order after user approval.
+# Lives in PUBLIC wonggum/optcg-index. LIVE = permissions contents:write (GITHUB_TOKEN pushes data/listings); box = standby backup pusher.
 # Base: OFFBOX-B r9 listings-offbox.yml (GM tech PASS 11/10). Simplified per survey 2026-11-17 §8:
 #   - trigger: schedule every 30 min (:17/:47 UTC, off :00 rush and the :10-:15 no-push window) + workflow_dispatch; slot_gate.py decides in PT
-#     (DST-proof). shadow_dispatch.sh / shadow_budget.json / P95 windows removed.
 #   - job "gate" (ubuntu, no container, no deps, ~20 s): shallow state clone -> slot_gate.py -> on RUN only: commit+push slot mark and counter
 #     BEFORE any eBay call (fail-closed on quota). SKIP passes push nothing (no 48 commits/day).
 #   - job "round" (debian:trixie pinned digest = box OS) only when gate says run=1.
@@ -13,13 +12,13 @@ on:
     - cron: "17,47 * * * *"
   workflow_dispatch: {}
 permissions:
-  contents: read
+  contents: write        # LIVE: GITHUB_TOKEN pushes data/listings to optcg-index main (user decision: GITHUB_TOKEN vs deploy key)
   actions: read          # publish_lane.sh pages_busy(): gh run list on optcg-index
 concurrency:
   group: opchase-listings
   cancel-in-progress: false
 env:
-  OPC_MODE: shadow
+  OPC_MODE: live
   PIPE_REPO: git@github.com:wonggum/opchase-pipeline.git
   INDEX_URL: https://github.com/wonggum/optcg-index.git
   # GitHub ssh-ed25519 host key (verified vs api.github.com/meta in GM-OFFB-PRE-1 S0, 11/09). Re-verify at S8 time.
@@ -65,7 +64,7 @@ jobs:
     runs-on: ubuntu-24.04
     container:
       image: debian:trixie@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6   # r9 pin; re-query digest at snapshot time
-    timeout-minutes: 75
+    timeout-minutes: 70   # r4 (GM 07:15 2c): job > round step 50 min
     defaults: { run: { shell: bash } }
     steps:
       - name: setup
@@ -97,25 +96,32 @@ jobs:
           python3 -m venv "$RUNLOG_DIR/venv"; echo "$RUNLOG_DIR/venv/bin" >> "$GITHUB_PATH"
           "$RUNLOG_DIR/venv/bin/pip" install -q --no-input --require-hashes --only-binary=:all: -r "$RUNLOG_DIR/pipe/requirements-actions.txt"
       - name: layout
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           exec >>"$RUNLOG" 2>&1; set -euo pipefail
           mkdir -p /workspace
           git clone -q --depth 1 "$INDEX_URL" /workspace/optcg_site
           # data commits made on the runner carry their own identity (a fresh clone has none -> publish_lane.sh commit-tree would fail in live)
           git -C /workspace/optcg_site config user.name opchase-actions; git -C /workspace/optcg_site config user.email opchase-actions@users.noreply.github.com
+          # LIVE push credential = the job's GITHUB_TOKEN (contents:write), same mechanism as actions/checkout: an http extraheader in THIS clone's
+          # .git/config only (never in a URL, never echoed; the clone's .git is not in STATE_MAP so it never reaches the state branch).
+          # Push path reviewed in docs/PUSH_PATH_REVIEW_zh.md and exercised by tests/t_https_push.sh (H1-H16). First live push must show a Workers Builds check_run.
+          git -C /workspace/optcg_site config http.https://github.com/.extraheader "AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
           cp -a "$RUNLOG_DIR/pipe/ws/." /workspace/
           mkdir -p /workspace/opchase-backup /workspace/optcg_site/plan /workspace/optcg_site/scheduler_state
           bash "$RUNLOG_DIR/pipe/actions/state_sync.sh" restore "$OPC_MODE" "$RUNLOG_DIR/pstate"
       - name: round
-        timeout-minutes: 50
+        timeout-minutes: 50   # r4 (GM 07:15 2c): fetch inner 1140 / outer 1190 s; OPC_ROUND_STEP_S below = 50 x 60
         env:
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           OPCHASE_SELLER_HMAC_KEY: ${{ secrets.OPCHASE_SELLER_HMAC_KEY }}
           HMAC_SELFTEST_DIGEST: ${{ secrets.HMAC_SELFTEST_DIGEST }}
           GH_TOKEN: ${{ github.token }}
-          OPC_SHADOW_LEDGER_CAP: '900'
+          CHECK_TOKEN: ${{ secrets.CHECK_TOKEN }}
           OPC_ROUND_STEP_S: '3000'
+          EBAY_LEDGER_DAY_CAP: '3450'   # live Actions day cap (contract; watcher 800 on box)
           OPC_GATE_WHY: ${{ needs.gate.outputs.why }}
         run: |
           exec >>"$RUNLOG" 2>&1
@@ -125,6 +131,7 @@ jobs:
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
+          OPC_BUDGET_MAX_S: '3600'        # total <= 60 min (job limit 70, round step 50)
         run: |
           exec >>"$RUNLOG" 2>&1; set -euo pipefail
           brc=0; bash "$RUNLOG_DIR/pipe/actions/budget_check.sh" "$RUNLOG_DIR/t0" || brc=$?
