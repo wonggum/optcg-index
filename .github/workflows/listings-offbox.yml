@@ -50,14 +50,17 @@ jobs:
           } >>"$L" 2>&1 || { rm -f "$D/pk"; echo "gate: clone failed (details private)"; exit 1; }
           python3 "$D/pipe/actions/slot_gate.py" "$D/pstate/$OPC_MODE/ws" "$OPC_MODE" >>"$L" 2>&1; grc=$?
           run=$(grep -oE '^run=[01]' "$GITHUB_OUTPUT" | tail -1 | cut -d= -f2)
-          if [ "$grc" = 0 ] && [ "$run" = 1 ]; then
+          # CUTOVER-2-FIX F1: slot_exhausted (retry_at removed, exhausted mark) is committed too, then the gate job FAILS (GitHub notification)
+          exh=$(grep -oE '^exhausted=[01]' "$GITHUB_OUTPUT" | tail -1 | cut -d= -f2)
+          if [ "$grc" = 0 ] && { [ "$run" = 1 ] || [ "${exh:-0}" = 1 ]; }; then
+            msg="gate: $OPC_MODE run"; [ "$run" = 1 ] || msg="gate: $OPC_MODE slot_exhausted"
             { git -C "$D/pstate" add -A -- "$OPC_MODE/ws/optcg_site/scheduler_state" &&
-              git -C "$D/pstate" -c user.name=opchase-actions -c user.email=opchase-actions@users.noreply.github.com commit -q -m "gate: $OPC_MODE run" &&
+              git -C "$D/pstate" -c user.name=opchase-actions -c user.email=opchase-actions@users.noreply.github.com commit -q -m "$msg" &&
               bash "$D/pipe/actions/pipeline_push.sh" "$D/pstate"; } >>"$L" 2>&1 || { rm -f "$D/pk"; echo "gate: state push failed -> no round"; echo "run=0" >> "$GITHUB_OUTPUT"; exit 1; }
           fi
           rm -f "$D/pk"
-          echo "gate: rc=$grc run=${run:-0}"   # the reason text stays private (it may name slots/ages only, but the whitelist rule is: rc + run only)
-          [ "$grc" = 0 ]
+          echo "gate: rc=$grc run=${run:-0} exhausted=${exh:-0}"   # the reason text stays private (whitelist rule: rc + run + exhausted flag only)
+          [ "$grc" = 0 ] && [ "${exh:-0}" != 1 ]
   round:
     needs: gate
     if: needs.gate.outputs.run == '1'
