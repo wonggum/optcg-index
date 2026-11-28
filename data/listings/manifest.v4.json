@@ -1,12 +1,12 @@
 {
 "schema": 4,
-"fetched_at": "2026-11-27T20:53:10-08:00",
-"auc_fetched_at": "2026-11-27T20:53:33-08:00",
+"fetched_at": "2026-11-27T22:06:51-08:00",
+"auc_fetched_at": "2026-11-27T22:07:15-08:00",
 "files": {
-"data/listings/home.v4.json": 889,
+"data/listings/home.v4.json": 886,
 "data/listings/cards/tier-grail.v4.json": 159,
-"data/listings/cards/tier-premium.v4.json": 309,
-"data/listings/cards/tier-core.v4.json": 215,
+"data/listings/cards/tier-premium.v4.json": 310,
+"data/listings/cards/tier-core.v4.json": 211,
 "data/listings/cards/eb01-003-reg-fin-kid-psa-10.v4.json": 3,
 "data/listings/cards/eb01-006-manga-chopper-psa-10.v4.json": 5,
 "data/listings/cards/eb02-006-serial-yamato-psa-10.v4.json": 3,
@@ -23,7 +23,7 @@
 "data/listings/cards/op01-003-aa-luffy-psa-10.v4.json": 8,
 "data/listings/cards/op01-016-manga-prb-nami-psa-10.v4.json": 4,
 "data/listings/cards/op01-016-sp-nami-psa-10.v4.json": 8,
-"data/listings/cards/op01-025-aa-zoro-psa-10.v4.json": 11,
+"data/listings/cards/op01-025-aa-zoro-psa-10.v4.json": 10,
 "data/listings/cards/op01-025-tc23-top8-zoro-psa-10.v4.json": 0,
 "data/listings/cards/op01-060-aa-doflamingo-psa-10.v4.json": 10,
 "data/listings/cards/op01-070-aa-mihawk-psa-10.v4.json": 7,
@@ -37,7 +37,7 @@
 "data/listings/cards/op03-092-sp-lucci-psa-10.v4.json": 10,
 "data/listings/cards/op03-114-cs24-big-mom-psa-10.v4.json": 0,
 "data/listings/cards/op03-122-manga-prb1-usopp-psa-10.v4.json": 1,
-"data/listings/cards/op03-122-manga-usopp-psa-10.v4.json": 7,
+"data/listings/cards/op03-122-manga-usopp-psa-10.v4.json": 6,
 "data/listings/cards/op03-123-cs24-katakuri-psa-10.v4.json": 1,
 "data/listings/cards/op04-083-manga-sabo-psa-10.v4.json": 10,
 "data/listings/cards/op05-060-eb02sp-luffy-psa-10.v4.json": 0,
@@ -73,11 +73,11 @@
 "data/listings/cards/op11-041-wci-nami-psa-10.v4.json": 0,
 "data/listings/cards/op11-118-manga-luffy-psa-10.v4.json": 12,
 "data/listings/cards/op12-015-tc64-luffy-psa-10.v4.json": 0,
-"data/listings/cards/op12-118-manga-bonney-psa-10.v4.json": 13,
-"data/listings/cards/op13-016-tc-garp-psa-10.v4.json": 3,
+"data/listings/cards/op12-118-manga-bonney-psa-10.v4.json": 12,
+"data/listings/cards/op13-016-tc-garp-psa-10.v4.json": 2,
 "data/listings/cards/op13-118-manga-luffy-psa-10.v4.json": 10,
 "data/listings/cards/op13-118-redmanga-luffy-psa-10.v4.json": 1,
-"data/listings/cards/op13-119-manga-ace-psa-10.v4.json": 11,
+"data/listings/cards/op13-119-manga-ace-psa-10.v4.json": 12,
 "data/listings/cards/op13-119-redmanga-ace-psa-10.v4.json": 2,
 "data/listings/cards/op13-120-manga-sabo-psa-10.v4.json": 10,
 "data/listings/cards/op13-120-redmanga-sabo-psa-10.v4.json": 3,
@@ -139,5 +139,5 @@
 "data/listings/cards/db-st22.v4.json": 3,
 "data/listings/cards/db-st30.v4.json": 7
 },
-"n": 2692
+"n": 2683
 }
